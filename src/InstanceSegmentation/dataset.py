@@ -19,7 +19,7 @@ class CoalFractionDataset(torch.utils.data.Dataset):
         self.transforms = transforms
         # load all image files, sorting them to
         # ensure that they are aligned
-        self.images: List[Path] = sorted(list((self.root / "images").glob('*')))
+        self.images: List[Path] = sorted(list(self.root.glob('*')))
         self.masks = vgg2dict(vgg_json)
         self.size = {'width': width, 'height': height}
 
