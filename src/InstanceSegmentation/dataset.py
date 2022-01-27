@@ -14,18 +14,22 @@ from vgg_to_mask import vgg2dict, dict2mask
 
 
 class CoalFractionDataset(torch.utils.data.Dataset):
-    def __init__(self, root, vgg_json, transforms=None):
+    def __init__(self, root, vgg_json, width, height, transforms=None):
         self.root = Path(root)
         self.transforms = transforms
         # load all image files, sorting them to
         # ensure that they are aligned
         self.images: List[Path] = sorted(list((self.root / "images").glob('*')))
         self.masks = vgg2dict(vgg_json)
+        self.size = {'width': width, 'height': height}
 
     def __getitem__(self, idx):
         # load images ad masks
         img = Image.open(self.images[idx]).convert("RGB")
-        mask = dict2mask(image_name=self.images[idx].name, mask_dict=self.masks)
+        mask = dict2mask(image_name=self.images[idx].name,
+                         mask_dict=self.masks,
+                         mask_width=self.size['width'],
+                         mask_height=self.size['height'])
         # note that we haven't converted the mask to RGB,
         # because each color corresponds to a different instance
         # with 0 being background
