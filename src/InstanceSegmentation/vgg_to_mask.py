@@ -52,7 +52,7 @@ def dict2mask(image_name: str, mask_dict: Dict[str, List[Polygon]],
     VGG json -> vgg2dict -> dict2mask (you are here) -> mask
 
     :param image_name: name of annotated image
-    :param mask_dict: mdict from vgg2dict
+    :param mask_dict: dict from vgg2dict
     :param mask_width: dimensions should match those of ground truth image
     :param mask_height: dimensions should match those of ground truth image
     :return: mask with values in range (0, num objects), unique for object
