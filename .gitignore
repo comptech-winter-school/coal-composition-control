@@ -15,7 +15,6 @@ ENV*/
 *.png
 *.json
 !few_data.json
-!**/20210712_141048_857A_ACCC8EAF31F3_0.jpg
 
 
 
