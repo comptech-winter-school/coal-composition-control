@@ -1,3 +1,7 @@
+"""
+Instance Segmentation dataset
+Based on Penn-Fudan dataset from https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
+"""
 from pathlib import Path
 from typing import List
 
