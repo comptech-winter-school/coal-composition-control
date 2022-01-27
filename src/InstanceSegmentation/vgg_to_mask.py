@@ -109,7 +109,7 @@ def save_vgg2mask(source_folder: Path, save_folder: Path, vgg_json: Path,
 
 if __name__ == '__main__':
     save_vgg2mask(
-        source_folder=Path.cwd() / "few_data",
-        save_folder=Path.cwd() / "few_data_processed",
-        vgg_json=Path.cwd() / "few_data.json"
+        source_folder=Path.cwd().parent / "few_data",
+        save_folder=Path.cwd().parent / "few_data_processed",
+        vgg_json=Path.cwd().parent / "few_data.json"
     )
