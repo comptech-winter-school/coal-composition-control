@@ -3,3 +3,5 @@ numpy
 matplotlib
 torch
 pillow
+pandas
+scikit-image
