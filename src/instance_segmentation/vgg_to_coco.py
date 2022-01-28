@@ -63,4 +63,5 @@ def vgg_to_coco(dataset_dir: Union[str, Path],
         json.dump(coco, f)
 
 
-vgg_to_coco(dataset_dir=Path.cwd().parents[1] / 'few_data', vgg_path=Path.cwd().parents[1] / 'few_data.json')
+if __name__ == "__main__":
+    vgg_to_coco(dataset_dir=Path.cwd().parents[1] / 'few_data', vgg_path=Path.cwd().parents[1] / 'few_data.json')
