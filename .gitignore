@@ -19,5 +19,4 @@ ENV*/
 *.pth
 
 
-
-
+!/src/semantic_segmentation/models.json
