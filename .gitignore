@@ -14,7 +14,7 @@ ENV*/
 *.JPEG
 *.png
 *.json
-!few_data.json
+*.csv
 
 
 
