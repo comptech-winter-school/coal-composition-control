@@ -1,5 +1,20 @@
 # Coal Composition Control 
-This is a test
+
+The AI-based system for the coal fraction analysis on a conveyour in real time
+
+# Requirements
+
+Python modules and libraries :
+
+- opencv-python
+- numpy
+- matplotlib
+- torch
+- pillow
+- pandas
+- scikit-image
+- albumentations
+- segmentation-models-pytorch
 
 # Team 
 

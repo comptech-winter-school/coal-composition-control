@@ -1,9 +1,0 @@
-opencv-python
-numpy
-matplotlib
-torch
-pillow
-pandas
-scikit-image
-albumentations
-segmentation-models-pytorch
