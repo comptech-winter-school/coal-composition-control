@@ -1,6 +1,6 @@
 # Coal Composition Control 
 
-The AI-based system for the coal fraction analysis on a conveyour in real time
+The AI-based system for the coal fraction analysis on a conveyor in real time
 
 # Requirements
 
