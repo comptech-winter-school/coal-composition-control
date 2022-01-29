@@ -1,0 +1,11 @@
+models = {
+    "FPN-2022-01-26": model(
+        url="https://drive.google.com/file/d/10LeojdMlOr4Ez2M5FYqtiU2vqlXLIAfs/",
+        model=FPN(encoder_name="resnext101_32x8d", classes=1, encoder_weights='instagram')),
+
+    "Unet-2022-01-29-1": model(
+        url="https://drive.google.com/file/d/1_OUdkakxC78qruy7KLeMu6sWbiomtrl2/",
+        model=Unet(encoder_name="se_resnext50_32x4d", classes=2, encoder_weights='imagenet'),
+        loss="loss1 + 3 * loss2 + 6 * loss_extra",epoch=70),
+        )
+}

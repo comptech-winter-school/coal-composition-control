@@ -1,6 +1,0 @@
-models = {
-    "FPN-2022-01-26": model(
-        url="https://drive.google.com/file/d/10LeojdMlOr4Ez2M5FYqtiU2vqlXLIAfs/",
-        model=FPN(encoder_name="resnext101_32x8d", classes=1, encoder_weights='instagram'),
-    )
-}
