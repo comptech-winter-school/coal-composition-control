@@ -20,6 +20,10 @@ ENV*/
 *.pdf
 
 
+# TeX
+*.aux
+*.log
+
 !/src/semantic_segmentation/models.json
 
 # Used in the vision_document.md
