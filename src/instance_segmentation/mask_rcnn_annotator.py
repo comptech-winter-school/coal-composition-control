@@ -33,9 +33,9 @@ class Annotator(MaskRCNN):
 if __name__ == '__main__':
     annotator = Annotator(
         weights='/home/ji411/PycharmProjects/comptech-coal-composition-control/mask-rcnn.pth',
-        box_conf_th=0.9,
-        nms_th=0.01,
-        segmentation_th=0.9
+        box_conf_th=0.7,
+        nms_th=0.2,
+        segmentation_th=0.7
     )
     annotator.to_vgg(
         folder='/home/ji411/PycharmProjects/comptech-coal-composition-control/few_data',
