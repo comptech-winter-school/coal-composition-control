@@ -28,7 +28,7 @@ def vgg_to_coco(dataset_dir: Union[str, Path],
 
     images_ids_dict = {}
     images_info = []
-    for i,v in enumerate(vgg.values()):
+    for i, v in enumerate(vgg.values()):
 
         images_ids_dict[v["filename"]] = i
         image_path = dataset_dir / v['filename']
