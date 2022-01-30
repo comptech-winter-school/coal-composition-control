@@ -6,7 +6,13 @@ import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
-from ..base import BasePredictor, InstanceSegmentationCoals
+import sys
+FILE = Path(__file__).resolve()
+ROOT = FILE.parents[2]  # root directory
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))  # add ROOT to PATH
+
+from src.base import BasePredictor, InstanceSegmentationCoals
 
 
 class MaskRCNN(BasePredictor):
@@ -47,3 +53,7 @@ class MaskRCNN(BasePredictor):
         masks = torch.squeeze(prediction[0]['masks'])
         masks = (masks > self.segmentation_th)
         return InstanceSegmentationCoals(masks=np.array(masks))
+
+
+if __name__ == '__main__':
+    model = MaskRCNN('/home/ji411/Downloads/1/mask-rcnn.pth')

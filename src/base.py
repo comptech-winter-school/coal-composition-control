@@ -1,9 +1,15 @@
+from pathlib import Path
 from typing import Dict, Tuple
 
 import cv2
 import numpy as np
 from numpy.typing import NDArray
 
+import sys
+FILE = Path(__file__).resolve()
+ROOT = FILE.parents[2]  # root directory
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))  # add ROOT to PATH
 
 class BasePredictor:
 
