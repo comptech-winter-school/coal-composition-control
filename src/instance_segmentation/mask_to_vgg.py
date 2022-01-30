@@ -3,14 +3,14 @@ import json
 import numpy as np
 from pathlib import Path
 from numpy.typing import NDArray
-from typing import Union, Dict
+from typing import Union, Dict, Generator, List
 
 
 def mask2contours(mask: NDArray) -> NDArray:
     contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     return np.array(contours).flatten()
 
-def masks2polygons(masks: NDArray):
+def masks2polygons(masks: NDArray) -> Generator[List[int], None, None]:
     for mask in masks:
         contours = mask2contours(mask)
         if contours.shape[0] >= 6:
