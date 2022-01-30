@@ -6,7 +6,7 @@ import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
-from src.base import BasePredictor, InstanceSegmentationCoals
+from ..base import BasePredictor, InstanceSegmentationCoals
 
 
 class MaskRCNN(BasePredictor):
