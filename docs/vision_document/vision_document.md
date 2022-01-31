@@ -91,7 +91,10 @@ The following block diagram describes the structure of the product
 
 ## Applicable Standards
 
-**N/A yet**
+Transfer protocols :
+
+- HTTP
+- RTCP
 
 ## System Requirements
 
