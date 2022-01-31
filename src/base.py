@@ -19,6 +19,10 @@ class BasePredictor:
 
 class Coals:
 
+    def __init__(self, rectangles):
+        self.rectangles = rectangles
+        self.size_map = self.get_size_map()
+
     @staticmethod
     def get_size_map() -> Dict[str, Tuple[int, int]]:
         # with open(path) as f:
@@ -31,10 +35,6 @@ class Coals:
 
 
 class InstanceSegmentationCoals(Coals):
-
-    def __init__(self, masks):
-        self.rectangles = [self.rectangle(mask) for mask in masks]
-        self.size_map = self.get_size_map()
 
     @staticmethod
     def rectangle(mask):

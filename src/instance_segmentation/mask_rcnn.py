@@ -45,6 +45,11 @@ class MaskRCNN(BasePredictor):
         model.eval()
         return model
 
+    @staticmethod
+    def rectangle(mask):
+        contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        return cv2.minAreaRect(contours[0])
+
     @torch.no_grad()
     def predict(self, img: NDArray) -> InstanceSegmentationCoals:
         img = transforms.ToTensor()(img)
@@ -52,11 +57,12 @@ class MaskRCNN(BasePredictor):
 
         prediction = self.model([img])
         masks = torch.squeeze(prediction[0]['masks'])
-        masks = (masks > self.segmentation_th)
-        return InstanceSegmentationCoals(masks=np.array(masks))
+        masks = np.array(masks > self.segmentation_th)
+        rectangles = [self.rectangle(mask) for mask in masks]
+        return InstanceSegmentationCoals(rectangles=rectangles)
 
 
 if __name__ == '__main__':
-    img = cv2.imread(Path.cwd() / 'few_data' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg')
+    img = cv2.imread(str(Path.cwd().parents[1] / 'few_data' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
     model = MaskRCNN('/home/ji411/Downloads/1/mask-rcnn.pth')
-    model.predict(img)
+    print(model.predict(img).get_fraction())
