@@ -37,11 +37,6 @@ class Coals:
 class InstanceSegmentationCoals(Coals):
 
     @staticmethod
-    def rectangle(mask):
-        contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        return cv2.minAreaRect(contours[0])
-
-    @staticmethod
     def diag(box):
         return np.linalg.norm(box[0] - box[2])
 
