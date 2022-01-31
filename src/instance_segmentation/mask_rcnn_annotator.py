@@ -8,7 +8,7 @@ import torch
 import numpy as np
 
 from mask_rcnn import MaskRCNN
-from mask_to_vgg import masks2vgg
+from src.converters.mask_to_vgg import masks2vgg
 
 class Annotator(MaskRCNN):
 

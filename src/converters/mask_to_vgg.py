@@ -1,3 +1,7 @@
+"""
+Convert mask [N x W x H] to vgg json annotation
+"""
+
 import cv2
 import json
 import numpy as np

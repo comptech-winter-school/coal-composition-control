@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Union
 
+import cv2
 import numpy as np
 import torch
 import torchvision.transforms as transforms
@@ -56,4 +57,6 @@ class MaskRCNN(BasePredictor):
 
 
 if __name__ == '__main__':
+    img = cv2.imread(Path.cwd() / 'few_data' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg')
     model = MaskRCNN('/home/ji411/Downloads/1/mask-rcnn.pth')
+    model.predict(img)

@@ -1,5 +1,5 @@
 """
-VGG json -> instance segmentation masks
+VGG json -> instance segmentation masks [N x W x H]
 VGG: https://www.robots.ox.ac.uk/~vgg/software/via/via.html
 """
 
