@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Union
+from typing import Union, List
 
 import cv2
 import numpy as np
@@ -13,7 +13,7 @@ ROOT = FILE.parents[2]  # root directory
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 
-from src.base import BasePredictor, InstanceSegmentationCoals
+from src.base import BasePredictor, InstanceSegmentationCoal
 
 
 class MaskRCNN(BasePredictor):
@@ -46,23 +46,22 @@ class MaskRCNN(BasePredictor):
         return model
 
     @staticmethod
-    def rectangle(mask):
+    def get_contour(mask):
         contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         return cv2.minAreaRect(contours[0])
 
     @torch.no_grad()
-    def predict(self, img: NDArray) -> InstanceSegmentationCoals:
+    def predict(self, img: NDArray) -> List[InstanceSegmentationCoal]:
         img = transforms.ToTensor()(img)
         img.to(self.device)
 
         prediction = self.model([img])
         masks = torch.squeeze(prediction[0]['masks'])
         masks = np.array(masks > self.segmentation_th)
-        rectangles = [self.rectangle(mask) for mask in masks]
-        return InstanceSegmentationCoals(rectangles=rectangles)
+        return [InstanceSegmentationCoal(self.get_contour(mask)) for mask in masks]
 
 
 if __name__ == '__main__':
     img = cv2.imread(str(Path.cwd().parents[1] / 'few_data' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
-    model = MaskRCNN('/home/ji411/Downloads/1/mask-rcnn.pth')
-    print(model.predict(img).get_fraction())
+    mask_rcnn = MaskRCNN('/home/ji411/Downloads/1/mask-rcnn.pth')
+    print([coal.get_fraction() for coal in mask_rcnn.predict(img)])

@@ -17,16 +17,16 @@ class BasePredictor:
         raise NotImplementedError()
 
 
-class Coals:
-
-    def __init__(self, rectangles):
-        self.rectangles = rectangles
+class Coal:
 
     def get_fraction(self) -> NDArray:
         raise NotImplementedError()
 
 
-class InstanceSegmentationCoals(Coals):
+class InstanceSegmentationCoal(Coal):
+
+    def __init__(self, contour):
+        self.contour = contour
 
     @staticmethod
     def diag(box):
@@ -36,7 +36,7 @@ class InstanceSegmentationCoals(Coals):
     def longest_side(box):
         return max(np.linalg.norm(box[0] - box[1]), np.linalg.norm(box[1] - box[2]))
 
-    def get_fraction(self) -> NDArray:
-        boxes = [np.int0(cv2.boxPoints(rect)) for rect in self.rectangles]
-        return np.array([self.longest_side(box) for box in boxes])
+    def get_fraction(self) -> float:
+        box = cv2.boxPoints(self.contour)
+        return self.longest_side(box)
 
