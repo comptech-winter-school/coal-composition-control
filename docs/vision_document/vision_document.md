@@ -83,13 +83,9 @@ The following block diagram describes the structure of the product
 
 ### Separation of Coal Grains
 
-### Grain Size Calculation 
+### Statistics
 
-### "Garbage" detection
-
-## Visualization 
-
-## User Interface
+## User Interface & Visualization
 
 # Other Requirements
 
