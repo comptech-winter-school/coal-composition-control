@@ -1,10 +1,10 @@
+import sys
 from pathlib import Path
 
 import cv2
 import numpy as np
 from numpy.typing import NDArray
 
-import sys
 FILE = Path(__file__).resolve()
 ROOT = FILE.parent  # root directory
 if str(ROOT) not in sys.path:

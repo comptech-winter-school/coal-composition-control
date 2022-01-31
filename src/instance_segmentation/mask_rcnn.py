@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from typing import Union, List
 
@@ -7,7 +8,6 @@ import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
-import sys
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[2]  # root directory
 if str(ROOT) not in sys.path:

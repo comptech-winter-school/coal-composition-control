@@ -2,12 +2,13 @@
 Convert mask [N x W x H] to vgg json annotation
 """
 
-import cv2
 import json
-import numpy as np
 from pathlib import Path
-from numpy.typing import NDArray
 from typing import Union, Dict, Generator, List
+
+import cv2
+import numpy as np
+from numpy.typing import NDArray
 
 
 def mask2contours(mask: NDArray) -> NDArray:

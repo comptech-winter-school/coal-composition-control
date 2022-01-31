@@ -2,13 +2,14 @@
 Convert VGG json to COCO json, based on
 https://stackoverflow.com/questions/61210420/converting-the-annotations-to-coco-format-from-mask-rcnn-dataset-format
 """
+import json
 import math
 from itertools import chain
-import numpy as np
-import json
-import cv2
 from pathlib import Path
 from typing import Union
+
+import cv2
+import numpy as np
 
 
 def poly_area(x, y):

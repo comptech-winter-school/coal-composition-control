@@ -3,11 +3,12 @@ Convert VGG json to rotation-yolov5 annotation
 https://github.com/BossZard/rotation-yolov5
 """
 
-import numpy as np
 import json
-import cv2
 from pathlib import Path
 from typing import Union
+
+import cv2
+import numpy as np
 
 
 def vgg_to_rotated_yolo(

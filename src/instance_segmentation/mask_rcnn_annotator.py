@@ -1,14 +1,15 @@
+from pathlib import Path
 from typing import Dict, Union
 
 import cv2
+import numpy as np
+import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray
-from pathlib import Path
-import torch
-import numpy as np
 
 from mask_rcnn import MaskRCNN
 from src.converters.mask_to_vgg import masks2vgg
+
 
 class Annotator(MaskRCNN):
 
