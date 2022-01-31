@@ -48,7 +48,7 @@ class MaskRCNN(BasePredictor):
     @staticmethod
     def get_contour(mask):
         contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        return cv2.minAreaRect(contours[0])
+        return contours[0]
 
     @torch.no_grad()
     def predict(self, img: NDArray) -> List[InstanceSegmentationCoal]:
@@ -62,6 +62,12 @@ class MaskRCNN(BasePredictor):
 
 
 if __name__ == '__main__':
-    img = cv2.imread(str(Path.cwd().parents[1] / 'few_data' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
+    image = cv2.imread(str(Path.cwd().parents[1] / 'few_data' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
     mask_rcnn = MaskRCNN('/home/ji411/Downloads/1/mask-rcnn.pth')
-    print([coal.get_fraction() for coal in mask_rcnn.predict(img)])
+
+    coals = mask_rcnn.predict(image)
+    print([coal.get_fraction() for coal in coals])
+
+    cv2.imshow('Contours', coals[0].plot_on(image))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
