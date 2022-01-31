@@ -19,6 +19,9 @@ ENV*/
 *.pth
 *.pdf
 
+# Haskell
+*.o
+*.hi
 
 # TeX
 *.aux
