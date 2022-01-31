@@ -27,6 +27,9 @@ ENV*/
 *.aux
 *.log
 
+# Vim
+*.sw[o-z]
+
 !/src/semantic_segmentation/models.json
 
 # Used in the vision_document.md
