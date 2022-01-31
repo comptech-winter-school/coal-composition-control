@@ -22,12 +22,9 @@ def vgg_to_rotated_yolo(
     if not outdir.is_dir():
         outdir.mkdir()
 
-
     with open(vgg_path) as f:
         vgg = json.load(f)
 
-
-    images_info = []
     for v in vgg.values():
         image_path = dataset_dir / v['filename']
         image = cv2.imread(str(image_path))
