@@ -5,11 +5,12 @@ https://stackoverflow.com/questions/61210420/converting-the-annotations-to-coco-
 import json
 import math
 from itertools import chain
-from pathlib import Path
 from typing import Union
 
 import cv2
 import numpy as np
+
+from constants import *
 
 
 def poly_area(x, y):
@@ -120,7 +121,7 @@ def vgg_to_rotated_coco(
 
 if __name__ == "__main__":
     vgg_to_rotated_coco(
-        dataset_dir=Path.cwd().parents[1] / 'few_data',
-        vgg_path=Path.cwd().parents[1] / 'few_data.json',
-        outfile=Path.cwd().parents[1] / 'coco_few_data_rotated.json',
+        dataset_dir=DATA_DIR / 'few_data',
+        vgg_path=DATA_DIR / 'few_data.json',
+        outfile=DATA_DIR / 'coco_few_data_rotated.json',
     )

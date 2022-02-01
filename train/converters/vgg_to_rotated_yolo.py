@@ -4,11 +4,12 @@ https://github.com/BossZard/rotation-yolov5
 """
 
 import json
-from pathlib import Path
 from typing import Union
 
 import cv2
 import numpy as np
+
+from constants import *
 
 
 def vgg_to_rotated_yolo(
@@ -46,7 +47,7 @@ def vgg_to_rotated_yolo(
 if __name__ == "__main__":
 
     vgg_to_rotated_yolo(
-        dataset_dir=Path.cwd().parents[1] / 'few_data',
-        vgg_path=Path.cwd().parents[1] / 'few_data.json',
-        outdir=Path.cwd().parents[1] / 'few_data_labels',
+        dataset_dir=DATA_DIR / 'few_data',
+        vgg_path=DATA_DIR / 'few_data.json',
+        outdir=DATA_DIR / 'few_data_labels',
     )

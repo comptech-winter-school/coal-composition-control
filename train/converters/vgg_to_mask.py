@@ -5,12 +5,13 @@ VGG: https://www.robots.ox.ac.uk/~vgg/software/via/via.html
 
 import json
 import shutil
-from pathlib import Path
 from typing import Dict, Any, List, Tuple
 
 import cv2
 import numpy as np
 from numpy.typing import NDArray
+
+from constants import *
 
 Polygon = Tuple[Tuple[int, int], ...]
 
@@ -109,7 +110,7 @@ def save_vgg2mask(source_folder: Path, save_folder: Path, vgg_json: Path,
 
 if __name__ == '__main__':
     save_vgg2mask(
-        source_folder=Path.cwd().parents[1] / "few_data",
-        save_folder=Path.cwd().parents[1] / "few_data_processed",
-        vgg_json=Path.cwd().parents[1] / "few_data.json"
+        source_folder=DATA_DIR / "few_data",
+        save_folder=DATA_DIR / "few_data_processed",
+        vgg_json=DATA_DIR / "few_data.json"
     )

@@ -4,22 +4,23 @@ Convert mask [N x W x H] to vgg json annotation
 
 import json
 from pathlib import Path
-from typing import Union, Dict, Generator, List
+from typing import Union, Dict, Generator, List, Tuple
 
-import cv2
-import numpy as np
 from numpy.typing import NDArray
+from src.utils import get_contour
 
 
-def mask2contours(mask: NDArray) -> NDArray:
-    contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    return np.array(contours).flatten()
+# def mask2contours(mask: NDArray) -> NDArray:
+#     contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#     return np.array(contours).flatten()
 
-def masks2polygons(masks: NDArray) -> Generator[List[int], None, None]:
+def masks2polygons(masks: NDArray) -> Generator[Tuple[List[int], List[int]], None, None]:
     for mask in masks:
-        contours = mask2contours(mask)
-        if contours.shape[0] >= 6:
-            yield contours.tolist()
+        contour = get_contour(mask)
+        if contour.shape[0] >= 6:
+            x, y = contour.T
+            x, y = x.flatten(), y.flatten()
+            yield x.tolist(), y.tolist()
 
 
 def masks2vgg(names_and_masks: Dict[str, NDArray], save_path: Union[str, Path]) -> None:
@@ -34,9 +35,8 @@ def masks2vgg(names_and_masks: Dict[str, NDArray], save_path: Union[str, Path]) 
             'file_attributes': {}
         }
 
-        for polygon in masks2polygons(masks):
-            # all_points_x, all_points_y = polygon[::2], polygon[1::2]
-            all_points_x, all_points_y = polygon[::12], polygon[1::12]   # monkey smoothing
+        for all_points_x, all_points_y in masks2polygons(masks):
+            all_points_x, all_points_y = all_points_x[::8], all_points_y[::8]  # monkey smoothing
             image_annotation['regions'].append({
                 'shape_attributes': {
                     'name': 'polygon',
