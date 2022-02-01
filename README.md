@@ -1,6 +1,6 @@
 # Coal Composition Control System 
 
-This is an implementation of the [__Coal Composition Control System__](https://comptechschool.com/2022/projects/coal_cv) project of the __CompTechSchool 2022__.
+This is an implementation of the [_Coal Composition Control System_](https://comptechschool.com/2022/projects/coal_cv) project of the [_CompTechSchool 2022_](https://comptechschool.com/homepage).
 
 The AI-based system for the coal fraction analysis on the conveyor in real time.
 
