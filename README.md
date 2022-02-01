@@ -6,8 +6,8 @@ The AI-based system for the coal fraction analysis on the conveyor in real time
 
 Python modules and libraries :
 
-- opencv-python
-- numpy
+- opencv-python~=4.5.5.62
+- numpy~=1.21.2
 - matplotlib
 - torch
 - pillow
