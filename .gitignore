@@ -1,3 +1,7 @@
+##############
+# DEVELOPERS #
+##############
+
 __pycache__/
 .venv*
 venv*/
@@ -6,7 +10,6 @@ ENV*/
 .ipynb_checkpoints
 .python-version
 .env
-
 
 *.jpg
 *.jpeg
@@ -20,18 +23,19 @@ ENV*/
 *.pth
 *.pdf
 
-# Haskell
-*.o
-*.hi
+!/src/semantic_segmentation/models.json
+
+###############
+# TECH WRITER #
+###############
 
 # TeX
 *.aux
 *.log
+/docs/directory_tree/dir.tex
 
 # Vim
 *.sw[o-z]
-
-!/src/semantic_segmentation/models.json
 
 # Used in the vision_document.md
 !/docs/diagrams/general_block_diagram.png

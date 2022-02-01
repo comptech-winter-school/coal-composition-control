@@ -58,7 +58,7 @@ class TikzTreeProducer:
 
 if(__name__ == "__main__") :
     t = TikzTreeProducer()
-    t.patterns = ["*.py", "*.md",]
+    t.patterns = ["*.py"]
     t.escapes = {'_' : r'$\textunderscore$'}
 
     t.get_tree("/home/lrdprdx/projects/winter_school/coal-composition-control")

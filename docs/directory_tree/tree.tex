@@ -8,8 +8,6 @@
 }
 
 \forestset{horizontal/.style={
-    %if n children=0{fill=green!30}{},
-    %if n children=0{}{fill=yellow!30},
     grow'=east,
     child anchor=west,
     parent anchor=east,
@@ -17,9 +15,11 @@
     draw,
     anchor=west,
     rounded corners=1pt,
+    outer xsep=3pt,
+    l sep=1cm,
     edge path={
-        \noexpand\path[\forestoption{edge}]
-            (.child anchor) -| +(-5pt,0) -- +(-5pt,0) |-
+        \noexpand\path[\forestoption{edge}, thick]
+            (.child anchor) -| +(-3pt,0) -- +(-3pt,0) |-
             (!u.parent anchor)\forestoption{edge label};
     }}
 }
