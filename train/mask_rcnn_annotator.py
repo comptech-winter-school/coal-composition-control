@@ -1,3 +1,6 @@
+"""
+Create VGG json from Mask R-CNN predict
+"""
 from typing import Dict, Union
 
 import cv2
