@@ -1,42 +1,7 @@
 \documentclass[tikz,border=10pt,multi,dvipsnames,svgnames,x11names]{standalone}
+
 \usepackage[edges]{forest}
 
 \begin{document}
-\begin{forest}
-  my label/.style={
-    label={[font=\sffamily]right:{#1}},
-  },
-  for tree={% addaswyd o gôd Gonzalo Medina: https://tex.stackexchange.com/a/270761/
-    folder,
-    font=\sffamily,
-    text=white,
-    minimum height=0.75cm,
-    text width=10mm,
-    if level=0{fill=ForestGreen}{fill/.wrap pgfmath arg={SlateBlue#1}{int(4-(mod((level()-1),4)))}},
-    rounded corners=4pt,
-    edge={ForestGreen,rounded corners,line width=1pt},
-    fit=band,
-  },
-  [text1
-    [text1.1
-      [text1.1.1
-        [text1.1.1.1
-          [text1.1.1.1.1]
-          [text1.1.1.1.2]
-          [text1.1.1.1.3]
-        ]
-      ]
-      [textt1.1.2
-        [text1.1.2.1]
-      ]
-      [text1.1.3
-        [text1.1.3.1]
-      ]
-    ]
-    [text1.2
-      [text1.2.1]
-      [text1.2.2]
-    ]
-  ]
-\end{forest}
+    \input{dir.tex}
 \end{document}
