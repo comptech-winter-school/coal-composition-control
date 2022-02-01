@@ -1,5 +1,5 @@
 """
-VGG json -> instance segmentation masks
+VGG json -> instance segmentation masks [N x W x H]
 VGG: https://www.robots.ox.ac.uk/~vgg/software/via/via.html
 """
 
@@ -109,7 +109,7 @@ def save_vgg2mask(source_folder: Path, save_folder: Path, vgg_json: Path,
 
 if __name__ == '__main__':
     save_vgg2mask(
-        source_folder=Path.cwd().parent / "few_data",
-        save_folder=Path.cwd().parent / "few_data_processed",
-        vgg_json=Path.cwd().parent / "few_data.json"
+        source_folder=Path.cwd().parents[1] / "few_data",
+        save_folder=Path.cwd().parents[1] / "few_data_processed",
+        vgg_json=Path.cwd().parents[1] / "few_data.json"
     )
