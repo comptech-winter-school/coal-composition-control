@@ -41,12 +41,13 @@ causing the impact of
 
 | Key | Value |
 | :---  | :--- |
-| Number of users per task | Usually 1 or 2 |
+| Number of users per task | Usually 1 |
 | Requirements | PC, Internet connection, Browser |
 
 # Product Overview
 
-The product is the complex system for the coal fraction analysis on the conveyor.
+The product is the complex system for the coal fraction analysis on the conveyor
+which based on AI algorithms (CV, CNNs, ML).
 
 ## Brief Description of the Product
 
@@ -74,10 +75,9 @@ The following block diagram describes the structure of the product
 - Cameras
 - Transferring infastructure (wires, commutators, switches, routers)
 - Servers
+- Software Development
 
 # Main Functionality
-
-## Transferring Video Data 
 
 ## Video Data Analysis 
 
@@ -106,17 +106,36 @@ Transfer protocols :
 
 ## Performance Requirements
 
-**N/A yet**
+- Real time video analysis (~10 fps)
 
 # Documentation Requirements
 
+Documentation must consist of at least 3 documents:
+
+- README.md
+- SRS
+- User's guide
+
+## README.md
+
+This file describes the purpose of the repo and provides the perspective view of the product.
+
+It should answer the following question:
+
+- What is it?
+- What is it for?
+- How to install and run?
+
+## System Requirements Specification
+
 ## User's Guide
 
-**N/A yet**
+## Help 
 
-## Online Help 
+WEB interface should have:
 
-**N/A yet**
+- Tooltips
+- Popup hints
 
 ## Installation & Configuration
 
