@@ -1,6 +1,6 @@
 import cv2
 import torch
-from numpy import copy
+import numpy as np
 
 
 def get_device(device: str):
@@ -22,8 +22,13 @@ def get_contour(mask):
     return contours[0]
 
 
+def visualize_semantic_segmentation(img_from_camera, pred):
+    mixed = np.where(pred > 240, cv2.addWeighted(img_from_camera, 0.4, pred, 0.6, 1.0), img_from_camera)
+    return mixed
+
+
 def plot_coals_contours_on_img(img, coals: list):
-    img_with_contours = copy(img)   # np.copy
+    img_with_contours = np.copy(img)
     for coal2plot in coals:
         coal2plot.plot_on(img_with_contours)
     return img_with_contours

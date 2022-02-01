@@ -25,7 +25,6 @@ class MaskRCNN(BasePredictor):
         self.device = get_device(device=device)
         self.model = get_model(weights, box_conf_th, nms_th, self.device)
         self.segmentation_th = torch.Tensor([segmentation_th]).to(self.device)
-        # self.segmentation_th = self.segmentation_th.to(self.device)
 
     @torch.no_grad()
     def predict(self, img: NDArray) -> List[InstanceSegmentationCoal]:

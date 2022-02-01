@@ -4,11 +4,8 @@ import albumentations as albu
 import torch
 
 import segmentation_models_pytorch as smp
-
-
-class BasePredictor:
-    def predict(self, img):
-        raise NotImplementedError()
+from src.base import BasePredictor
+from constants import WEIGHTS_DIR, DATA_DIR
 
 
 class SemanticSegmentation(BasePredictor):
@@ -64,19 +61,21 @@ class SemanticSegmentation(BasePredictor):
         return self.bound_mask
 
 
-def visualize(img_from_camera, pred):
-    cv2.imshow("orig", img_from_camera)
-    cv2.imshow("predicted bound", pred)
-    mixed = np.where(pred > 240, cv2.addWeighted(img_from_camera, 0.4, pred, 0.6, 1.0), img_from_camera)
-    cv2.imshow("mixed", mixed)
+if __name__ == '__main__':
+    def visualize(img_from_camera, pred):
+        cv2.imshow("orig", img_from_camera)
+        cv2.imshow("predicted bound", pred)
+        mixed = np.where(pred > 240, cv2.addWeighted(img_from_camera, 0.4, pred, 0.6, 1.0), img_from_camera)
+        cv2.imshow("mixed", mixed)
 
-    cv2.waitKey(231823)
+        cv2.waitKey(231823)
 
-model = SemanticSegmentation(r'C:\Users\Sergey\PycharmProjects\Test\CoalSegmentation\ttt.pth',
-                             segm_th_mask=0.8)
 
-img_from_camera = cv2.imread(r"E:\few_data\th\test\vlcsnap-2022-01-26-cut.jpg")
-pred = model.predict(img_from_camera)
+    model = SemanticSegmentation(WEIGHTS_DIR / 'best_model3.pth',
+                                 segm_th_mask=0.8)
 
-# tmp function
-visualize(img_from_camera,pred)
+    img_from_camera = cv2.imread(str(DATA_DIR / 'example.png'))
+    pred = model.predict(img_from_camera)
+
+    # tmp function
+    visualize(img_from_camera, pred)
