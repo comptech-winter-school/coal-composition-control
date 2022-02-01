@@ -1,5 +1,7 @@
 import cv2
 import torch
+from numpy import copy
+
 
 def get_device(device: str):
     if device is None:
@@ -18,3 +20,10 @@ def get_model(weights, box_conf_th: float, nms_th: float, device):
 def get_contour(mask):
     contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     return contours[0]
+
+
+def plot_coals_contours_on_img(img, coals: list):
+    img_with_contours = copy(img)   # np.copy
+    for coal2plot in coals:
+        coal2plot.plot_on(img_with_contours)
+    return img_with_contours

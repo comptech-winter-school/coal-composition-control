@@ -24,17 +24,18 @@ class MaskRCNN(BasePredictor):
     ):
         self.device = get_device(device=device)
         self.model = get_model(weights, box_conf_th, nms_th, self.device)
-        self.segmentation_th = torch.Tensor([segmentation_th])
-        self.segmentation_th.to(self.device)
+        self.segmentation_th = torch.Tensor([segmentation_th]).to(self.device)
+        # self.segmentation_th = self.segmentation_th.to(self.device)
 
     @torch.no_grad()
     def predict(self, img: NDArray) -> List[InstanceSegmentationCoal]:
         img = transforms.ToTensor()(img)
-        img.to(self.device)
+        img = img.to(self.device)
 
         prediction = self.model([img])
         masks = torch.squeeze(prediction[0]['masks'])
-        masks = np.array(masks > self.segmentation_th)
+        masks = masks > self.segmentation_th
+        masks = masks.detach().cpu().numpy()
         return [InstanceSegmentationCoal(get_contour(mask)) for mask in masks]
 
 
