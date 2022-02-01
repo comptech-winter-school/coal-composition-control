@@ -41,12 +41,13 @@ causing the impact of
 
 | Key | Value |
 | :---  | :--- |
-| Number of users per task | Usually 1 or 2 |
+| Number of users per task | Usually 1 |
 | Requirements | PC, Internet connection, Browser |
 
 # 4. Product Overview
 
-The product is the complex system for the coal fraction analysis on the conveyor.
+The product is the complex system for the coal fraction analysis on the conveyor
+which based on AI algorithms (CV, CNNs, ML).
 
 ## 4.1 Brief Description of the Product
 
@@ -74,28 +75,26 @@ The following block diagram describes the structure of the product
 - Cameras
 - Transferring infastructure (wires, commutators, switches, routers)
 - Servers
+- Software Development
 
 # 5. Main Functionality
 
-## 5.1 Transferring Video Data 
+## 5.1 Video Data Analysis 
 
-## 5.2 Video Data Analysis 
+### 5.1.1 Separation of Coal Grains
 
-### 5.2.1 Separation of Coal Grains
+### 5.1.2 Statistics
 
-### 5.2.2 Grain Size Calculation 
-
-### 5.2.3 "Garbage" detection
-
-## 5.3 Visualization 
-
-## 5.4 User Interface
+## 5.2 User Interface & Visualization
 
 # 6. Other Requirements
 
 ## 6.1 Applicable Standards
 
-**N/A yet**
+Transfer protocols :
+
+- HTTP
+- RTCP
 
 ## 6.2 System Requirements
 
@@ -107,19 +106,38 @@ The following block diagram describes the structure of the product
 
 ## 6.4 Performance Requirements
 
-**N/A yet**
+- Real time video analysis (~10 fps)
 
 # 7. Documentation Requirements
 
-## 7.1 User's Guide
+Documentation must consist of at least 3 documents:
 
-**N/A yet**
+- README.md
+- SRS
+- User's guide
 
-## 7.2 Online Help 
+## 7.1 README.md
 
-**N/A yet**
+This file describes the purpose of the repo and provides the perspective view of the product.
 
-## 7.3 Installation & Configuration
+It should answer the following question:
+
+- What is it?
+- What is it for?
+- How to install and run?
+
+## 7.2 System Requirements Specification
+
+## 7.3 User's Guide
+
+## 7.4 Help 
+
+WEB interface should have:
+
+- Tooltips
+- Popup hints
+
+## 7.5 Installation & Configuration
 
 **N/A yet**
 
