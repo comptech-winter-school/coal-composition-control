@@ -11,6 +11,8 @@ from typing import Union
 import cv2
 import numpy as np
 
+from constants import DATA_DIR
+
 
 def poly_area(x, y):
     return 0.5 * np.abs(np.dot(x, np.roll(y, 1)) - np.dot(y, np.roll(x, 1)))
@@ -120,7 +122,7 @@ def vgg_to_rotated_coco(
 
 if __name__ == "__main__":
     vgg_to_rotated_coco(
-        dataset_dir=Path.cwd().parents[1] / 'few_data',
-        vgg_path=Path.cwd().parents[1] / 'few_data.json',
-        outfile=Path.cwd().parents[1] / 'coco_few_data_rotated.json',
+        dataset_dir=DATA_DIR / 'few_data',
+        vgg_path=DATA_DIR / 'few_data.json',
+        outfile=DATA_DIR / 'coco_few_data_rotated.json',
     )

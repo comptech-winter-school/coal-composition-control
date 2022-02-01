@@ -10,7 +10,7 @@ import torch
 import torch.utils.data
 from PIL import Image
 
-from src.converters.vgg_to_mask import vgg2dict, dict2mask
+from train.converters.vgg_to_mask import vgg2dict, dict2mask
 
 
 class CoalFractionDataset(torch.utils.data.Dataset):
