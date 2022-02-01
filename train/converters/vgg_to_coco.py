@@ -5,12 +5,13 @@ https://stackoverflow.com/questions/61210420/converting-the-annotations-to-coco-
 import json
 import math
 from itertools import chain
+from pathlib import Path
 from typing import Union
 
 import cv2
 import numpy as np
 
-from constants import *
+from constants import DATA_DIR
 
 
 def poly_area(x, y):

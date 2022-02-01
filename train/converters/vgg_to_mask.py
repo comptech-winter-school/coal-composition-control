@@ -5,13 +5,14 @@ VGG: https://www.robots.ox.ac.uk/~vgg/software/via/via.html
 
 import json
 import shutil
+from pathlib import Path
 from typing import Dict, Any, List, Tuple
 
 import cv2
 import numpy as np
 from numpy.typing import NDArray
 
-from constants import *
+from constants import DATA_DIR
 
 Polygon = Tuple[Tuple[int, int], ...]
 

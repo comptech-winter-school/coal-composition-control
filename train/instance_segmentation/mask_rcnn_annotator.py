@@ -1,6 +1,7 @@
 """
 Create VGG json from Mask R-CNN predict
 """
+from pathlib import Path
 from typing import Dict, Union
 
 import cv2
@@ -9,9 +10,9 @@ import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
-from constants import *
-from converters.mask_to_vgg import masks2vgg
+from constants import DATA_DIR, WEIGHTS_DIR
 from src.utils import get_device, get_model
+from train.converters.mask_to_vgg import masks2vgg
 
 
 class Annotator:
@@ -52,7 +53,7 @@ class Annotator:
 
 if __name__ == '__main__':
     annotator = Annotator(
-        weights=WEIGHTS_DIR / 'mask-rcnn.pth',
+        weights=WEIGHTS_DIR / 'mask_rcnn.pth',
         box_conf_th=0.7,
         nms_th=0.2,
         segmentation_th=0.7
