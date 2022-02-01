@@ -7,16 +7,32 @@ import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
-from mask_rcnn import MaskRCNN
-from src.converters.mask_to_vgg import masks2vgg
+from src.utils import get_device, get_model
+from converters.mask_to_vgg import masks2vgg
 
 
-class Annotator(MaskRCNN):
+class Annotator:
+
+    def __init__(
+            self,
+            weights: Union[Path, str],
+            box_conf_th: float = 0.5,
+            nms_th: float = 0.2,
+            segmentation_th: float = 0.7,
+            device: str = None
+    ):
+        self.device = get_device(device=device)
+        self.model = get_model(weights, box_conf_th, nms_th, device)
+        self.segmentation_th = torch.Tensor([segmentation_th])
+        self.segmentation_th.to(self.device)
 
     def names_and_masks(self, folder: Path) -> Dict[str, NDArray]:
         names_masks = {}
         for image_path in folder.glob('*'):
             img = cv2.imread(str(image_path))
+            if img is None:
+                print(f'skip {image_path}')
+                continue
             img = transforms.ToTensor()(img)
             img.to(self.device)
 
