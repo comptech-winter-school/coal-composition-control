@@ -1,8 +1,24 @@
-# Coal Composition Control 
+# Coal Composition Control System 
 
-The AI-based system for the coal fraction analysis on the conveyor in real time
+This is an implementation of the [__Coal Composition Control System__](https://comptechschool.com/2022/projects/coal_cv) project of the __CompTechSchool 2022__.
 
-# Requirements
+The AI-based system for the coal fraction analysis on the conveyor in real time.
+
+## Structure of this Repo
+
+- [docs](docs)
+- [src](src)
+- [data](data)
+- [weights](weights)
+- [train](train)
+
+## Purpose
+
+## Users
+
+## Installation & Configuration
+
+### Preliminaries
 
 Python modules and libraries :
 
@@ -16,7 +32,9 @@ Python modules and libraries :
 - albumentations
 - segmentation-models-pytorch
 
-# Team 
+## Usage
+
+## Team 
 
 | [<img src="https://avatars.githubusercontent.com/u/46760758?v=4" width="75px;"/>](https://github.com/Pashtetickus)<br>[Pashtetickus](https://github.com/Pashtetickus)</br> | [<img src="https://avatars.githubusercontent.com/u/43125377?v=4" width="75px;"/>](https://github.com/asromahin) <br>[asromahin](https://github.com/asromahin) | [<img src="https://avatars.githubusercontent.com/u/41781097?v=4" width="75px;"/>](https://github.com/0x0000dead)<br>[0x0000dead](https://github.com/0x0000dead) | [<img src="https://avatars.githubusercontent.com/u/69035428?v=4" width="75px;"/>](https://github.com/JI411)<br>[JI411](https://github.com/JI411) | [<img src="https://avatars.githubusercontent.com/u/18001464?v=4" width="75px;"/>](https://github.com/IldarMurzagaleev)<br>[Dr_Under](https://github.com/IldarMurzagaleev)</br> | [<img src="https://avatars.githubusercontent.com/u/26169258?v=4" width="75px;"/>](https://github.com/LRDPRDX)<br>[LRDPRDX](https://github.com/LRDPRDX) |
 | ---   | --- | --- | --- | --- | --- |
