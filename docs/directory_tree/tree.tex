@@ -2,6 +2,28 @@
 
 \usepackage[edges]{forest}
 
+\tikzset{
+    file/.style={fill=green!30},
+    dir/.style={thick},
+}
+
+\forestset{horizontal/.style={
+    %if n children=0{fill=green!30}{},
+    %if n children=0{}{fill=yellow!30},
+    grow'=east,
+    child anchor=west,
+    parent anchor=east,
+    minimum height=0.5cm,
+    draw,
+    anchor=west,
+    rounded corners=1pt,
+    edge path={
+        \noexpand\path[\forestoption{edge}]
+            (.child anchor) -| +(-5pt,0) -- +(-5pt,0) |-
+            (!u.parent anchor)\forestoption{edge label};
+    }}
+}
+
 \begin{document}
-    \input{dir.tex}
+\input{dir.tex}
 \end{document}

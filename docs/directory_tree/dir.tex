@@ -1,0 +1,37 @@
+\begin{forest} for tree={horizontal}
+[, dir
+    [README.md, file]
+    [docs, dir
+        [diagrams, dir
+            [test, dir
+            ]
+        ]
+        [vision$\textunderscore$document, dir
+            [vision$\textunderscore$document.md, file]
+            [vision$\textunderscore$numbered.md, file]
+        ]
+        [directory$\textunderscore$tree, dir
+            [tree.py, file]
+        ]
+    ]
+    [src, dir
+        [base.py, file]
+        [classic$\textunderscore$edge$\textunderscore$detection, dir
+        ]
+        [instance$\textunderscore$segmentation, dir
+            [mask$\textunderscore$rcnn.py, file]
+            [dataset.py, file]
+            [mask$\textunderscore$rcnn$\textunderscore$annotator.py, file]
+        ]
+        [semantic$\textunderscore$segmentation, dir
+            [SemanticSegmentation.py, file]
+        ]
+        [converters, dir
+            [vgg$\textunderscore$to$\textunderscore$rotated$\textunderscore$yolo.py, file]
+            [vgg$\textunderscore$to$\textunderscore$coco.py, file]
+            [mask$\textunderscore$to$\textunderscore$vgg.py, file]
+            [vgg$\textunderscore$to$\textunderscore$mask.py, file]
+        ]
+    ]
+]
+\end{forest}
