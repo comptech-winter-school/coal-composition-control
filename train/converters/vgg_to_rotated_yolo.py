@@ -72,7 +72,7 @@ def vgg_to_rotated_yolo(
 if __name__ == "__main__":
 
     vgg_to_rotated_yolo(
-        dataset_dir=DATA_DIR / 'few_data',
-        vgg_path=DATA_DIR / 'few_data.json',
-        outdir=DATA_DIR / 'few_data_labels',
+        dataset_dir=DATA_DIR / 'few_data_split' / 'few_data_train',
+        vgg_path=DATA_DIR / 'few_data_split' / 'few_data_train.json',
+        outdir=DATA_DIR / 'few_data_rotated_labels',
     )

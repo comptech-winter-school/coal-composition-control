@@ -1,12 +1,8 @@
+from typing import List
+
 import cv2
 import numpy as np
 from numpy.typing import NDArray
-
-
-class BasePredictor:
-
-    def predict(self, img: NDArray):
-        raise NotImplementedError()
 
 
 class Coal:
@@ -15,6 +11,11 @@ class Coal:
         raise NotImplementedError()
 
     def plot_on(self, img: NDArray, color=(0, 255, 0), thickness=2) -> NDArray:
+        raise NotImplementedError()
+
+class BasePredictor:
+
+    def predict(self, img: NDArray) -> List[Coal]:
         raise NotImplementedError()
 
 

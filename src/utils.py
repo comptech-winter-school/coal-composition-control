@@ -7,7 +7,7 @@ def get_device(device: str):
     return torch.device(device)
 
 
-def get_model(weights, box_conf_th: float, nms_th: float, device):
+def get_mask_rcnn(weights, box_conf_th: float, nms_th: float, device):
     model = torch.load(weights, map_location=device)
     model.roi_heads.score_thresh = box_conf_th
     model.roi_heads.nms_thresh = nms_th
