@@ -8,3 +8,7 @@ pip install -r requirements.txt
 python scripts/get_data.py
 python scripts/get_weights.py
 ```
+
+## Research notebooks
+
+1. [Semantic segmentation](https://colab.research.google.com/drive/1HrIuBNUtr-K0jktEsmTXYDOZdR7B6iNi?usp=sharing)
