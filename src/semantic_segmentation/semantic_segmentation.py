@@ -68,13 +68,17 @@ if __name__ == '__main__':
         mixed = np.where(pred > 240, cv2.addWeighted(img_from_camera, 0.4, pred, 0.6, 1.0), img_from_camera)
         cv2.imshow("mixed", mixed)
 
-        cv2.waitKey(231823)
+        # wait until we press 'q'
+        if cv2.waitKey(0) & 0xFF == ord('q'):
+            cv2.destroyAllWindows()
 
 
     model = SemanticSegmentation(WEIGHTS_DIR / 'best_model3.pth',
                                  segm_th_mask=0.8)
 
-    img_from_camera = cv2.imread(str(DATA_DIR / 'example.png'))
+    img_from_camera = cv2.imread(str(DATA_DIR / 'example.jpg'))
+    # expects image height and width divisible by 32
+    img_from_camera = cv2.resize(img_from_camera, (1344, 512), interpolation=cv2.INTER_LINEAR)
     pred = model.predict(img_from_camera)
 
     # tmp function

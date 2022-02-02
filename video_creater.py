@@ -19,11 +19,13 @@ def video_creator(model,
     cap = cv2.VideoCapture(str(video_path))
     frame_counter = 0
 
+    if frames_range_to_save:
+        left_cut_by_frame, right_cut_by_frame = frames_range_to_save
+        cap.set(cv2.CAP_PROP_POS_FRAMES, left_cut_by_frame)
+
     # characteristics from the original video
     # w_frame, h_frame = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps, frames = cap.get(cv2.CAP_PROP_FPS), cap.get(cv2.CAP_PROP_FRAME_COUNT)
-    if frames_range_to_save:
-        left_cut_by_frame, right_cut_by_frame = frames_range_to_save
 
     # suppose my gtx 1070 gives 0.22 sec to inference mask_rcnn on 1 frame, so my fps ~ 4,
     # and form best_model3.pth (efficient_net-b3? or Unet) it take ~ 0.15 sec so my fps would be ~ 6
@@ -36,13 +38,13 @@ def video_creator(model,
 
     while cap.isOpened():
         ret, frame = cap.read()
-        frame_counter += 1  # Counting frames
+        frame_counter += 1
 
         # Avoid problems when video finish
         if ret:
             # Saving from the desired frames
             if frames_range_to_save:
-                if left_cut_by_frame <= frame_counter <= right_cut_by_frame:
+                if frame_counter <= (right_cut_by_frame - left_cut_by_frame):
                     crop_frame = frame[y:y+h, x:x+w]
                     coals = model.predict(crop_frame)
                     img_with_contours = visualize_method(crop_frame, coals)
@@ -62,7 +64,7 @@ def video_creator(model,
 
 if __name__ == '__main__':
     model_mask_rcnn = MaskRCNN(
-        weights=WEIGHTS_DIR / 'mask-rcnn.pth',
+        weights=WEIGHTS_DIR / 'mask_rcnn.pth',
         box_conf_th=0.7,
         nms_th=0.2,
         segmentation_th=0.7,
