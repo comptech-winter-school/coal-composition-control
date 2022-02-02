@@ -8,3 +8,5 @@ scikit-image
 albumentations
 segmentation-models-pytorch
 torchvision
+gdown
+zipfile36
