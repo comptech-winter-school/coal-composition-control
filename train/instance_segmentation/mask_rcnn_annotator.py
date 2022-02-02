@@ -11,7 +11,7 @@ import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
-from src.utils import get_device, get_model
+from src.utils import get_device, get_mask_rcnn
 from train.converters.mask_to_vgg import masks2vgg
 
 
@@ -26,7 +26,7 @@ class Annotator:
             device: str = None
     ):
         self.device = get_device(device=device)
-        self.model = get_model(weights, box_conf_th, nms_th, self.device)
+        self.model = get_mask_rcnn(weights, box_conf_th, nms_th, self.device)
         self.segmentation_th = torch.Tensor([segmentation_th])
         self.segmentation_th.to(self.device)
 

@@ -9,7 +9,7 @@ from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
-from src.utils import get_device, get_model, get_contour
+from src.utils import get_device, get_mask_rcnn, get_contour
 
 
 class MaskRCNN(BasePredictor):
@@ -23,7 +23,7 @@ class MaskRCNN(BasePredictor):
             device: str = None
     ):
         self.device = get_device(device=device)
-        self.model = get_model(weights, box_conf_th, nms_th, self.device)
+        self.model = get_mask_rcnn(weights, box_conf_th, nms_th, self.device)
         self.segmentation_th = torch.Tensor([segmentation_th])
         self.segmentation_th.to(self.device)
 
