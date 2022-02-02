@@ -51,7 +51,14 @@ which based on AI algorithms (CV, CNNs, ML).
 
 ## Brief Description of the Product
 
-The following block diagram describes the structure of the product
+0. A fragment of the conveyor is recorded by a video-camera
+1. The recorded data transfers over the network to the server
+2. Transferred data is being processed by the AI-based algorithm (the main part of the product)
+3. The result of the previous step is being processed yet to produce important statistics (histograms, graphs, etc)
+4. The data obtained in the previous step is visualized in the WEB interface
+5. The operator decides if grinding is necessary
+
+The following block diagram describes the process
 
 <p float="center">
     <img src="/docs/diagrams/general_block_diagram.png" width="500"/>
@@ -76,13 +83,12 @@ The following block diagram describes the structure of the product
 ## Alternatives
 
 Another solution to the problem would be to develop and integrate a subsystem
-in the main procedure which would __separate the coal fraction that have to be ground from
-the entire stream on the conveyor__:
+into the existing one which would _separate the larger coal fraction from
+the entire stream on the conveyor followed by grinding the larger parts_:
 
 <p float="center">
     <img src="/docs/diagrams/alternative.png" width="500"/>
 </p>
-
 
 # Main Functionality
 
