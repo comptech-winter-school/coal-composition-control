@@ -122,7 +122,7 @@ def vgg_to_rotated_coco(
 
 if __name__ == "__main__":
     vgg_to_rotated_coco(
-        dataset_dir=DATA_DIR / 'few_data',
-        vgg_path=DATA_DIR / 'few_data.json',
-        outfile=DATA_DIR / 'coco_few_data_rotated.json',
+        dataset_dir=DATA_DIR / 'few_data_split' / 'few_data_train',
+        vgg_path=DATA_DIR / 'few_data_split' / 'few_data_train.json',
+        outfile=DATA_DIR / 'coco_few_data_train.json',
     )

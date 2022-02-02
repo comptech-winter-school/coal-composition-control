@@ -59,6 +59,6 @@ if __name__ == '__main__':
         segmentation_th=0.7
     )
     annotator.to_vgg(
-        folder=DATA_DIR / 'few_data',
-        save_path=DATA_DIR / 'output.json'
+        folder=DATA_DIR / 'few_data_split' / 'few_data_train',
+        save_path=DATA_DIR / 'annotation_from_mask_rcnn.json'
     )
