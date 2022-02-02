@@ -8,6 +8,7 @@ The AI-based system for the coal fraction analysis on the conveyor in real time.
 
 - [docs](docs)
 - [src](src)
+- [scripts](scripts)
 - [data](data)
 - [weights](weights)
 - [train](train)
@@ -18,21 +19,33 @@ The AI-based system for the coal fraction analysis on the conveyor in real time.
 
 ## Installation & Configuration
 
-### Preliminaries
+### Requirements
 
-Python modules and libraries :
+- python3
+- pip
 
-- opencv-python~=4.5.5.62
-- numpy~=1.21.2
-- matplotlib
-- torch
-- pillow
-- pandas
-- scikit-image
-- albumentations
-- segmentation-models-pytorch
+Clone the repo and change to the project root directory:
 
-## Usage
+```
+git clone https://github.com/comptech-winter-school/coal-composition-control
+cd coal-composition-control
+```
+
+install necessary python libraries:
+
+```
+pip install -r requirements.txt
+```
+
+???
+```
+python scripts/get_data.py
+python scripts/get_weights.py
+```
+
+## Research notebooks
+
+1. [Semantic segmentation](https://colab.research.google.com/drive/1HrIuBNUtr-K0jktEsmTXYDOZdR7B6iNi?usp=sharing)
 
 ## Team 
 

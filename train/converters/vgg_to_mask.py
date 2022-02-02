@@ -111,7 +111,7 @@ def save_vgg2mask(source_folder: Path, save_folder: Path, vgg_json: Path,
 
 if __name__ == '__main__':
     save_vgg2mask(
-        source_folder=DATA_DIR / "few_data",
-        save_folder=DATA_DIR / "few_data_processed",
-        vgg_json=DATA_DIR / "few_data.json"
+        source_folder=DATA_DIR / "few_data_split" / 'few_data_train',
+        save_folder=DATA_DIR / "few_data_train_masks",
+        vgg_json=DATA_DIR / "few_data_split" / "few_data_train.json"
     )

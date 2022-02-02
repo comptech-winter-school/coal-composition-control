@@ -102,8 +102,7 @@ def vgg_to_rotated_coco(
             annotations.append({
                 "segmentation": [list(chain.from_iterable(zip(x, y)))],
                 "area": poly_area(x, y),
-                # "bbox": [min(x), min(y), max(x) - min(x), max(y) - min(y), theta],
-                "bbox": [xc, yc, width, height, theta],
+                "bbox": [min(x), min(y), width, height, theta],
                 "image_id": images_ids_dict[v["filename"]],
                 "category_id": 1,
                 "id": int(f"{i:0>{suffix_zeros}}{j:0>{suffix_zeros}}"),
@@ -122,7 +121,7 @@ def vgg_to_rotated_coco(
 
 if __name__ == "__main__":
     vgg_to_rotated_coco(
-        dataset_dir=DATA_DIR / 'few_data',
-        vgg_path=DATA_DIR / 'few_data.json',
-        outfile=DATA_DIR / 'coco_few_data_rotated.json',
+        dataset_dir=DATA_DIR / 'few_data_split' / 'few_data_train',
+        vgg_path=DATA_DIR / 'few_data_split' / 'few_data_train.json',
+        outfile=DATA_DIR / 'coco_few_data_train.json',
     )

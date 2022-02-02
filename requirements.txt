@@ -1,0 +1,12 @@
+opencv-python~=4.5.5.62
+numpy~=1.21.2
+matplotlib
+torch
+pillow
+pandas
+scikit-image
+albumentations
+segmentation-models-pytorch
+torchvision
+gdown
+zipfile36
