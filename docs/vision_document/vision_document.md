@@ -93,7 +93,7 @@ The most important content of the product is _software_ which can be divided int
 - User interface
 
 <p float="center">
-    <img src="/docs/diagrams/alternative.png" width="500"/>
+    <img src="/docs/diagrams/software.png" width="500"/>
 </p>
 
 ## Computer Vision 
