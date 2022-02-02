@@ -19,6 +19,9 @@ This document has been conceived with the following objectives :
 
 # Problem Statement
 
+_Coal_ is a necessary component for _steel production_ - the primary business direction of EVRAZ.
+If coal fractions are large the coal must be ground.
+
 The problem of
 
 - No process of separation of coal fractions
