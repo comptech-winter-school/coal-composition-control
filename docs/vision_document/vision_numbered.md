@@ -33,26 +33,11 @@ causing the impact of
 - inefficient usage of time, power, and equipment
 - low quality of produced steel if grinding was necessary but wasn't performed
 
-# 3. User Description
-
-## 3.1 Users
-
-| Title | Role | Description of Use |
-|:---   |:--- |:--- |
-| EVRAZ production operators | User of WEB interface | Monitoring |
-
-## 3.2 User Environment
-
-| Key | Value |
-| :---  | :--- |
-| Number of users per task | Usually 1 |
-| Requirements | PC, Internet connection, Browser |
-
-# 4. Product Overview
+# 3. Product Overview
 
 The product is the system for the coal fraction analysis on the conveyor.
 
-## 4.1 Brief Description of the Product
+## 3.1 Brief Description of the Product
 
 The product is supposed to be a solution to the abovementioned problem:
 
@@ -69,7 +54,7 @@ The following block diagram describes the process
     <img src="/docs/diagrams/general_block_diagram.png" width="1000"/>
 </p>
 
-## 4.2 Product Features & Abilities
+## 3.2 Product Features & Abilities
 
 - Ability to detect separate coal pieces in the image
 - Ability to calculate the size of a piece
@@ -77,32 +62,76 @@ The following block diagram describes the process
 - Ability of using WEB interface as a real time monitoring service
 - Ability to decide if grinding is necessary
 
-## 4.3 Cost & Pricing
+## 3.3 Cost & Pricing
 
 - Cameras
 - Transferring infastructure (wires, commutators, switches, routers)
 - Servers
 - Software Development
 
-## 4.4 Alternatives
+## 3.4 Alternatives
 
 Another solution to the problem would be to develop and integrate a subsystem
 into the existing one which would _separate the larger coal fraction from
-the entire stream on the conveyor followed by grinding the larger parts_:
+the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
 <p float="center">
     <img src="/docs/diagrams/alternative.png" width="500"/>
 </p>
 
-# 5. Main Functionality
+But this approach is accompanied by the following difficulties:
 
-## 5.1 Video Data Analysis 
+- Developing and integration of such a system may be extremely expensive
+- The entire production process would have to be suspended for a long time
 
-### 5.1.1 Separation of Coal Grains
+# 4. Main Functionality
 
-### 5.1.2 Statistics
+The most important content of the product is _software_ which can be divided into 3 groups:
 
-## 5.2 User Interface & Visualization
+- Computer vision
+- Data analysis
+- User interface
+
+<p float="center">
+    <img src="/docs/diagrams/alternative.png" width="500"/>
+</p>
+
+## 4.1 Computer Vision 
+
+This part consists of AI-driven algorithms and techniques of image analysis, and intended to
+accomplish the following tasks:
+
+- Locate separate coal pieces in a photo (a video frame)
+- Isolate a coal piece from its surroundings (e.g. finding the pixel mask of a piece)
+- Prepare data for further analysis
+
+## 4.2 Data analysis
+
+This part is intended to analyze the data produced by the CV-part
+to produce figures of merit based on which the resulting decision is made.
+
+## 4.3 User Interface & Visualization
+
+This part is a point of interraction between the user and the product. And
+
+- Show the results of the CV-part in the recorded video (e.g. by drawing contours of the detected coal pieces)
+- Display statistics (histograms, time graphs)
+- (if necessary) Provide tools to interract with the equipment
+
+# 5. User Description
+
+## 5.1 Users
+
+| Title | Role | Description of Use |
+|:---   |:--- |:--- |
+| EVRAZ production operators | User of WEB interface | Monitoring |
+
+## 5.2 User Environment
+
+| Key | Value |
+| :---  | :--- |
+| Number of users per task | Usually 1 |
+| Requirements | PC, Internet connection, Browser |
 
 # 6. Other Requirements
 

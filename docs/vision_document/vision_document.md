@@ -33,21 +33,6 @@ causing the impact of
 - inefficient usage of time, power, and equipment
 - low quality of produced steel if grinding was necessary but wasn't performed
 
-# User Description
-
-## Users
-
-| Title | Role | Description of Use |
-|:---   |:--- |:--- |
-| EVRAZ production operators | User of WEB interface | Monitoring |
-
-## User Environment
-
-| Key | Value |
-| :---  | :--- |
-| Number of users per task | Usually 1 |
-| Requirements | PC, Internet connection, Browser |
-
 # Product Overview
 
 The product is the system for the coal fraction analysis on the conveyor.
@@ -88,21 +73,65 @@ The following block diagram describes the process
 
 Another solution to the problem would be to develop and integrate a subsystem
 into the existing one which would _separate the larger coal fraction from
-the entire stream on the conveyor followed by grinding the larger parts_:
+the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
 <p float="center">
     <img src="/docs/diagrams/alternative.png" width="500"/>
 </p>
 
+But this approach is accompanied by the following difficulties:
+
+- Developing and integration of such a system may be extremely expensive
+- The entire production process would have to be suspended for a long time
+
 # Main Functionality
 
-## Video Data Analysis 
+The most important content of the product is _software_ which can be divided into 3 groups:
 
-### Separation of Coal Grains
+- Computer vision
+- Data analysis
+- User interface
 
-### Statistics
+<p float="center">
+    <img src="/docs/diagrams/alternative.png" width="500"/>
+</p>
+
+## Computer Vision 
+
+This part consists of AI-driven algorithms and techniques of image analysis, and intended to
+accomplish the following tasks:
+
+- Locate separate coal pieces in a photo (a video frame)
+- Isolate a coal piece from its surroundings (e.g. finding the pixel mask of a piece)
+- Prepare data for further analysis
+
+## Data analysis
+
+This part is intended to analyze the data produced by the CV-part
+to produce figures of merit based on which the resulting decision is made.
 
 ## User Interface & Visualization
+
+This part is a point of interraction between the user and the product. And
+
+- Show the results of the CV-part in the recorded video (e.g. by drawing contours of the detected coal pieces)
+- Display statistics (histograms, time graphs)
+- (if necessary) Provide tools to interract with the equipment
+
+# User Description
+
+## Users
+
+| Title | Role | Description of Use |
+|:---   |:--- |:--- |
+| EVRAZ production operators | User of WEB interface | Monitoring |
+
+## User Environment
+
+| Key | Value |
+| :---  | :--- |
+| Number of users per task | Usually 1 |
+| Requirements | PC, Internet connection, Browser |
 
 # Other Requirements
 
