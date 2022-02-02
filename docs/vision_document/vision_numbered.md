@@ -46,10 +46,11 @@ causing the impact of
 
 # 4. Product Overview
 
-The product is the system for the coal fraction analysis on the conveyor
-which based on AI algorithms (CV, CNNs, ML).
+The product is the system for the coal fraction analysis on the conveyor.
 
 ## 4.1 Brief Description of the Product
+
+The product is supposed to be a solution to the abovementioned problem:
 
 0. A fragment of the conveyor is recorded by a video-camera
 1. The recorded data transfers over the network to the server
