@@ -27,7 +27,7 @@ affects
 causing the impact of
 
 - inefficient usage of time, power, and equipment
-- low quality of produced steel
+- low quality of produced steel if grinding was necessary but wasn't performed
 
 # 3. User Description
 
@@ -46,7 +46,7 @@ causing the impact of
 
 # 4. Product Overview
 
-The product is the complex system for the coal fraction analysis on the conveyor
+The product is the system for the coal fraction analysis on the conveyor
 which based on AI algorithms (CV, CNNs, ML).
 
 ## 4.1 Brief Description of the Product
@@ -66,16 +66,23 @@ The following block diagram describes the structure of the product
 - Ability to decide if grinding is necessary
 - Ability of using WEB interface as a real time monitoring service
 
-## 4.3 Assumptions & Dependencies
-
-**N/A yet**
-
-## 4.4 Cost & Pricing
+## 4.3 Cost & Pricing
 
 - Cameras
 - Transferring infastructure (wires, commutators, switches, routers)
 - Servers
 - Software Development
+
+## 4.4 Alternatives
+
+Another solution to the problem would be to develop and integrate a subsystem
+in the main procedure which would __separate the coal fraction that have to be ground from
+the entire stream on the conveyor__:
+
+<p float="center">
+    <img src="/docs/diagrams/alternative.png" width="500"/>
+</p>
+
 
 # 5. Main Functionality
 
@@ -89,22 +96,15 @@ The following block diagram describes the structure of the product
 
 # 6. Other Requirements
 
-## 6.1 Applicable Standards
-
-Transfer protocols :
-
-- HTTP
-- RTCP
-
-## 6.2 System Requirements
+## 6.1 System Requirements
 
 **N/A yet**
 
-## 6.3 Licensing & Installation
+## 6.2 Licensing & Installation
 
 **N/A yet**
 
-## 6.4 Performance Requirements
+## 6.3 Performance Requirements
 
 - Real time video analysis (~10 fps)
 
@@ -147,6 +147,7 @@ WEB interface should have:
 - [coal grain](#coal-grain)
 - [conveyor](#conveyor)
 - [evraz](#evraz)
+- [grinding](#grinding)
 - [production operator](#production-operator)
 
 ## 8.1 coal fraction
@@ -157,4 +158,6 @@ WEB interface should have:
 
 ## 8.4 evraz
 
-## 8.5 production operator 
+## 8.5 grinding
+
+## 8.6 production operator 
