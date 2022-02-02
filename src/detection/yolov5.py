@@ -33,6 +33,7 @@ class YOLOv5(BasePredictor):
 
     @torch.no_grad()
     def predict(self, img: NDArray) -> List[DetectionCoal]:
+        img = img[..., ::-1].to(self.device)
         prediction = self.model(img, size=self.size)
         boxes = prediction.xyxy[0].detach().cpu().numpy()
         return [DetectionCoal(box[:4]) for box in boxes]
@@ -49,7 +50,7 @@ if __name__ == '__main__':
         device=None
     )
 
-    coals = yolo.predict(image[..., ::-1])
+    coals = yolo.predict(image)
     print([coal.get_fraction() for coal in coals])
 
     if coals:
