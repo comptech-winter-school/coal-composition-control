@@ -11,6 +11,12 @@ This document has been conceived with the following objectives :
 
 ## References
 
+[Conveyor definition](https://www.seek.com.au/career-advice/role/production-operator)
+
+[Production operator definition](https://en.wikipedia.org/wiki/Conveyor_system)
+
+[EVRAZ definition](https://www.evraz.com/en/company/)
+
 **N/A yet**
 
 # Problem Statement
@@ -67,12 +73,11 @@ The following block diagram describes the process
 
 ## Product Features & Abilities
 
-- Ability to separate coal grains in the image
-- Ability to calculate the size of a grain
-- Ability to detect "garbage" on the conveyor
-- Ability to perform analysis and produce the necessary statistics (histograms, graphs, etc)
-- Ability to decide if grinding is necessary
+- Ability to detect separate coal pieces in the image
+- Ability to calculate the size of a piece
+- Ability to perform analysis and produce necessary statistics (histograms, graphs, etc)
 - Ability of using WEB interface as a real time monitoring service
+- Ability to decide if grinding is necessary
 
 ## Cost & Pricing
 
@@ -129,17 +134,21 @@ This file describes the purpose of the repo and provides the perspective view of
 
 It should answer the following question:
 
-- What is it?
-- What is it for?
-- How to install and run?
+- What is the product?
+- What is the purpose of the product?
+- How to use the product?
 
 ## System Requirements Specification
 
+**N/A yet**
+
 ## User's Guide
+
+**N/A yet**
 
 ## Help 
 
-WEB interface should have:
+The WEB interface should have:
 
 - Tooltips
 - Popup hints
@@ -151,7 +160,6 @@ WEB interface should have:
 # Glossary
 
 - [coal fraction](#coal-fraction)
-- [coal grain](#coal-grain)
 - [conveyor](#conveyor)
 - [evraz](#evraz)
 - [grinding](#grinding)
@@ -159,12 +167,32 @@ WEB interface should have:
 
 ## coal fraction
 
-## coal grain
+<sub>in russian: _фракция угля_</sub>
+
+is a category of classification pieces of coal by their size
 
 ## conveyor
 
+<sub>in russian: _конвейер_</sub>
+
+is a common piece of mechanical handling equipment that moves materials from one location to another.
+
 ## evraz
+
+<sub>in russian: _ЕВРАЗ_</sub>
+
+is a global steel and mining company and the leading producer
+of infrastructure steel products with low-cost production along the value chain.
 
 ## grinding
 
+<sub>in russian: _помол_</sub>
+
+is the reduction of something to small particles or powder by crushing it.
+
 ## production operator 
+
+<sub>in russian: _оператор на производстве_</sub>
+
+is an individual who operates equipment to assist with the assembling,
+manufacturing, processing and packaging of items along a production line.
