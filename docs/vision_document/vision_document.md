@@ -38,7 +38,7 @@ causing the impact of
 
 # Product Overview
 
-The product is the system for the coal fraction analysis on the conveyor.
+The product is a system for the coal fraction analysis on the conveyor.
 
 ## Brief Description of the Product
 
