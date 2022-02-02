@@ -41,9 +41,8 @@ class SemanticSegmentation(BasePredictor):
 
         contours, hierarchy = cv2.findContours(self.mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-        for cnt in contours:
-            if cv2.contourArea(cnt) > 150:  # rewrite as % of image
-                self.contours.append(InstanceSegmentationCoal(cnt))
+        [self.contours.append(InstanceSegmentationCoal(cnt)) for cnt in contours if cv2.contourArea(cnt) > 150]
+
 
     @torch.no_grad()
     def predict(self, img: NDArray) -> List[InstanceSegmentationCoal]:
