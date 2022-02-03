@@ -18,6 +18,12 @@ if __name__ == '__main__':
     coals = mask_rcnn.predict(image)
     print([coal.get_fraction() for coal in coals])
 
-    edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth')
+    edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth', width=1280, height=640)
+    image = cv2.resize(image, (1280, 640), interpolation=cv2.INTER_AREA)
     coals = edge_segmentation.predict(image)
     print([coal.get_fraction() for coal in coals])
+
+    if coals:
+        cv2.imshow('Contours', coals[0].plot_on(image))
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
