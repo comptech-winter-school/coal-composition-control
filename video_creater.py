@@ -2,7 +2,7 @@ import cv2 as cv2
 
 from constants import WEIGHTS_DIR, DATA_DIR
 from src.instance_segmentation.mask_rcnn import MaskRCNN
-from src.semantic_segmentation.semantic_segmentation import SemanticSegmentation
+from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.utils import plot_coals_contours_on_img, visualize_semantic_segmentation
 
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
         device='cuda:0'
     )
 
-    model_semantic_effi_b0 = SemanticSegmentation(
+    model_semantic_effi_b0 = EdgeSegmentation(
         weights=WEIGHTS_DIR / 'best_model3.pth',
         segm_th_mask=0.8)
 

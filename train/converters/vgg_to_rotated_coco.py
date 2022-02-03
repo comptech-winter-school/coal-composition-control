@@ -102,7 +102,7 @@ def vgg_to_rotated_coco(
             annotations.append({
                 "segmentation": [list(chain.from_iterable(zip(x, y)))],
                 "area": poly_area(x, y),
-                "bbox": [min(x), min(y), width, height, theta],
+                "bbox": [xc, yc, width, height, theta],
                 "image_id": images_ids_dict[v["filename"]],
                 "category_id": 1,
                 "id": int(f"{i:0>{suffix_zeros}}{j:0>{suffix_zeros}}"),

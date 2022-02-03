@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Union, Dict, Generator, List, Tuple
 
 from numpy.typing import NDArray
+
 from src.utils import get_contour
 
 
