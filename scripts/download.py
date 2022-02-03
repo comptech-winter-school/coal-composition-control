@@ -35,7 +35,7 @@ def get_weights():
         quiet=False
     )
     gdown.download(
-        id='1tmiRctTA6zBJ77Hw6a_KTpVWUVZzkDRz',
+        id='1XYwU7x_hk3E3KkJBfUkwk1oEVyuuCjaK',
         output=str(WEIGHTS_DIR / 'edge_segmentation.pth'),
         quiet=False
     )
