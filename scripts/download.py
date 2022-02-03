@@ -16,10 +16,27 @@ def unzip_and_delete(archives_dir: Path) -> None:
         zip_file.unlink()
 
 def get_data():
-    gdown.download(id='1_HrcPnL5HnmG3m6XvQRK2IYAHf5a5mS_', output=str(DATA_DIR / 'example.png'), quiet=False)
-    gdown.download(id='1HGnvRZW-HWkyh7x1_ZlvSAPDcx1OGlNh', output=str(DATA_DIR / 'few_data_split.zip'), quiet=False)
+    gdown.download(
+        id='1_HrcPnL5HnmG3m6XvQRK2IYAHf5a5mS_',
+        output=str(DATA_DIR / 'example.png'),
+        quiet=False
+    )
+    gdown.download(
+        id='1HGnvRZW-HWkyh7x1_ZlvSAPDcx1OGlNh',
+        output=str(DATA_DIR / 'few_data_split.zip'),
+        quiet=False
+    )
     unzip_and_delete(DATA_DIR)
 
 def get_weights():
-    gdown.download(id='1DUqALy3zY6Lt5aReTz8zFWOrJXgjZHMX', output=str(WEIGHTS_DIR / 'mask_rcnn.pth'), quiet=False)
+    gdown.download(
+        id='1DUqALy3zY6Lt5aReTz8zFWOrJXgjZHMX',
+        output=str(WEIGHTS_DIR / 'mask_rcnn.pth'),
+        quiet=False
+    )
+    gdown.download(
+        id='10FSvl-9uJwFIhVWL_nl3Fzq27wPMuM-G',
+        output=str(WEIGHTS_DIR / 'edge_segmentation.pth'),
+        quiet=False
+    )
     unzip_and_delete(WEIGHTS_DIR)
