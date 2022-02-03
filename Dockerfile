@@ -18,8 +18,8 @@ WORKDIR /app
 # Copy contents
 COPY . /app
 
-ENTRYPOINT ['python']
-CMD ['example_app.py']
+ENTRYPOINT ["python"]
+CMD ["example_app.py"]
 
 # cd coal-composition-control
 # docker build . -t coal
