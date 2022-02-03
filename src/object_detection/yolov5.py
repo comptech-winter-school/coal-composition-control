@@ -5,7 +5,7 @@ import cv2
 import torch
 from numpy.typing import NDArray
 
-from constants import DATA_DIR, WEIGHTS_DIR
+from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, DetectionCoal
 from src.utils import get_device
 
@@ -49,7 +49,7 @@ class YOLOv5(BasePredictor):
 
 
 if __name__ == '__main__':
-    image = cv2.imread(str(DATA_DIR / 'few_data_split' / 'few_data_train' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
+    image = cv2.imread(str(EXAMPLE_IMG))
     yolo = YOLOv5(
         weights=WEIGHTS_DIR / 'yolov5n6.pt',
         box_conf_th=0.2,
