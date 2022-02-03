@@ -2,20 +2,20 @@
 
 ## Document Purpose
 
-This document has been conceived with the following objectives :
+This document has been conceived with the following objectives:
 
-- To define the product perspective and state the problem the product solves
-- To serve as a connection point for marketing, developers and business
-- To be a pointing vector at the developing stage
-- To help the team to understand the reasons behind the product
+- To define the product perspective and state the problem the product solves.
+- To serve as a connection point for marketing, developers and business.
+- To be a pointing vector at the developing stage.
+- To help the team to understand the reasons behind the product.
 
 ## References
 
-[Conveyor definition](https://www.seek.com.au/career-advice/role/production-operator)
+1. [Conveyor definition](https://www.seek.com.au/career-advice/role/production-operator)
 
-[Production operator definition](https://en.wikipedia.org/wiki/Conveyor_system)
+2. [Production operator definition](https://en.wikipedia.org/wiki/Conveyor_system)
 
-[EVRAZ definition](https://www.evraz.com/en/company/)
+3. [EVRAZ definition](https://www.evraz.com/en/company/)
 
 # Problem Statement
 
@@ -24,8 +24,8 @@ If coal fractions are large the coal must be ground.
 
 The problem of
 
-- No process of separation of coal fractions
-- No algorithm which makes a decision if grinding is necessary
+- no process of separation of coal fractions
+- no algorithm which makes a decision if grinding is necessary
 
 affects
 
@@ -44,12 +44,12 @@ The product is a system for the coal fraction analysis on the conveyor.
 
 The product is supposed to be a solution to the abovementioned problem:
 
-0. A fragment of the conveyor is recorded by a video-camera
-1. The recorded data transfers over the network to the server
-2. Transferred data is being processed by the AI-based algorithm (the main part of the product)
-3. The result of the previous step is being processed yet to produce important statistics (histograms, graphs, etc)
-4. The data obtained in the previous step is visualized in the WEB interface
-5. The operator decides if grinding is necessary
+0. A fragment of the conveyor is recorded by a video-camera.
+1. The recorded data transfers over the network to the server.
+2. Transferred data is being processed by the AI-based algorithm (the main part of the product).
+3. The result of the previous step is being processed yet to produce important statistics (histograms, graphs, etc).
+4. The data obtained in the previous step is visualized in the WEB interface.
+5. The operator decides if grinding is necessary.
 
 The following block diagram describes the process
 
@@ -59,18 +59,18 @@ The following block diagram describes the process
 
 ## Product Features & Abilities
 
-- Ability to detect separate coal pieces in the image
-- Ability to calculate the size of a piece
-- Ability to perform analysis and produce necessary statistics (histograms, graphs, etc)
-- Ability of using WEB interface as a real time monitoring service
-- Ability to decide if grinding is necessary
+- Ability to detect separate coal pieces in the image.
+- Ability to calculate the size of a piece.
+- Ability to perform analysis and produce necessary statistics (histograms, graphs, etc).
+- Ability of using WEB interface as a real time monitoring service.
+- Ability to decide if grinding is necessary.
 
 ## Cost & Pricing
 
-- Cameras
-- Transferring infastructure (wires, commutators, switches, routers)
-- Servers
-- Software Development
+- Cameras.
+- Transferring infastructure (wires, commutators, switches, routers).
+- Servers.
+- Software Development.
 
 ## Alternatives
 
@@ -84,16 +84,16 @@ the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
 But this approach is accompanied by the following difficulties:
 
-- Developing and integration of such a system may be extremely expensive
-- The entire production process would have to be suspended for a long time
+- Developing and integration of such a system may be extremely expensive.
+- The entire production process would have to be suspended for a long time.
 
 # Main Functionality
 
 The most important content of the product is _software_ which can be divided into 3 groups:
 
-- Computer vision
-- Data analysis
-- User interface
+- Computer vision.
+- Data analysis.
+- User interface.
 
 <p float="center">
     <img src="/docs/diagrams/software.png" width="500"/>
@@ -104,9 +104,9 @@ The most important content of the product is _software_ which can be divided int
 This part consists of AI-driven algorithms and techniques of image analysis, and intended to
 accomplish the following tasks:
 
-- Locate separate coal pieces in a photo (a video frame)
-- Isolate a coal piece from its surroundings (e.g. finding the pixel mask of a piece)
-- Prepare data for further analysis
+- Locate separate coal pieces in a photo (a video frame).
+- Isolate a coal piece from its surroundings (e.g. finding the pixel mask of a piece).
+- Prepare data for further analysis.
 
 ## Data analysis
 
@@ -117,9 +117,9 @@ and to construct the figures of merit based on which the resulting decision is m
 
 This part is a point of interraction between the user and the product. And
 
-- Show the results of the CV-part in the recorded video (e.g. by drawing contours of the detected coal pieces)
-- Display statistics (histograms, time graphs)
-- (if necessary) Provide tools to interract with the equipment
+- Show the results of the CV-part in the recorded video (e.g. by drawing contours of the detected coal pieces).
+- Display statistics (histograms, time graphs).
+- (if necessary) Provide tools to interract with the equipment.
 
 # User Description
 
@@ -174,7 +174,7 @@ It should answer the following question:
 
 **N/A yet**
 
-## Installation & Configuration
+# Installation & Configuration
 
 # Glossary
 
