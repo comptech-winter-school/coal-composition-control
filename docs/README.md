@@ -12,7 +12,7 @@ work of a technical writer.
 
 * [System Requirements Specification](srs/srs.md)
 * [User's Guide](users_guide/users_guide.md)
-* [README](https://github.com/LRDPRDX/ButterworthRooFit) (link to the repo)
+* [README](https://github.com/comptech-winter-school/coal-composition-control) (link to the repo)
 
 # Vision Document
 
