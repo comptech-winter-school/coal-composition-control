@@ -7,7 +7,16 @@ from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
 from src.base import BasePredictor, DetectionCoal
-from src.utils import get_device, get_yolov5
+from src.utils import get_device
+
+
+def get_yolov5(weights, box_conf_th: float, nms_th: float, amp: bool, device):
+    model = torch.hub.load('ultralytics/yolov5', 'custom', path=weights, device=device)  # local model
+    model.conf = box_conf_th  # NMS confidence threshold
+    model.iou = nms_th        # NMS IoU threshold
+    model.amp = amp           # Automatic Mixed Precision (AMP) inference
+    model.eval()
+    return model
 
 
 class YOLOv5(BasePredictor):
