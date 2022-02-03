@@ -5,7 +5,7 @@ work of a technical writer.
 
 # Technical Writer
 
-<img src="/docs/diagrams/bogdan.png" width="50px;"/><br>Sikach Bogdan Igorevich</br>
+<img src="/docs/diagrams/bogdan.png" width="100px;"/><br>Sikach Bogdan Igorevich</br>
 
 # The Artifacts
 
