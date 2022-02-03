@@ -24,9 +24,8 @@ class EdgeSegmentation(BasePredictor):
 
         self.device = get_device(device=device)
 
-        self.model = torch.load(weights, map_location=device)
+        self.model = torch.load(weights, map_location=device).to(self.device)
         self.model.eval()
-        self.model.to(self.device)
 
         self.preprocessing_fn = smp.encoders.get_preprocessing_fn('efficientnet-b0', 'imagenet')
 
@@ -60,7 +59,7 @@ class EdgeSegmentation(BasePredictor):
 
 if __name__ == '__main__':
     orig_image = cv2.imread(str(DATA_DIR / 'few_data_split' / 'train' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
-    edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth')
+    edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'best.pth')
 
     coals = edge_segmentation.predict(orig_image)
     print([coal.get_fraction() for coal in coals])
