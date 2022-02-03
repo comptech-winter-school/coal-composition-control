@@ -54,7 +54,7 @@ The product is supposed to be a solution to the abovementioned problem:
 The following block diagram describes the process
 
 <p float="center">
-    <img src="diagrams/general_block_diagram.png" width="1000px;"/>
+    <img src="../diagrams/general_block_diagram.png" width="1000px;"/>
 </p>
 
 ## Product Features & Abilities
@@ -79,7 +79,7 @@ into the existing one which would _separate the larger coal fraction from
 the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
 <p float="center">
-    <img src="/docs/diagrams/alternative.png" width="500"/>
+    <img src="../diagrams/alternative.png" width="500"/>
 </p>
 
 But this approach is accompanied by the following difficulties:
@@ -96,7 +96,7 @@ The most important content of the product is _software_ which can be divided int
 - User interface.
 
 <p float="center">
-    <img src="/docs/diagrams/software.png" width="500"/>
+    <img src="../docs/diagrams/software.png" width="500"/>
 </p>
 
 ## Computer Vision 
