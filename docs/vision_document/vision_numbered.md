@@ -111,7 +111,7 @@ accomplish the following tasks:
 ## 4.2 Data analysis
 
 This part is intended to analyze the data produced by the CV-part
-to produce figures of merit based on which the resulting decision is made.
+and to construct the figures of merit based on which the resulting decision is made.
 
 ## 4.3 User Interface & Visualization
 
