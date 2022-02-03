@@ -6,7 +6,7 @@ pillow
 pandas
 scikit-image
 albumentations
-segmentation-models-pytorch
+segmentation-models-pytorch==0.2.1
 torchvision
 gdown
 zipfile36
