@@ -42,3 +42,23 @@ class InstanceSegmentationCoal(Coal):
                          contourIdx=-1, color=color, thickness=thickness, lineType=cv2.LINE_AA)
         return img
 
+class DetectionCoal(Coal):
+
+    def __init__(self, box: List[int]):
+        # box= [xmin, ymin, xmax, ymax]
+        self.box = box
+
+    @staticmethod
+    def longest_side(box):
+        return max(box[2] - box[0], box[3] - box[1])
+
+    def get_fraction(self) -> float:
+        return self.longest_side(self.box)
+
+    def plot_on(self, img: NDArray, color=(0, 255, 0), thickness=2) -> NDArray:
+        xmin, ymin, xmax, ymax = self.box
+        contour = [[xmax, ymax], [xmax, ymin], [xmin, ymin], [xmin, ymax]]
+        contour = np.int0(np.array(contour))
+        cv2.drawContours(image=img, contours=[contour],
+                         contourIdx=-1, color=color, thickness=thickness, lineType=cv2.LINE_AA)
+        return img
