@@ -23,8 +23,11 @@ class EdgeSegmentation(BasePredictor):
     ):
 
         self.device = get_device(device=device)
+
         self.model = torch.load(weights, map_location=device)
         self.model.eval()
+        self.model.to(self.device)
+
         self.preprocessing_fn = smp.encoders.get_preprocessing_fn('efficientnet-b0', 'imagenet')
 
         self.segm_th_mask = segm_th_mask
