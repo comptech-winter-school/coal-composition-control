@@ -10,8 +10,23 @@ from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
-from src.utils import get_device, get_contours, get_unet
+from src.utils import get_device, get_contours
 
+
+def get_unet(weights, device):
+
+    CLASSES = ['coal', 'bound', 'background']
+    model = smp.Unet(
+        encoder_name='efficientnet-b0',
+        encoder_weights='imagenet',
+        classes=len(CLASSES),
+        activation='softmax',
+    )
+    model_state_dict = torch.load(weights, map_location=device)
+    model.load_state_dict(model_state_dict)
+    model = model.to(device)
+    model.eval()
+    return model
 
 def check_image_size(size: int, stride: int):
     if size is None:

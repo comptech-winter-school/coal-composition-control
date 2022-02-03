@@ -8,8 +8,15 @@ from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
-from src.utils import get_device, get_mask_rcnn, get_contours
+from src.utils import get_device, get_contours
 
+
+def get_mask_rcnn(weights, box_conf_th: float, nms_th: float, device):
+    model = torch.load(weights, map_location=device)
+    model.roi_heads.score_thresh = box_conf_th
+    model.roi_heads.nms_thresh = nms_th
+    model.eval()
+    return model
 
 class MaskRCNN(BasePredictor):
 
