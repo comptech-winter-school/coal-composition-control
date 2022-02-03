@@ -1,6 +1,6 @@
 # Documentation of the "Coal Composition Control" project of the CompTech School 2022
 
-This site hosts the documentation of the "Coal Composition Control" project and is intended to provide a convenient way to rate the
+This site hosts documentation on the "Coal Composition Control" project and is intended to provide a convenient way to rate the
 work of a technical writer.
 
 # Technical Writer

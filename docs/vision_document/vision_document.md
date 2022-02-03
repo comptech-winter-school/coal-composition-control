@@ -54,7 +54,7 @@ The product is supposed to be a solution to the abovementioned problem:
 The following block diagram describes the process
 
 <p float="center">
-    <img src="../diagrams/general_block_diagram.png" width="1000"/>
+    <img src="diagrams/general_block_diagram.png" width="1000px;"/>
 </p>
 
 ## Product Features & Abilities
