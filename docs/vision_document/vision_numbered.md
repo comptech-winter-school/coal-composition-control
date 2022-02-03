@@ -127,7 +127,7 @@ This part is a point of interraction between the user and the product. And
 
 | Title | Role | Description of Use |
 |:---   |:--- |:--- |
-| EVRAZ production operators | User of WEB interface | Monitoring |
+| EVRAZ production operators | User of WEB interface | Monitoring the coal composition |
 
 ## 5.2 User Environment
 
@@ -170,22 +170,11 @@ It should answer the following question:
 
 ## 7.2 System Requirements Specification
 
-**N/A yet**
-
 ## 7.3 User's Guide
 
 **N/A yet**
 
-## 7.4 Help 
-
-The WEB interface should have:
-
-- Tooltips
-- Popup hints
-
-## 7.5 Installation & Configuration
-
-**N/A yet**
+## 7.4 Installation & Configuration
 
 # 8. Glossary
 
@@ -199,7 +188,7 @@ The WEB interface should have:
 
 <sub>in russian: _фракция угля_</sub>
 
-is a category of classification pieces of coal by their size
+is a standardized size of a piece of coal (e.g. large, medium, small)
 
 ## 8.2 conveyor
 
