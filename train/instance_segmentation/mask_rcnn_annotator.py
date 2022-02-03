@@ -11,7 +11,8 @@ import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
-from src.utils import get_device, get_mask_rcnn
+from src.instance_segmentation.mask_rcnn import get_mask_rcnn
+from src.utils import get_device
 from train.converters.mask_to_vgg import masks2vgg
 
 
