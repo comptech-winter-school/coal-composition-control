@@ -5,12 +5,12 @@ work of a technical writer.
 
 # Technical Writer
 
-<img src="/diagrams/bogdan.png" width="50px;"/><br>Sikach Bogdan Igorevich</br>
+<img src="/docs/diagrams/bogdan.png" width="50px;"/><br>Sikach Bogdan Igorevich</br>
 
 # The Artifacts
 
-* [System Requirements Specification](srs/srs.md);
-* [User's Guide](users_guide/users_guide.md).
+* [System Requirements Specification](srs/srs.md)
+* [User's Guide](users_guide/users_guide.md)
 * [README](https://github.com/LRDPRDX/ButterworthRooFit) (link to the repo)
 
 # Vision Document
