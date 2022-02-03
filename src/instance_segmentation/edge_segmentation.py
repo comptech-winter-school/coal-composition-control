@@ -18,8 +18,8 @@ class EdgeSegmentation(BasePredictor):
             self,
             weights: Union[Path, str],
             segm_th_mask: float = 0.7,
-            device: str = None,
-            contour_area_min: int = 150
+            contour_area_min: int = 150,
+            device: str = None
     ):
 
         self.device = get_device(device=device)
