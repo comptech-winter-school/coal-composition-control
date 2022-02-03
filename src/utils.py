@@ -16,6 +16,14 @@ def get_mask_rcnn(weights, box_conf_th: float, nms_th: float, device):
     model.eval()
     return model
 
+def get_yolov5(weights, box_conf_th: float, nms_th: float, amp: bool, device):
+    model = torch.hub.load('ultralytics/yolov5', 'custom', path=weights, device=device)  # local model
+    model.conf = box_conf_th  # NMS confidence threshold
+    model.iou = nms_th        # NMS IoU threshold
+    model.amp = amp           # Automatic Mixed Precision (AMP) inference
+    model.eval()
+    return model
+
 
 def get_contour(mask):
     contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
