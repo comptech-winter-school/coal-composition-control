@@ -76,9 +76,7 @@ Another solution to the problem would be to develop and integrate a subsystem
 into the existing one which would _separate the larger coal fraction from
 the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
-<p float="center">
-    <img src="../diagrams/alternative.png" width="500"/>
-</p>
+![alternative](../diagrams/alternative.png)
 
 But this approach is accompanied by the following difficulties:
 
@@ -93,9 +91,7 @@ The most important content of the product is _software_ which can be divided int
 - Data analysis.
 - User interface.
 
-<p float="center">
-    <img src="../diagrams/software.png" width="500"/>
-</p>
+![software](../diagrams/software.png)
 
 ## Computer Vision 
 
