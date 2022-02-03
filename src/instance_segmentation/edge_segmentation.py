@@ -14,6 +14,8 @@ from src.utils import get_device, get_contours, get_unet
 
 
 def check_image_size(size: int, stride: int):
+    if size is None:
+        return None
     if size % stride != 0:
         raise ValueError(f'size must be divisible to {stride}')
     return size
@@ -25,25 +27,27 @@ class EdgeSegmentation(BasePredictor):
             weights: Union[Path, str],
             segm_th_mask: float = 0.7,
             contour_area_min: int = 150,
-            size: int = 1280,
+            width: int = None,
+            height: int = None,
             device: str = None
     ):
         """
-
-        :param size: divisible to 32
+        :param width: divisible to 32, don't resize if None height is None
+        :param height: divisible to 32, don't resize if None or width is None
         """
 
         self.device = get_device(device=device)
         self.model = get_unet(weights, self.device)
         self.preprocessing_fn = smp.encoders.get_preprocessing_fn('efficientnet-b0', 'imagenet')
 
-        self.size = check_image_size(size, stride=32)
+        self.size = check_image_size(width, stride=32), check_image_size(height, stride=32)
         self.segm_th_mask = segm_th_mask
         self.contour_area_min = contour_area_min
 
     def image_preprocess(self, img: NDArray) -> torch.Tensor:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img, (self.size, self.size), interpolation=cv2.INTER_AREA)
+        if self.size[0] is not None and self.size[1] is not None:
+            img = cv2.resize(img, self.size, interpolation=cv2.INTER_AREA)
         img = albu.Compose([albu.Lambda(image=self.preprocessing_fn)])(image=img)['image']
         img = img.transpose(2, 0, 1).astype('float32')
         return torch.from_numpy(img).to(self.device).unsqueeze(0)
