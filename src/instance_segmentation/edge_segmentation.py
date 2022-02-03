@@ -8,7 +8,7 @@ import segmentation_models_pytorch as smp
 import torch
 from numpy.typing import NDArray
 
-from constants import DATA_DIR, WEIGHTS_DIR
+from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
 from src.utils import get_device, get_contours
 
@@ -87,7 +87,7 @@ class EdgeSegmentation(BasePredictor):
 
 
 if __name__ == '__main__':
-    image = cv2.imread(str(DATA_DIR / 'few_data_split' / 'few_data_train' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
+    image = cv2.imread(str(EXAMPLE_IMG))
     edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth')
 
     coals = edge_segmentation.predict(image)

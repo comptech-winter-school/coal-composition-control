@@ -1,6 +1,6 @@
 import cv2
 
-from constants import DATA_DIR, WEIGHTS_DIR
+from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from scripts.download import load_data, load_weights
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.instance_segmentation.mask_rcnn import MaskRCNN
@@ -9,7 +9,7 @@ if __name__ == '__main__':
     load_data()
     load_weights()
 
-    image = cv2.imread(str(DATA_DIR / 'few_data_split' / 'few_data_train' / '20210712_141048_857A_ACCC8EAF31F3_0.jpg'))
+    image = cv2.imread(str(EXAMPLE_IMG))
 
     if image is None:
         raise FileNotFoundError('check path to image')
