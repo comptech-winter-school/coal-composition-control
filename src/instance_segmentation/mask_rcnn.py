@@ -8,7 +8,7 @@ from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
-from src.utils import get_device, get_mask_rcnn, get_contour
+from src.utils import get_device, get_mask_rcnn, get_instance_contour
 
 
 class MaskRCNN(BasePredictor):
@@ -34,7 +34,7 @@ class MaskRCNN(BasePredictor):
         masks = torch.squeeze(prediction[0]['masks'])
         masks = masks > self.segmentation_th
         masks = masks.detach().cpu().numpy()
-        return [InstanceSegmentationCoal(get_contour(mask)) for mask in masks]
+        return [InstanceSegmentationCoal(get_instance_contour(mask)) for mask in masks]
 
 
 if __name__ == '__main__':

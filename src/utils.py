@@ -16,12 +16,13 @@ def get_mask_rcnn(weights, box_conf_th: float, nms_th: float, device):
     model.eval()
     return model
 
-def get_contours(mask):
-    contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+def get_semantic_contours(mask):
+    contours, _ = cv2.findContours(mask,  cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     return contours
 
-def get_contour(mask):
-    return get_contours(mask)[0]
+def get_instance_contour(mask):
+    contours, _ = cv2.findContours((mask * 255).astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    return contours[0]
 
 
 def visualize_semantic_segmentation(img_from_camera, pred):

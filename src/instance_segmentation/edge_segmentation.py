@@ -10,7 +10,7 @@ from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
-from src.utils import get_device, get_contours
+from src.utils import get_device, get_semantic_contours
 
 
 class EdgeSegmentation(BasePredictor):
@@ -24,7 +24,7 @@ class EdgeSegmentation(BasePredictor):
 
         self.device = get_device(device=device)
 
-        self.model = torch.load(weights, map_location=device)
+        self.model = torch.load(weights, map_location=self.device)
         self.model.eval()
 
         self.preprocessing_fn = smp.encoders.get_preprocessing_fn('efficientnet-b0', 'imagenet')
@@ -53,7 +53,7 @@ class EdgeSegmentation(BasePredictor):
             iterations=2
         )
 
-        contours = get_contours(mask)
+        contours = get_semantic_contours(mask)
         return [InstanceSegmentationCoal(cnt) for cnt in contours if cv2.contourArea(cnt) > self.contour_area_min]
 
 
