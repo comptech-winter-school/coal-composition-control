@@ -1,11 +1,12 @@
 import glob
-import pandas as pd
-import numpy as np
-import cv2
 import json
-from skimage.draw import polygon
 import os
 import shutil
+
+import cv2
+import numpy as np
+import pandas as pd
+from skimage.draw import polygon
 
 
 def csv_to_df():
