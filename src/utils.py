@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import segmentation_models_pytorch as smp
 import torch
 
 
@@ -15,6 +16,27 @@ def get_mask_rcnn(weights, box_conf_th: float, nms_th: float, device):
     model.roi_heads.nms_thresh = nms_th
     model.eval()
     return model
+
+def check_image_size(size: int, stride: int):
+    if size % stride != 0:
+        raise ValueError(f'size must be divisible to {stride}')
+    return size
+
+def get_unet(weights, device):
+
+    CLASSES = ['coal', 'bound', 'background']
+    model = smp.Unet(
+        encoder_name='efficientnet-b0',
+        encoder_weights='imagenet',
+        classes=len(CLASSES),
+        activation='softmax',
+    )
+    model_state_dict = torch.load(weights, map_location=device)
+    model.load_state_dict(model_state_dict)
+    model = model.to(device)
+    model.eval()
+    return model
+
 
 def get_semantic_contours(mask):
     contours, _ = cv2.findContours(mask,  cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
