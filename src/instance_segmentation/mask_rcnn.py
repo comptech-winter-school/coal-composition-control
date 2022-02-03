@@ -2,7 +2,6 @@ from pathlib import Path
 from typing import Union, List
 
 import cv2
-import numpy as np
 import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray

@@ -1,6 +1,8 @@
-import gdown
-from constants import DATA_DIR, WEIGHTS_DIR
 from pathlib import Path
+
+import gdown
+
+from constants import DATA_DIR, WEIGHTS_DIR
 
 try:
     from zipfile import ZipFile

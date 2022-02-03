@@ -2,11 +2,10 @@ from pathlib import Path
 from typing import Union, List
 
 import albumentations as albu
-import torch
-import segmentation_models_pytorch as smp
 import cv2
-
 import numpy as np
+import segmentation_models_pytorch as smp
+import torch
 from numpy.typing import NDArray
 
 from constants import DATA_DIR, WEIGHTS_DIR

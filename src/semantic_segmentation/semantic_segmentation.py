@@ -1,11 +1,11 @@
-import numpy as np
-import cv2
 import albumentations as albu
+import cv2
+import numpy as np
+import segmentation_models_pytorch as smp
 import torch
 
-import segmentation_models_pytorch as smp
-from src.base import BasePredictor
 from constants import WEIGHTS_DIR, DATA_DIR
+from src.base import BasePredictor
 
 
 class SemanticSegmentation(BasePredictor):
