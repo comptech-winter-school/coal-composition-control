@@ -10,7 +10,7 @@ def get_device(device: str):
 
 
 def get_mask_rcnn(weights, box_conf_th: float, nms_th: float, device):
-    model = torch.load(weights, map_location=device)
+    model = torch.load(weights, map_location=device).to(device)
     model.roi_heads.score_thresh = box_conf_th
     model.roi_heads.nms_thresh = nms_th
     model.eval()
