@@ -1,5 +1,3 @@
-opencv-python~=4.5.5.62
-numpy~=1.21.2
 matplotlib
 streamlit
 torch
@@ -7,6 +5,8 @@ pillow
 pandas
 scikit-image
 albumentations
+opencv-python~=4.5.5.62
+numpy~=1.21.2
 segmentation-models-pytorch==0.2.1
 torchvision
 gdown
