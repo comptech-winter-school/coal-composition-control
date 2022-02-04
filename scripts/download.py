@@ -53,7 +53,12 @@ def load_weights() -> None:
     )
     gdown.cached_download(
         id='1c95kfdL7EdPQF0DLoywnhu7Acav9RoAu',
-        path=str(WEIGHTS_DIR / 'yolov5n6.pt'),
+        path=str(WEIGHTS_DIR / 'yolov5s6.pt'),
         md5='0232b6b3946dd5a4d547e95b09f2b76e'
     )
     unzip(archives_dir=WEIGHTS_DIR)
+
+
+if __name__ == '__main__':
+    load_data()
+    load_weights()
