@@ -1,4 +1,4 @@
-FROM anibali/pytorch:1.8.1-cuda11.1-ubuntu20.04
+FROM anibali/pytorch:1.10.0-nocuda
 
 # Set up time zone.
 ENV TZ=UTC
@@ -14,7 +14,6 @@ RUN python -m pip install --upgrade pip && pip install --no-cache -r requirement
 # Copy contents
 COPY . /app
 
-RUN pip install -U --no-cache torch torchvision --default-timeout=100
 # Change workdir
 WORKDIR /app
 RUN sudo chmod -R ugo+rwx /app
