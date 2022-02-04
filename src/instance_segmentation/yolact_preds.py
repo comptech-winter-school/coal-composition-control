@@ -1,5 +1,5 @@
 import sys
-# sys.path.insert(0, '../yolact')
+# определить папку для yolact в структуре
 import eval
 import layers
 from data import COCODetection, get_label_map, MEANS, COLORS
@@ -18,15 +18,22 @@ from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
 from src.utils import get_device, get_contours
 
+
 class YolactPredictor(BasePredictor):
-    def __init__(self, weights_path, args):
-        self.model = self.get_model(weights_path, args)
-        self.args = args
+    def __init__(self, weights_path, score_threshold=0.15, top_k=15, cuda=False):
+        self.model = self.get_model(weights_path, cuda=cuda)
+        args_dict = {'crop': False,
+             'score_threshold': score_threshold,
+             'display_lincomb': False,
+             'top_k': top_k,
+             'eval_mask_branch': True,
+             }
+        self.args = SimpleNamespace(**args_dict)
 
     @staticmethod
-    def get_model(weights_path, args):
+    def get_model(weights_path, cuda):
         model = Yolact()
-        map_location = None if args.cuda else torch.device('cpu')
+        map_location = None if cuda else torch.device('cpu')
         model.load_weights(weights_path, map_location=map_location)
         return model
 
@@ -43,21 +50,8 @@ class YolactPredictor(BasePredictor):
         return InstanceSegmentationCoal(masks=np.array(masks))
 
 if __name__ == '__main__':
-    args_dict = {'images': '/content/few_data:/content/output_images',
-             'fast_nms': True,
-             'cuda': False,
-             'mask_proto_debug': False,
-             'cross_class_nms': False,
-             'video': None,
-             'crop': False,
-             'score_threshold': 0.05,
-             'display_lincomb': False,
-             'top_k': 15,
-             'eval_mask_branch': True,
-             }
-    args = SimpleNamespace(**args_dict)
     image = cv2.imread(str(EXAMPLE_IMG))
-    yol_model = YolactPredictor(WEIGHTS_DIR / 'yolact_base_201_2013_interrupt.pth', args)
+    yol_model = YolactPredictor(WEIGHTS_DIR / 'yolact_base_201_2013_interrupt.pth')
     coals = yol_model.predict(image)
     print([coal.get_fraction() for coal in coals])
     cv2.imshow('Contours', coals[0].plot_on(image))
