@@ -76,7 +76,9 @@ Another solution to the problem would be to develop and integrate a subsystem
 into the existing one which would _separate the larger coal fraction from
 the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
-![alternative alt ><](../diagrams/alternative.png)
+
+![alternative](../diagrams/alternative.png#center)
+
 
 But this approach is accompanied by the following difficulties:
 
