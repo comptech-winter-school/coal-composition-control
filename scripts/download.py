@@ -27,6 +27,16 @@ def load_data() -> None:
         path=str(DATA_DIR / 'few_data_split.zip'),
         md5='3e2537104a8bb90b538a4816e0b52cb6',
     )
+    gdown.cached_download(
+        id='1w1PF6fjOmoI-P8H2lomU208jSbP1A5rQ',
+        path=str(DATA_DIR / 'example_video_1.mkv'),
+        md5='146d551dd46d797f4958b56295a33ef5',
+    )
+    gdown.cached_download(
+        id='1wlID6FRZOpK8GbJccBQzv3mPk0qtNa9m',
+        path=str(DATA_DIR / 'example_video_2.mkv'),
+        md5='2f88980fd52fb8eba98a66c6e9a2a4fc',
+    )
     unzip(archives_dir=DATA_DIR)
 
 
@@ -40,5 +50,10 @@ def load_weights() -> None:
         id='1XYwU7x_hk3E3KkJBfUkwk1oEVyuuCjaK',
         path=str(WEIGHTS_DIR / 'edge_segmentation.pth'),
         md5='df1660a95e26a6c65337a58edb344bb4'
+    )
+    gdown.cached_download(
+        id='1c95kfdL7EdPQF0DLoywnhu7Acav9RoAu',
+        path=str(WEIGHTS_DIR / 'yolov5n6.pt'),
+        md5='0232b6b3946dd5a4d547e95b09f2b76e'
     )
     unzip(archives_dir=WEIGHTS_DIR)
