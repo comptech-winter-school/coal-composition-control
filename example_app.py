@@ -19,3 +19,7 @@ if __name__ == '__main__':
     coals = mask_rcnn.predict(image)
     print([coal.get_fraction() for coal in coals])
 
+    if coals:
+        cv2.imshow('Contours', coals[0].plot_on(image))
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
