@@ -11,7 +11,7 @@ work of a technical writer.
 # The Artifacts
 
 * [System Requirements Specification](srs/srs.md)
-* [User's Guide](users_guide/users_guide.md)
+* [User's Guide](users_guide/users_numbered.md)
 * [README](https://github.com/comptech-winter-school/coal-composition-control) (link to the repo)
 
 # Vision Document

@@ -49,7 +49,7 @@ The product is supposed to be a solution to the abovementioned problem:
 2. Transferred data is being processed by the AI-based algorithm (the main part of the product).
 3. The result of the previous step is being processed yet to produce important statistics (histograms, graphs, etc).
 4. The data obtained in the previous step is visualized in the WEB interface.
-5. The operator decides if grinding is necessary.
+5. An operator decides if grinding is necessary.
 
 The following block diagram describes the process
 

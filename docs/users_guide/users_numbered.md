@@ -1,6 +1,6 @@
-# Introduction
+# 1. Introduction
 
-## Purpose of Document
+## 1.1 Purpose of Document
 
 This is a System Requirements Specification document for the coal composition control system in EVRAZ. EVRAZ is a global steel
 and mining company and the leading producer of infrastructure steel products. At some point of the production process it must be
@@ -11,7 +11,7 @@ sufficient_ to decide correctly.
 This document describes objectives and goal of the project. Also it describes the functional requirements
  and software architecture which the implementation of the target system is based on.
 
-## Document Conventions
+## 1.2 Document Conventions
 
 This document uses the following conventions
 
@@ -20,51 +20,51 @@ system to be accepted;
 - The uppercase words SHOULD and SHOULD NOT are reserved exclusively for stating suggestions which are desirable but not essential
 to follow;
 
-# Overall Description
+# 2. Overall Description
 
-# Functional Requirements
+# 3. Functional Requirements
 
-## High Priority
+## 3.1 High Priority
 
 1. The system MUST be able to detect separate coal pieces in the image;
 2. The system MUST be able to calculate the size of detected pieces;
 3. The system MUST be able to create a "real-time" statistics: the coal size distribution displayed as a histogram;
 4. The system MUST provide a WEB interface for a production operator to monitor the coal composition in real-time;
 
-## Medium Priority
+## 3.2 Medium Priority
 
-### Tests
+### 3.2.1 Tests
 
 1. The system SHOULD have
 
-### Research
+### 3.2.2 Research
 
-## Low Priority
+## 3.3 Low Priority
 
-# Non-Functional Requirements
+# 4. Non-Functional Requirements
 
-## Arrangement & Organization
+## 4.1 Arrangement & Organization
 
 - The project MUST have a remote repository containing
 - The work on the project SHOULD be organized with the aim of a task management service (like _Trello_ or others).
 
-## Performance Requirements
+## 4.2 Performance Requirements
 
 - Latency between the conveyor and the picture the operator sees MUST NOT exceed 10 sec.
 
-## Safety Requirements
+## 4.3 Safety Requirements
 
-## Online user Documentaation and Help
+## 4.4 Online user Documentaation and Help
 
-### WEB Interface
+### 4.4.1 WEB Interface
 
-## Purchased Components
+## 4.5 Purchased Components
 
 - Video cameras (one camera for one conveyor);
 - Transferring infastructure (wires, commutators, switches, routers);
 - Servers.
 
-## Documentation Requirements
+## 4.6 Documentation Requirements
 
 Documentation must consist of at least 3 documents:
 
@@ -72,7 +72,7 @@ Documentation must consist of at least 3 documents:
 - SRS
 - User's guide
 
-### README.md
+### 4.6.1 README.md
 
 This file describes the purpose of the repo and provides the perspective view of the product.
 
@@ -82,10 +82,10 @@ It should answer the following question:
 - What is the purpose of the product?
 - How to use the product?
 
-## System Requirements Specification
+## 4.7 System Requirements Specification
 
 This document.
 
-## User's Guide
+## 4.8 User's Guide
 
-# The Use Case Model
+# 5. The Use Case Model
