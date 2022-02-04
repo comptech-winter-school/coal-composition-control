@@ -77,7 +77,9 @@ into the existing one which would _separate the larger coal fraction from
 the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
 
-![alternative](../diagrams/alternative.png#center)
+<div style="float:center;">
+  ![alternative](../diagrams/alternative.png)
+</div>
 
 
 But this approach is accompanied by the following difficulties:
