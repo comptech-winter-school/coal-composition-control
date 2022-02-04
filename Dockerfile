@@ -10,7 +10,6 @@ RUN sudo apt-get update \
 # Install requirements
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip && pip install --no-cache -r requirements.txt
-RUN pip install plotly
 # Copy contents
 COPY . /app
 

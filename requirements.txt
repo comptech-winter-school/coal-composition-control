@@ -12,3 +12,4 @@ torchvision
 gdown
 zipfile36
 seaborn
+plotly
