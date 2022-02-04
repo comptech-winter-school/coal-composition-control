@@ -10,13 +10,13 @@ RUN sudo apt-get update \
 # Install requirements
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip && pip install --no-cache -r requirements.txt
-
 # Change workdir
 WORKDIR /app
 
 # Copy contents
 COPY . /app
 
+RUN cd scripts/ && bash download_models.sh
+
 ENTRYPOINT ["python"]
 CMD ["example_app.py"]
-

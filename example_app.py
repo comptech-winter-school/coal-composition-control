@@ -1,14 +1,10 @@
 import cv2
 
 from constants import EXAMPLE_IMG, WEIGHTS_DIR
-from scripts.download import load_data, load_weights
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.instance_segmentation.mask_rcnn import MaskRCNN
 
 if __name__ == '__main__':
-    load_data()
-    load_weights()
-
     image = cv2.imread(str(EXAMPLE_IMG))
 
     if image is None:
