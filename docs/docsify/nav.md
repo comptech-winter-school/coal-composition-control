@@ -1,5 +1,5 @@
 <!-- _navbar.md -->
 
-* [main](/)
-* [srs](/srs/srs.md)
-* [users_guide](/users_guide/users_guide.md)
+* [Home](/)
+* [System Technical Requirements](/srs/srs.md)
+* [User's Guide](/users_guide/users_guide.md)
