@@ -76,11 +76,7 @@ Another solution to the problem would be to develop and integrate a subsystem
 into the existing one which would _separate the larger coal fraction from
 the entire stream on the conveyor followed by grinding the larger coal pieces_:
 
-
-<div style="float:center;" markdown="1">
-  ![alternative](../diagrams/alternative.png)
-</div>
-
+![alternative](../diagrams/alternative.png)
 
 But this approach is accompanied by the following difficulties:
 
@@ -106,12 +102,12 @@ accomplish the following tasks:
 - Isolate a coal piece from its surroundings (e.g. finding the pixel mask of a piece).
 - Prepare data for further analysis.
 
-### 4.2 Data analysis
+## 4.2 Data analysis
 
 This part is intended to analyze the data produced by the CV-part
 and to construct the figures of merit based on which the resulting decision is made.
 
-### 4.3 User Interface & Visualization
+## 4.3 User Interface & Visualization
 
 This part is a point of interraction between the user and the product. And
 
