@@ -50,7 +50,7 @@ class VideoAnalyzer:
     def __init__(self, video: Video,
                  analyze_type="basic",
                  model_type='semantic',
-                 took_frame=1,
+                 took_frame=75,
                  cut_params=(400, 568, 512, 1280),
                  ):
         self.video = video
@@ -69,17 +69,16 @@ class VideoAnalyzer:
         while True:
             # for video it works fine, but in real camera we
             # need to calculate delay and took not every 75, but maybe 4 frame dut to 1 thread
-            if key == 113 & 0xff:
-                ret, cur_image = capture.read()
-                if not ret:
-                    break
-                if cur_frame % self.took_frame == 0:
-                    crop_frame = cur_image[self.y:self.y + self.h, self.x:self.x + self.w]
-                    coals = self.model.predict(crop_frame)
-                    self.result = [coal.get_fraction() for coal in coals]
-                    img_with_contours = plot_coals_contours_on_img(crop_frame, coals)
-                    cv2.imshow("fraction", img_with_contours)
-                cur_frame += 1
+            ret, cur_image = capture.read()
+            if not ret:
+                break
+            if cur_frame % self.took_frame == 0:
+                crop_frame = cur_image[self.y:self.y + self.h, self.x:self.x + self.w]
+                coals = self.model.predict(crop_frame)
+                self.result = [coal.get_fraction() for coal in coals]
+                img_with_contours = plot_coals_contours_on_img(crop_frame, coals)
+                cv2.imshow("fraction", img_with_contours)
+            cur_frame += 1
             self.plot_histogram()
             key = cv2.waitKey(2)
 
