@@ -1,8 +1,31 @@
 import cv2
 import matplotlib.pyplot as plt
 
-from src.utils import plot_coals_contours_on_img, setup_model
+from constants import WEIGHTS_DIR
+from src.instance_segmentation.edge_segmentation import EdgeSegmentation
+from src.instance_segmentation.mask_rcnn import MaskRCNN
+from src.utils import plot_coals_contours_on_img
 
+
+def setup_model(model_type):
+    model = None
+
+    if model_type == 'semantic':
+        model = EdgeSegmentation(
+        weights=WEIGHTS_DIR / 'edge_segmentation.pth',
+        segm_th_mask=0.8)
+    elif model_type == 'mask_rcnn':
+        model = MaskRCNN(
+            weights=WEIGHTS_DIR / 'mask_rcnn.pth',
+            box_conf_th=0.7,
+            nms_th=0.2,
+            segmentation_th=0.7,
+            device=None)
+    elif model_type == 'yolov5':
+        pass
+    elif model_type == 'yolact':
+        pass
+    return model
 
 class Video:
     def __init__(self, path=None):
@@ -21,22 +44,22 @@ class VideoAnalyzer:
     'normal' -
     'deep' - use tracker, track centers of coals, while it exists
 
-    @segmentation_type has 3 mode: 'yolov5', 'semantic', 'mask_rcnn'
+    @model_type has 3 mode: 'yolov5', 'semantic', 'mask_rcnn'
     '''
 
     def __init__(self, video: Video,
                  analyze_type="basic",
-                 segmentation_type='semantic',
+                 model_type='semantic',
                  took_frame=1,
-                 cut_params=(400, 568, 512, 1320),
+                 cut_params=(400, 568, 512, 1280),
                  ):
         self.video = video
         self.analyze_type = analyze_type
-        self.segmentation_type = segmentation_type
+        self.model_type = model_type
         self.took_frame = took_frame
         self.x, self.y, self.h, self.w = cut_params
 
-        self.model = setup_model(segmentation_type)
+        self.model = setup_model(model_type)
         self.result = None
 
     def analyze(self):
@@ -48,15 +71,14 @@ class VideoAnalyzer:
             # need to calculate delay and took not every 75, but maybe 4 frame dut to 1 thread
             if key == 113 & 0xff:
                 ret, cur_image = capture.read()
-                if ret:
-                    if cur_frame % self.took_frame == 0:
-                        crop_frame = cur_image[self.y:self.y + self.h, self.x:self.x + self.w]
-                        coals = self.model.predict(crop_frame)
-                        self.result = [coal.get_fraction() for coal in coals]
-                        # img_with_contours = plot_coals_contours_on_img(crop_frame, coals)
-                        # cv2.imshow("fraction", img_with_contours)
-                else:
+                if not ret:
                     break
+                if cur_frame % self.took_frame == 0:
+                    crop_frame = cur_image[self.y:self.y + self.h, self.x:self.x + self.w]
+                    coals = self.model.predict(crop_frame)
+                    self.result = [coal.get_fraction() for coal in coals]
+                    img_with_contours = plot_coals_contours_on_img(crop_frame, coals)
+                    cv2.imshow("fraction", img_with_contours)
                 cur_frame += 1
             self.plot_histogram()
             key = cv2.waitKey(2)
@@ -70,6 +92,6 @@ class VideoAnalyzer:
 
 
 if __name__ == '__main__':
-    video_path = r"E:\comptech\comptech\1\20210712_141048_857A_ACCC8EAF31F3\20210712_14\20210712_141048_5E30.mkv"
+    video_path = r"/home/ji411/Downloads/20210712_141048_5E30.mkv"
     test = VideoAnalyzer(Video(video_path))
     test.analyze()
