@@ -67,7 +67,8 @@ OS or/and architecture.
 
 ## Performance Requirements
 
-1. Latency between the conveyor and the picture the operator sees MUST NOT exceed 10 sec.
+1. Latency between the conveyor and the picture the operator sees MUST NOT exceed 10 sec;
+2. The system MUST be able to analyze a video stream of ~10 fps.
 
 ## Online user Documentaation and Help
 
@@ -97,11 +98,11 @@ MUST also answer the following question:
 - What is the purpose of the product?
 - How to use the product?
 
-## System Requirements Specification
+### System Requirements Specification
 
 This document. See [Purpose of Document](#purpose-of-document) for details.
 
-## User's Guide
+### User's Guide
 
 Detailed description of how to work in the Web Interface.
 
