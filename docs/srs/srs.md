@@ -29,13 +29,17 @@ to follow;
 1. The system MUST be able to detect separate coal pieces in the image;
 2. The system MUST be able to calculate the size of detected pieces;
 3. The system MUST be able to create a "real-time" statistics: the coal size distribution displayed as a histogram;
-4. The system MUST provide a WEB interface for a production operator to monitor the coal composition in real-time;
+4. The system MUST provide a WEB interface to monitor the coal composition in real-time:
+ - it MUST display the area of the conveyor recorded;
+ - it MUST display the results of the object detection algorithm (e.g. by drawing the contour of a coal piece detected);
+ - it MUST display the coal size distribution.
 
 ## Medium Priority
 
 ### Tests
 
-1. The system SHOULD have
+1. The system SHOULD be accompanied by tests which could be used to validate correct usage on a specific
+OS or/and architecture.
 
 ### Research
 
@@ -45,8 +49,8 @@ to follow;
 
 ## Arrangement & Organization
 
-- The project MUST have a remote repository containing
-- The work on the project SHOULD be organized with the aim of a task management service (like _Trello_ or others).
+1. The project MUST have a remote repository that MUST contain final code;
+2. The work on the project SHOULD be organized with the aim of a task management service (like _Trello_ or others).
 
 ## Performance Requirements
 
@@ -68,9 +72,9 @@ to follow;
 
 Documentation must consist of at least 3 documents:
 
-- README.md
-- SRS
-- User's guide
+- README.md;
+- SRS (this document);
+- User's guide.
 
 ### README.md
 
