@@ -5,8 +5,8 @@ work of a technical writer.
 
 # Technical Writer
 
-|<p float="center"><img src="diagrams/bogdan.png" width="150px;"/>|<p align="left">Name:</p><p align="right">Sikach Bogdan Igorevich</p><br>email:&emsp;paradox1859@gmail.com</br><br>GitHub:&emsp;[LRDPRDX](https://github.com/LRDPRDX)</br><br>Telegram: @lrdprdx</br>|
-| :---: |:--- |
+|<p float="center"><img src="diagrams/bogdan.png" width="150px;"/>|<br>Name:Sikach Bogdan Igorevich</br><br>email: paradox1859@gmail.com</br><br>GitHub: [LRDPRDX](https://github.com/LRDPRDX)</br><br>Telegram: @lrdprdx</br>|
+| :---: |:---: |
 
 # The Artifacts
 
