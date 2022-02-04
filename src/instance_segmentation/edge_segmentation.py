@@ -37,6 +37,15 @@ def check_image_size(size: int, stride: int):
 
 
 class EdgeSegmentation(BasePredictor):
+    """
+    :param weights: path to the model weights.
+    :param segm_th_mask: Degree of confidence that pixel is coal. Range [0.0, 1.0].
+    :param contour_area_min: Minimal area threshold in pixels to assume that selected contour is coal.
+    :param width: Width of the input image, divisible to 32, don't resize if None height is None.
+    :param height: Height of the input image, divisible to 32, don't resize if None or width is None.
+    :param device: Device where model runs. 
+    """
+
     def __init__(
             self,
             weights: Union[Path, str],
@@ -46,10 +55,6 @@ class EdgeSegmentation(BasePredictor):
             height: int = None,
             device: str = None
     ):
-        """
-        :param width: divisible to 32, don't resize if None height is None
-        :param height: divisible to 32, don't resize if None or width is None
-        """
 
         self.device = get_device(device=device)
         self.model = get_unet(weights, self.device)

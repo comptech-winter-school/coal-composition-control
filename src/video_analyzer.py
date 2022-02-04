@@ -8,6 +8,15 @@ from src.utils import plot_coals_contours_on_img
 
 
 def setup_model(model_type):
+    """
+    Initialize specific type model
+    :param str model_type: Type of the model, which will be used to predict coals mask. Available models:
+        'semantic' - UNet model which predict mask with overlayed edges to separate coals.
+        'mask_rcnn' - Mask R-CNN model for coals detection and instance segmentation
+        'yolov5' - Yolov5 model for coals boundbox detection
+        'yolact' - YOLACT model for instance segmentation
+    :return model
+    """
     model = None
 
     if model_type == 'semantic':
@@ -28,30 +37,46 @@ def setup_model(model_type):
     return model
 
 class Video:
-    def __init__(self, path=None):
+    """
+    :param str path: Path to the input video, if None then cam_num should be selected.
+    :param int cam_num: Camera number which will be taken as the input source. 
+    """
+    def __init__(self, path=None, cam_num=0):
         # read from camera, if it's not recorded video
-        self.capture = cv2.VideoCapture(0 if path is None else path)
+        self.capture = cv2.VideoCapture(cam_num if path is None else path)
 
     def get_capture(self):
         return self.capture
 
 
 class VideoAnalyzer:
-    ''' todo:  rewrite to n classes like strategy pattern
-    @analyze_type has 4 mode: 'coarse', 'basic', 'normal', 'deep'
-    'coarse' -
-    'basic' - took every 75 frame and return map
-    'normal' -
-    'deep' - use tracker, track centers of coals, while it exists
+    """
+    :param Video video: Object which will be analyzed.
+    :param str analyze_type: Analyze type of the input source, has 1 mode:
+        'basic' - Analyze every N frame and plot histogram + mask, to avoid multiple counting.
+        [not implemented feature]
+        'deep' - Assuming that the conveyor speed is constant, 
+                 track the center of each coal, predict new possible center, and don't count 
+                 coals located in this predicted area; if out of bound - reset tracker;
+                 tracking can be implemented with opencv TrackerKCF tracker;
+                 also, kalman algorithm can be used to predict the new position of the center.
 
-    @model_type has 3 mode: 'yolov5', 'semantic', 'mask_rcnn'
-    '''
+    :param str model_type: Type of the model, which will be used to predict coals mask. Available models:
+        'semantic' - UNet model which predict mask with overlayed edges to separate coals.
+        'mask_rcnn' - Mask R-CNN model for coals detection and instance segmentation
+        'yolov5' - Yolov5 model for coals boundbox detection
+        'yolact' - YOLACT model for instance segmentation
+    :param int took_frame: Every :took_frame: will be used to analyze Video.
+    :param tuple cut_params: How to cut input Video [x,y,h,w] to avoid perspective transform.
+    :param int bins: Split the histogram to this number of bins.
+    """
 
     def __init__(self, video: Video,
                  analyze_type="basic",
-                 model_type='semantic',
+                 model_type="semantic",
                  took_frame=75,
                  cut_params=(400, 568, 512, 1280),
+                 bins=64
                  ):
         self.video = video
         self.analyze_type = analyze_type
@@ -61,30 +86,29 @@ class VideoAnalyzer:
 
         self.model = setup_model(model_type)
         self.result = None
+        self.bins = bins
 
     def analyze(self):
         cur_frame = 0
-        key = 113  # q
         capture = self.video.get_capture()
-        while True:
-            # for video it works fine, but in real camera we
-            # need to calculate delay and took not every 75, but maybe 4 frame dut to 1 thread
-            ret, cur_image = capture.read()
-            if not ret:
-                break
-            if cur_frame % self.took_frame == 0:
-                crop_frame = cur_image[self.y:self.y + self.h, self.x:self.x + self.w]
-                coals = self.model.predict(crop_frame)
-                self.result = [coal.get_fraction() for coal in coals]
-                img_with_contours = plot_coals_contours_on_img(crop_frame, coals)
-                cv2.imshow("fraction", img_with_contours)
-            cur_frame += 1
-            self.plot_histogram()
-            key = cv2.waitKey(2)
+        if analyze_type == "basic":
+            while True:
+                ret, cur_image = capture.read()
+                if not ret:
+                    break
+                if cur_frame % self.took_frame == 0:
+                    crop_frame = cur_image[self.y:self.y + self.h, self.x:self.x + self.w]
+                    coals = self.model.predict(crop_frame)
+                    self.result = [coal.get_fraction() for coal in coals]
+                    img_with_contours = plot_coals_contours_on_img(crop_frame, coals)
+                    cv2.imshow("result", img_with_contours)
+                    cur_frame += 1
+                    self.plot_histogram()
+                    cv2.waitKey(3)
 
     def plot_histogram(self):
         if self.result:
-            plt.hist(self.result, density=False, bins=64)
+            plt.hist(self.result, density=False, bins=self.bins)
             plt.ylabel('Count')
             plt.xlabel('Fraction Size')
             plt.show()
