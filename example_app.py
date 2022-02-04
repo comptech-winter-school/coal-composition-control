@@ -10,12 +10,12 @@ if __name__ == '__main__':
     if image is None:
         raise FileNotFoundError('check path to image')
 
-    mask_rcnn = MaskRCNN(WEIGHTS_DIR / 'mask_rcnn.pth')
-    coals = mask_rcnn.predict(image)
-    print([coal.get_fraction() for coal in coals])
-
     edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth', width=1280, height=640)
     image = cv2.resize(image, (1280, 640), interpolation=cv2.INTER_AREA)
     coals = edge_segmentation.predict(image)
+    print([coal.get_fraction() for coal in coals])
+
+    mask_rcnn = MaskRCNN(WEIGHTS_DIR / 'mask_rcnn.pth')
+    coals = mask_rcnn.predict(image)
     print([coal.get_fraction() for coal in coals])
 

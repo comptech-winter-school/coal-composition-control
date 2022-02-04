@@ -10,13 +10,14 @@ RUN sudo apt-get update \
 # Install requirements
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip && pip install --no-cache -r requirements.txt
-# Change workdir
-WORKDIR /app
 
 # Copy contents
 COPY . /app
 
-RUN cd scripts/ && bash download_models.sh
+RUN pip install -U --no-cache torch torchvision --default-timeout=100
+# Change workdir
+WORKDIR /app
+RUN sudo chmod -R ugo+rwx /app
 
 ENTRYPOINT ["python"]
 CMD ["example_app.py"]

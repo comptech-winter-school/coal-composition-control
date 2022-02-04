@@ -1,13 +1,13 @@
-# opencv-python~=4.5.5.62
-# numpy~=1.21.2
-# matplotlib
-# torch
-# pillow
-# pandas
-# scikit-image
-# albumentations
-# segmentation-models-pytorch==0.2.1
-# torchvision
+opencv-python~=4.5.5.62
+numpy~=1.21.2
+matplotlib
+torch
+pillow
+pandas
+scikit-image
+albumentations
+segmentation-models-pytorch==0.2.1
+torchvision
 gdown
-# zipfile36
-# seaborn
+zipfile36
+seaborn

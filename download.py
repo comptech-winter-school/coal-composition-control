@@ -42,3 +42,8 @@ def load_weights() -> None:
         md5='df1660a95e26a6c65337a58edb344bb4'
     )
     unzip(archives_dir=WEIGHTS_DIR)
+
+
+if __name__ == '__main__':
+    load_data()
+    load_weights()

@@ -14,9 +14,9 @@ Docker:
 ```
 git clone https://github.com/comptech-winter-school/coal-composition-control
 cd coal-composition-control
+python download.py
 docker build . -t coal
 docker run --name coal-container -it coal
-
 ```
 
 ## Research notebooks
