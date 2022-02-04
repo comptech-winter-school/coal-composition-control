@@ -102,12 +102,12 @@ accomplish the following tasks:
 - Isolate a coal piece from its surroundings (e.g. finding the pixel mask of a piece).
 - Prepare data for further analysis.
 
-## 4.2 Data analysis
+### 4.2 Data analysis
 
 This part is intended to analyze the data produced by the CV-part
 and to construct the figures of merit based on which the resulting decision is made.
 
-## 4.3 User Interface & Visualization
+### 4.3 User Interface & Visualization
 
 This part is a point of interraction between the user and the product. And
 
