@@ -18,6 +18,7 @@ ENV*/
 *.csv
 *.pt
 *.pth
+*.zip
 
 
 !/src/semantic_segmentation/models.json
