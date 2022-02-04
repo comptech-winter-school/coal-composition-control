@@ -38,8 +38,11 @@ ENV*/
 # Vim
 *.sw[o-z]
 
-# Used in the vision_document.md
+# Used in the documentation 
 !/docs/diagrams/general_block_diagram.png
 !/docs/diagrams/alternative.png
 !/docs/diagrams/software.png
 !/docs/diagrams/bogdan.png
+!/docs/diagrams/email.png
+!/docs/diagrams/tg.png
+!/docs/diagrams/gh.png
