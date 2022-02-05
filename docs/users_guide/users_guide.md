@@ -48,11 +48,19 @@ After you've done with the configuration stage you can start video processing by
 
 ![Start processing](../diagrams/ug/evraz_demo_start.png)
 
-To stop processing click the _stop_ button:
+After that you should see new 3 subwindows:
 
-![Stop processing](../diagrams/ug/evraz_demo_stop.png)
+- Original video
+- Processed video
+- Histogram
 
-### 
+### Original Video Window
+
+![Original video](../diagrams/ug/evraz_demo_video.png)
+
+### Processed Video Window
+
+![Original video](../diagrams/ug/evraz_demo_rcnn.png)
 
 ### Histogram
 
