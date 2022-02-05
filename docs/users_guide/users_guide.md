@@ -10,7 +10,7 @@ Provided you've successfully connected to the demo host, you should see the foll
 
 ## Page Selection
 
-The `EVRAZ fractions demo page` option in the `Page` combobox must be selected:
+The `EVRAZ fractions demo page` option in the _page_ combobox must be selected:
 
 ![page](../diagrams/ug/evraz_demo_page_selection.png)
 
@@ -30,24 +30,30 @@ To choose a model to be used in the inference stage interract with the _model_ c
 
 ### Mode Selection
 
-There are two analysis modes:
+There are two analysis modes available:
 
 - Updating
 - Non-updating
 
-_Updating_ mode means that the histogram updates each frame, i.e. it is cleared each time a new frame is processed.
-_Non-updating_ mode means that the histogram is not cleared
+_Updating_ mode means that the histogram is being cleared every time a new frame begins.
+_Non-updating_ mode means that the histogram is not cleared during the whole video.
 
-To select either mode use the `mode` checkbox:
+To select either mode use the _mode_ checkbox:
 
 ![Mode selection](../diagrams/ug/evraz_demo_update.png)
 
-### Start Processing
+## Processing
 
-After you've done with the configuration stage you can start video processing by clicking the `start` button:
+After you've done with the configuration stage you can start video processing by clicking the _start_ button:
 
 ![Start processing](../diagrams/ug/evraz_demo_start.png)
 
-## Display
+To stop processing click the _stop_ button:
+
+![Stop processing](../diagrams/ug/evraz_demo_stop.png)
+
+### 
+
+### Histogram
 
 ![page](../diagrams/ug/evraz_demo_histo.png)
