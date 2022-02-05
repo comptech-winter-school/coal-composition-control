@@ -1,7 +1,8 @@
 # Introduction
 
 This is a detailed description of the demo Web Interface.
-:exclamation: Make sure you've read the [Installation](https://github.com/comptech-winter-school/coal-composition-control/tree/doc#installation--configuration) before you start :exclamation:.
+
+:exclamation: Make sure you've read the [Installation & Configuration](https://github.com/comptech-winter-school/coal-composition-control/tree/doc#installation--configuration) section before you start :exclamation:.
 
 # Getting Started
 
@@ -71,6 +72,9 @@ Hover the mouse cursor over the histogram to display the details:
 
 ![Just histo](../diagrams/ug/evraz_demo_histo.png)
 
+The green dashed line is the _cut-line_ - the maximum allowed fraction size when grinding may be skipped.
+
 # References
 
 1. [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
+2. [README.md](https://github.com/comptech-winter-school/coal-composition-control/blob/doc/README.md)
