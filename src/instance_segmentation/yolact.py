@@ -1,14 +1,12 @@
 from types import SimpleNamespace
 
-import cv2
 import torch
 
-from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
 from src.instance_segmentation.yolact_utils import eval
 from src.instance_segmentation.yolact_utils.layers.output_utils import postprocess
 from src.instance_segmentation.yolact_utils.yolact import Yolact
-from src.utils import get_contours, plot_coals_contours_on_img
+from src.utils import get_contours
 
 
 def get_yolact(weights, cuda):
@@ -50,13 +48,3 @@ class YolactPredictor(BasePredictor):
         masks = [(mask * 255).astype('uint8') for mask in masks]
         return [InstanceSegmentationCoal(get_contours(mask)[0]) for mask in masks]
 
-
-if __name__ == '__main__':
-    image = cv2.imread(str(EXAMPLE_IMG))
-    yol_model = YolactPredictor(WEIGHTS_DIR / 'yolact.pt')
-    coals = yol_model.predict(image)
-    print([coal.get_fraction() for coal in coals])
-    if coals:
-        cv2.imshow('Contours', plot_coals_contours_on_img(image, coals))
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()

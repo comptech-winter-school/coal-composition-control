@@ -138,7 +138,8 @@ class Evaluator:
             return abs_error / len(gt_masks)
 
 
-if __name__ == '__main__':
+def eval_all():
+
     mask_rcnn = MaskRCNN(WEIGHTS_DIR / 'mask_rcnn.pth')
     edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth')
     yolo = YOLOv5(weights=WEIGHTS_DIR / 'yolov5s6.pt')
