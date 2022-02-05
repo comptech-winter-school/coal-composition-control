@@ -32,13 +32,13 @@ To choose a model to be used in the inference stage interract with the _model_ c
 
 There are two analysis modes available:
 
-- Updating
-- Non-updating
+- Single frame
+- Video
 
-_Updating_ mode means that the histogram is being cleared every time a new frame begins.
-_Non-updating_ mode means that the histogram is not cleared during the whole video.
+_Single frame_ mode means that the histogram is being cleared every time a new frame comes.
+_Video_ mode means that the histogram is not cleared during the whole video accumulating the results.
 
-To select either mode use the _mode_ checkbox:
+To select either mode use the _mode_ checkbox (checked means _video_):
 
 ![Mode selection](../diagrams/ug/evraz_demo_update.png)
 
@@ -66,6 +66,6 @@ This window displays CDF (cumulative distribution function) of the size of the d
 
 ![Just histo](../diagrams/ug/evraz_demo_just_histo.png)
 
-Hover the mouse cursor over the histogram to display percentage:
+Hover the mouse cursor over the histogram to display the details:
 
 ![Just histo](../diagrams/ug/evraz_demo_histo.png)
