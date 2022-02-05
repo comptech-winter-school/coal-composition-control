@@ -1,6 +1,7 @@
 # Introduction
 
-This is a detailed description of a demo interface.
+This is a detailed description of the demo Web Interface.
+:exclamation: Make sure you've read the [Installation](https://github.com/comptech-winter-school/coal-composition-control/tree/doc#installation--configuration) before you start :exclamation:.
 
 # Getting Started
 
