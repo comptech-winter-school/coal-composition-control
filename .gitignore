@@ -48,3 +48,5 @@ ENV*/
 #!/docs/diagrams/tg.png
 #!/docs/diagrams/gh.png
 !/docs/diagrams/*.png
+!/docs/diagrams/ug
+!/docs/diagrams/ug/*.png

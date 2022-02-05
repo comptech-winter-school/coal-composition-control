@@ -6,7 +6,7 @@ This is a detailed description of a demo interface.
 
 Provided you've successfully connected to the demo host, you should see the following page:
 
-![start](../diagrams/evraz_demo_page.png)
+![start](../diagrams/ug/evraz_demo_page.png)
 
 ## Video Selection
 
