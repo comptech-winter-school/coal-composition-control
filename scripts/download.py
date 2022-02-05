@@ -58,7 +58,7 @@ def load_weights() -> None:
     )
     gdown.cached_download(
         id='17L4Qrbyp9FAr2zsUuRgkX9SoKTa1FC5L',
-        path=str(WEIGHTS_DIR / 'yolact.pt'),
+        path=str(WEIGHTS_DIR / 'yolact.pth'),
     )
     unzip(archives_dir=WEIGHTS_DIR)
 
