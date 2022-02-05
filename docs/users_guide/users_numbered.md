@@ -57,7 +57,7 @@ After that you should see new 2 subwindows:
 
 ### 2.3.1 Processed Video Window
 
-This window plays the selected video (see [Video Selection](#video-selection)) with the results of the object detection
+This window plays the selected video (see [Video Selection](#221-video-selection)) with the results of the object detection
 algorithm added:
 
 ![Processed video](../diagrams/ug/evraz_demo_rcnn.png)

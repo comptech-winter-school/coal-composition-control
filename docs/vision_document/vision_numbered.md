@@ -1,4 +1,4 @@
-# 1. Introduction  
+# 1. Vision-Document  
 
 ## 1.1 Document Purpose
 
