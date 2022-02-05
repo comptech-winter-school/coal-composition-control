@@ -1,16 +1,14 @@
 import sys
-# определить папку для yolact в структуре
+# определить папку для yolact_utils в структуре
 import eval
 import layers
 from data import COCODetection, get_label_map, MEANS, COLORS
 from yolact import Yolact
-from utils.augmentations import BaseTransform, FastBaseTransform, Resize
-from layers.output_utils import postprocess, undo_image_transformation
+from layers.output_utils import postprocess
 
 import cv2
 import torch
 import numpy as np
-from PIL import Image
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -51,7 +49,7 @@ class YolactPredictor(BasePredictor):
 
 if __name__ == '__main__':
     image = cv2.imread(str(EXAMPLE_IMG))
-    yol_model = YolactPredictor(WEIGHTS_DIR / 'yolact_base_201_2013_interrupt.pth')
+    yol_model = YolactPredictor(WEIGHTS_DIR / 'yolact.pth')
     coals = yol_model.predict(image)
     print([coal.get_fraction() for coal in coals])
     cv2.imshow('Contours', coals[0].plot_on(image))
