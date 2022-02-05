@@ -1,4 +1,3 @@
-import sys
 import cv2
 import torch
 import numpy as np
@@ -6,7 +5,6 @@ from PIL import Image
 from pathlib import Path
 from types import SimpleNamespace
 
-sys.path.append('../yolact')
 import eval
 import layers
 from data import COCODetection, get_label_map, MEANS, COLORS
