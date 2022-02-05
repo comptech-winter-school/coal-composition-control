@@ -6,8 +6,7 @@
 git clone https://github.com/comptech-winter-school/coal-composition-control
 cd coal-composition-control
 pip install -r requirements.txt
-python scripts/get_data.py
-python scripts/get_weights.py
+streamlit run startup.py
 ```
 
 ### Docker:
@@ -15,7 +14,7 @@ python scripts/get_weights.py
 git clone https://github.com/comptech-winter-school/coal-composition-control
 cd coal-composition-control
 docker build . -t coal
-docker run --name coal-container -it coal
+docker run --rm --name coal-container -it coal
 ```
 чтобы остановить удалить все контейнеры
 ```
