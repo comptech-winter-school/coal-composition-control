@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Union, List
+from typing import Union, List, Tuple
 
 import albumentations as albu
 import cv2
@@ -10,7 +10,7 @@ from numpy.typing import NDArray
 
 from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
-from src.utils import get_device, get_contours
+from src.utils import get_device, get_contours, plot_coals_contours_on_img
 
 
 def get_unet(weights, device):
@@ -28,41 +28,46 @@ def get_unet(weights, device):
     model.eval()
     return model
 
-def check_image_size(size: int, stride: int):
-    if size is None:
+def check_cut_params(cut_params, stride: int = 32):
+    if cut_params is None:
         return None
-    if size % stride != 0:
+    if cut_params[2] % stride != 0 or cut_params[3] % stride != 0:
         raise ValueError(f'size must be divisible to {stride}')
-    return size
+    return cut_params
 
 
 class EdgeSegmentation(BasePredictor):
+    """
+    :param weights: path to the model weights.
+    :param segm_th_mask: Degree of confidence that pixel is coal. Range [0.0, 1.0].
+    :param contour_area_min: Minimal area threshold in pixels to assume that selected contour is coal.
+    :param width: Width of the input image, divisible to 32, don't resize if None height is None.
+    :param height: Height of the input image, divisible to 32, don't resize if None or width is None.
+    :param device: Device where model runs. 
+    """
+
     def __init__(
             self,
             weights: Union[Path, str],
-            segm_th_mask: float = 0.7,
+            segm_th_mask: float = 0.1,
             contour_area_min: int = 150,
-            width: int = None,
-            height: int = None,
+            cut_params: Tuple[int, int, int, int] = (0, 0, 1280, 512),
             device: str = None
     ):
-        """
-        :param width: divisible to 32, don't resize if None height is None
-        :param height: divisible to 32, don't resize if None or width is None
-        """
 
         self.device = get_device(device=device)
         self.model = get_unet(weights, self.device)
         self.preprocessing_fn = smp.encoders.get_preprocessing_fn('efficientnet-b0', 'imagenet')
 
-        self.size = check_image_size(width, stride=32), check_image_size(height, stride=32)
+        self.cut_params = check_cut_params(cut_params, stride=32)
         self.segm_th_mask = segm_th_mask
         self.contour_area_min = contour_area_min
 
     def image_preprocess(self, img: NDArray) -> torch.Tensor:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        if self.size[0] is not None and self.size[1] is not None:
-            img = cv2.resize(img, self.size, interpolation=cv2.INTER_AREA)
+        if self.cut_params is not None:
+            x, y, w, h = self.cut_params
+            img = img[y:y + h, x:x + w]
         img = albu.Compose([albu.Lambda(image=self.preprocessing_fn)])(image=img)['image']
         img = img.transpose(2, 0, 1).astype('float32')
         return torch.from_numpy(img).to(self.device).unsqueeze(0)
@@ -92,3 +97,8 @@ if __name__ == '__main__':
 
     coals = edge_segmentation.predict(image)
     print([coal.get_fraction() for coal in coals])
+
+    if coals:
+        cv2.imshow('Contours', plot_coals_contours_on_img(image, coals))
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
