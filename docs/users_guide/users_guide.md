@@ -10,7 +10,7 @@ Provided you've successfully connected to the demo host, you should see the foll
 
 ## Page Selection
 
-The `EVRAZ fractions demo page` option in the _page_ combobox must be selected:
+The _EVRAZ fractions demo page_ option in the _page_ combobox must be selected:
 
 ![page](../diagrams/ug/evraz_demo_page_selection.png)
 
