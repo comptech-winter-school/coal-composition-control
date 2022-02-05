@@ -40,7 +40,7 @@ class EdgeSegmentation(BasePredictor):
     def __init__(
             self,
             weights: Union[Path, str],
-            segm_th_mask: float = 0.7,
+            segm_th_mask: float = 0.1,
             contour_area_min: int = 150,
             cut_params: Tuple[int, int, int, int] = (0, 0, 1280, 512),
             device: str = None

@@ -9,9 +9,10 @@ from src.base import InstanceSegmentationCoal, DetectionCoal, BasePredictor
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.instance_segmentation.mask_rcnn import MaskRCNN
 from src.object_detection.yolov5 import YOLOv5
+from src.utils import get_contours
 from train.converters.vgg_to_mask import vgg2dict
 from train.eval_utils import colour_mask_to_binary_masks, extract_bboxes, \
-    compute_ap_range
+    compute_ap_range, compute_matches
 
 
 def contours_to_boxes_and_mask(contours, height, width):
@@ -19,7 +20,6 @@ def contours_to_boxes_and_mask(contours, height, width):
     for contour_num, contour in enumerate(contours):
         contour = np.array(contour, dtype=np.int32)
         cv2.fillPoly(mask, [contour], color=contour_num + 1)
-        x, y = contour.T
     mask = colour_mask_to_binary_masks(mask)
     mask = np.transpose(mask, (1, 2, 0))
     boxes = extract_bboxes(mask)
@@ -49,6 +49,12 @@ def boxes_masks_class_scores(contours, height, width):
         width=width
     )
     return boxes, masks, np.ones(len(boxes)), np.ones(len(boxes))
+
+def mask2size(mask):
+    mask = (mask * 255).astype('uint8')
+    contours = get_contours(mask)
+    if contours:
+        return InstanceSegmentationCoal(get_contours(mask)[0]).get_fraction()
 
 class Evaluator:
 
@@ -110,10 +116,25 @@ class Evaluator:
                 width=width
             )
 
-            return compute_ap_range(
+            gt_match, _, _ = compute_matches(
                 gt_boxes, gt_cls, gt_masks,
                 pred_boxes, pred_cls, pred_scores, pred_masks,
+                iou_threshold=0.5, score_threshold=0.1
             )
+
+            pred_masks = np.transpose(pred_masks, (2, 0, 1))
+            gt_masks = np.transpose(gt_masks, (2, 0, 1))
+
+            abs_error = 0
+            for match, gt_mask in zip(gt_match, gt_masks):
+                match = int(match)
+                pred_size = 0
+                if match != -1:
+                    pred_mask = pred_masks[match]
+                    pred_size = mask2size(pred_mask)
+                gt_size = mask2size(gt_mask)
+                abs_error += abs(gt_size - pred_size)
+            return abs_error / len(gt_masks)
 
 
 if __name__ == '__main__':
@@ -129,14 +150,17 @@ if __name__ == '__main__':
 
     print('Mask R-CNN:')
     evaluator.ap(model=mask_rcnn)
+    print('MAE:', evaluator.mae(model=mask_rcnn))
     print()
 
     print('U-Net:')
     evaluator.ap(model=edge_segmentation)
+    print('MAE:', evaluator.mae(model=edge_segmentation))
     print()
 
     print('YOLOv5:')
     evaluator.ap(model=yolo)
+    print('MAE:', evaluator.mae(model=yolo))
     print()
 
 
