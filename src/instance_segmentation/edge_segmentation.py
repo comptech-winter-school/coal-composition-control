@@ -41,7 +41,7 @@ class EdgeSegmentation(BasePredictor):
     :param weights: path to the model weights.
     :param segm_th_mask: Degree of confidence that pixel is coal. Range [0.0, 1.0].
     :param contour_area_min: Minimal area threshold in pixels to assume that selected contour is coal.
-    :param width: Width of the input image, divisible to 32, don't resize if None height is None.
+    :param width: Width of the input image, divisible to 32, don't resize if None or height is None.
     :param height: Height of the input image, divisible to 32, don't resize if None or width is None.
     :param device: Device where model runs. 
     """

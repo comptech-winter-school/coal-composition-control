@@ -28,12 +28,28 @@ class MaskRCNN(BasePredictor):
             segmentation_th: float = 0.7,
             device: str = None
     ):
+        """
+        Class for predict coal fraction with Mask R-CNN
+        (https://pytorch.org/vision/stable/_modules/torchvision/models/detection/mask_rcnn.html)
+
+        :param weights: path to .pth file
+        :param box_conf_th: segmentation in bounding box with confidence > threshold
+        :param nms_th: nms threshold (https://pytorch.org/vision/main/generated/torchvision.ops.nms.html)
+        :param segmentation_th: if the confidence > threshold accept pixel as part of coal
+        :param device: 'cpu', 'cuda:0' etc. (https://pytorch.org/docs/stable/tensor_attributes.html#torch.torch.device)
+        """
         self.device = get_device(device=device)
         self.model = get_mask_rcnn(weights, box_conf_th, nms_th, self.device)
         self.segmentation_th = torch.Tensor([segmentation_th]).to(self.device)
 
     @torch.no_grad()
     def predict(self, img: NDArray) -> List[InstanceSegmentationCoal]:
+        """
+        Find coals on image
+
+        :param img: image with coals; image = cv2.imread(path/to/image)
+        :return: list of InstanceSegmentationCoals from segmented contours
+        """
         img = transforms.ToTensor()(img)
         img = img.to(self.device)
 

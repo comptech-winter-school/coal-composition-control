@@ -8,6 +8,7 @@ from constants import WEIGHTS_DIR, DATA_DIR
 from src.base import InstanceSegmentationCoal, DetectionCoal, BasePredictor
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.instance_segmentation.mask_rcnn import MaskRCNN
+from src.instance_segmentation.yolact import YolactPredictor
 from src.object_detection.yolov5 import YOLOv5
 from src.utils import get_contours
 from train.converters.vgg_to_mask import vgg2dict
@@ -141,10 +142,11 @@ if __name__ == '__main__':
     mask_rcnn = MaskRCNN(WEIGHTS_DIR / 'mask_rcnn.pth')
     edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth')
     yolo = YOLOv5(weights=WEIGHTS_DIR / 'yolov5s6.pt')
+    yolact = YolactPredictor(weights=WEIGHTS_DIR / 'yolact.pth')
 
     evaluator = Evaluator(
-        images_dir=DATA_DIR / 'few_data_split' / 'few_data_train',
-        vgg_json=DATA_DIR / 'few_data_split' / 'few_data_train.json',
+        images_dir=DATA_DIR / 'few_data_split' / 'few_data_val',
+        vgg_json=DATA_DIR / 'few_data_split' / 'few_data_val.json',
         cut_params=(0, 0, 1280, 512)
     )
 
@@ -161,6 +163,11 @@ if __name__ == '__main__':
     print('YOLOv5:')
     evaluator.ap(model=yolo)
     print('MAE:', evaluator.mae(model=yolo))
+    print()
+
+    print('Yolact:')
+    evaluator.ap(model=yolact)
+    print('MAE:', evaluator.mae(model=yolact))
     print()
 
 

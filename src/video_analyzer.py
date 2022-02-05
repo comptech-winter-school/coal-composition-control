@@ -1,12 +1,13 @@
 import cv2
 import matplotlib.pyplot as plt
 
-from constants import WEIGHTS_DIR
+from constants import WEIGHTS_DIR, DATA_DIR
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.instance_segmentation.mask_rcnn import MaskRCNN
 from src.object_detection.yolov5 import YOLOv5
 from src.utils import plot_coals_contours_on_img
-from yolact import Yolact
+from src.instance_segmentation.yolact import YolactPredictor
+
 
 def setup_model(model_type):
     """
@@ -36,7 +37,7 @@ def setup_model(model_type):
             weights=WEIGHTS_DIR / 'yolov5s6.pt')
     elif model_type == 'yolact':
         model = YolactPredictor(
-            WEIGHTS_DIR / 'yolact_base_201_2013_interrupt.pth')
+            WEIGHTS_DIR / 'yolact.pt')
     return model
 
 class Video:
@@ -119,6 +120,6 @@ class VideoAnalyzer:
 
 
 if __name__ == '__main__':
-    video_path = r"/home/ji411/Downloads/20210712_141048_5E30.mkv"
+    video_path = str(DATA_DIR / 'example_video_1.mkv')
     test = VideoAnalyzer(Video(video_path))
     test.analyze()
