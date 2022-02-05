@@ -48,20 +48,15 @@ After you've done with the configuration stage you can start video processing by
 
 ![Start processing](../diagrams/ug/evraz_demo_start.png)
 
-After that you should see new 3 subwindows:
+After that you should see new 2 subwindows:
 
-- Original video
-- Processed video
-- Histogram
+- Processed video window
+- Histogram window
 
-### 2.3.1 Original Video Window
+### 2.3.1 Processed Video Window
 
-![Original video](../diagrams/ug/evraz_demo_video.png)
+![Processed video](../diagrams/ug/evraz_demo_rcnn.png)
 
-### 2.3.2 Processed Video Window
+### 2.3.2 Histogram
 
-![Original video](../diagrams/ug/evraz_demo_rcnn.png)
-
-### 2.3.3 Histogram
-
-![page](../diagrams/ug/evraz_demo_histo.png)
+![Just histo](../diagrams/ug/evraz_demo_just_histo.png)
