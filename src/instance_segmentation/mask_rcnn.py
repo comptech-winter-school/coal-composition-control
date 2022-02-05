@@ -1,12 +1,10 @@
 from pathlib import Path
 from typing import Union, List
 
-import cv2
 import torch
 import torchvision.transforms as transforms
 from numpy.typing import NDArray
 
-from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
 from src.utils import get_device, get_contours
 
@@ -59,16 +57,3 @@ class MaskRCNN(BasePredictor):
         masks = masks.detach().cpu().numpy()
         masks = ((mask * 255).astype('uint8') for mask in masks)
         return [InstanceSegmentationCoal(get_contours(mask)[0]) for mask in masks]
-
-
-if __name__ == '__main__':
-    image = cv2.imread(str(EXAMPLE_IMG))
-    mask_rcnn = MaskRCNN(WEIGHTS_DIR / 'mask_rcnn.pth')
-
-    coals = mask_rcnn.predict(image)
-    print([coal.get_fraction() for coal in coals])
-
-    if coals:
-        cv2.imshow('Contours', coals[0].plot_on(image))
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()

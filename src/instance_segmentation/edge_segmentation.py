@@ -8,9 +8,8 @@ import segmentation_models_pytorch as smp
 import torch
 from numpy.typing import NDArray
 
-from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
-from src.utils import get_device, get_contours, plot_coals_contours_on_img
+from src.utils import get_device, get_contours
 
 
 def get_unet(weights, device):
@@ -89,16 +88,3 @@ class EdgeSegmentation(BasePredictor):
 
         contours = get_contours(mask)
         return [InstanceSegmentationCoal(cnt) for cnt in contours if cv2.contourArea(cnt) > self.contour_area_min]
-
-
-if __name__ == '__main__':
-    image = cv2.imread(str(EXAMPLE_IMG))
-    edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth')
-
-    coals = edge_segmentation.predict(image)
-    print([coal.get_fraction() for coal in coals])
-
-    if coals:
-        cv2.imshow('Contours', plot_coals_contours_on_img(image, coals))
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()

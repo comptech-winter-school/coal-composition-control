@@ -1,12 +1,12 @@
 import cv2
 import matplotlib.pyplot as plt
 
-from constants import WEIGHTS_DIR, DATA_DIR
+from constants import WEIGHTS_DIR
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.instance_segmentation.mask_rcnn import MaskRCNN
+from src.instance_segmentation.yolact import YolactPredictor
 from src.object_detection.yolov5 import YOLOv5
 from src.utils import plot_coals_contours_on_img
-from src.instance_segmentation.yolact import YolactPredictor
 
 
 def setup_model(model_type):
@@ -117,9 +117,3 @@ class VideoAnalyzer:
             plt.ylabel('Count')
             plt.xlabel('Fraction Size')
             plt.show()
-
-
-if __name__ == '__main__':
-    video_path = str(DATA_DIR / 'example_video_1.mkv')
-    test = VideoAnalyzer(Video(video_path))
-    test.analyze()
