@@ -37,7 +37,8 @@ def setup_model(model_type):
             weights=WEIGHTS_DIR / 'yolov5s6.pt')
     elif model_type == 'yolact':
         model = YolactPredictor(
-            WEIGHTS_DIR / 'yolact.pt')
+            WEIGHTS_DIR / 'yolact.pt',
+            width=1344)
     return model
 
 class Video:

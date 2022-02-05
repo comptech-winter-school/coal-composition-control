@@ -9,15 +9,16 @@ from src.instance_segmentation.yolact_utils.yolact import Yolact
 from src.utils import get_contours
 
 
-def get_yolact(weights, cuda):
+def get_yolact(weights):
     model = Yolact()
-    map_location = None if cuda else torch.device('cpu')
+    map_location = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
     model.load_weights(weights, map_location=map_location)
+    model = model.to(map_location)
     return model
 
 def get_args(score_threshold, top_k):
     args_dict = {
-        'crop': False,
+        'crop': True,
         'score_threshold': score_threshold,
         'display_lincomb': False,
         'top_k': top_k,
@@ -27,14 +28,15 @@ def get_args(score_threshold, top_k):
 
 
 class YolactPredictor(BasePredictor):
-    def __init__(self, weights, score_threshold=0.1, top_k=15, cuda=False, width=1280, height=512):
-        self.model = get_yolact(weights, cuda=cuda)
+    def __init__(self, weights, score_threshold=0.1, top_k=15, width=1280, height=512):
+        self.model = get_yolact(weights)
         self.args = get_args(score_threshold, top_k)
         self.width = width
         self.height = height
 
     @torch.no_grad()
     def predict(self, img):
+        self.model.eval()
         preds = eval.evalimage(self.model, img)
         preds = postprocess(
             preds, self.width, self.height,

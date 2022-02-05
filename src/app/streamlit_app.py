@@ -50,7 +50,6 @@ def streamlit_app():
 
     PAGES = {
         'EVRAZ fractions demo page': fractions_demo_app,
-        'Antoher page': another_app,
     }
     page = st.sidebar.selectbox('Page:', options=list(PAGES.keys()), key='PAGE_selection')
 
@@ -66,19 +65,6 @@ def streamlit_app():
         )
 
     PAGES[page]()
-
-
-def another_app():
-    # st.sidebar.subheader('Опции')
-    st.markdown(
-        """
-    Страница с демонстрацией работы команды ЕВРАЗ по задаче определения фракционного состава угля на конвейере:
-    * Подпунктик;
-    *  **Жирным**
-
-    """
-    )
-    st.write('')
 
 
 def fractions_demo_app():
@@ -182,7 +168,7 @@ def fractions_demo_app():
                 with plot_column:
                     # plot histogram of a fractions
                     fig = px.ecdf(df2plot, x=hist_col_name, ecdfnorm='percent')
-                    fig.add_vline(x=3, annotation_text=" Граница решения", line_width=4,
+                    fig.add_vline(x=3, annotation_text=" Граница решения", line_width=3,
                                   line_dash="dash", line_color="green", opacity=1)
                     fig.update_xaxes(showgrid=True, gridwidth=0.1, gridcolor='LightPink')
                     fig.update_yaxes(showgrid=True, gridwidth=0.1, gridcolor='LightPink')
