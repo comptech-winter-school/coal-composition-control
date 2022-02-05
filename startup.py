@@ -1,7 +1,7 @@
 import streamlit as st
 
 from scripts.download import load_data, load_weights
-from src.app.streamlit_app_TEST import streamlit_app
+from src.app.streamlit_app import streamlit_app
 
 
 if 'downloaded' not in st.session_state:
