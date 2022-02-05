@@ -55,8 +55,17 @@ After that you should see new 2 subwindows:
 
 ### Processed Video Window
 
+This window plays the selected video (see [Video Selection](#video-selection)) with the results of the object detection
+algorithm added:
+
 ![Processed video](../diagrams/ug/evraz_demo_rcnn.png)
 
 ### Histogram
 
+This window displays CDF (cumulative distribution function) of the size of the detected coal pieces:
+
 ![Just histo](../diagrams/ug/evraz_demo_just_histo.png)
+
+Hover the mouse cursor over the histogram to display percentage:
+
+![Just histo](../diagrams/ug/evraz_demo_histo.png)
