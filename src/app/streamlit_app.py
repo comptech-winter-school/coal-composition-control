@@ -194,10 +194,9 @@ def fractions_demo_app():
     placeholder_plot = st.empty()
 
     hist_col_name = 'Размер камней (см)'
-    if not save_hist_history:
-        st.session_state['histogram_history'] = pd.DataFrame(columns=[hist_col_name])
 
     if perform_analysis_button:
+        st.session_state['histogram_history'] = pd.DataFrame(columns=[hist_col_name])
         cap = cv2.VideoCapture(str(video_path))
 
         frame_counter = 0
