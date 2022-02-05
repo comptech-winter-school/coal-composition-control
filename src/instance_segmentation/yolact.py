@@ -53,7 +53,7 @@ class YolactPredictor(BasePredictor):
 
 if __name__ == '__main__':
     image = cv2.imread(str(EXAMPLE_IMG))
-    yol_model = YolactPredictor(WEIGHTS_DIR / 'yolact.pth')
+    yol_model = YolactPredictor(WEIGHTS_DIR / 'yolact.pt')
     coals = yol_model.predict(image)
     print([coal.get_fraction() for coal in coals])
     if coals:

@@ -1,17 +1,14 @@
 import time
-
-import cv2 as cv2
-import matplotlib.pyplot as plt
 import pandas as pd
-import plotly.express as px
 import streamlit as st
-from PIL import Image
+import cv2 as cv2
+import plotly.express as px
+import matplotlib.pyplot as plt
 
-from constants import WEIGHTS_DIR, DATA_DIR, SRC_DIR
-from src.instance_segmentation.edge_segmentation import EdgeSegmentation
-from src.instance_segmentation.mask_rcnn import MaskRCNN
-from src.object_detection.yolov5 import YOLOv5
+from PIL import Image
 from src.utils import plot_coals_contours_on_img
+from constants import DATA_DIR, SRC_DIR
+from src.video_analyzer import setup_model
 
 
 def create_histogram_plot(fractions):
@@ -28,47 +25,10 @@ def create_histogram_plot(fractions):
 
 @st.cache(suppress_st_warning=True,
           allow_output_mutation=True,
-          ttl=5*60)
-def load_mask_rcnn_model(model_path: str,
-                         box_conf_th: float = 0.7,
-                         nms_th: float = 0.2,
-                         segmentation_th: float = 0.7):
-    model = MaskRCNN(model_path,
-                     box_conf_th=box_conf_th,
-                     nms_th=nms_th,
-                     segmentation_th=segmentation_th)
-    return model
+          ttl=5 * 60)
+def cached_setup_model(model_name):
+    return setup_model(model_name)
 
-
-@st.cache(suppress_st_warning=True,
-          allow_output_mutation=True,
-          ttl=5*60)
-def load_unet_model(model_path: str,):
-    model = EdgeSegmentation(model_path,
-                             cut_params=None)
-    return model
-
-
-@st.cache(suppress_st_warning=True,
-          allow_output_mutation=True,
-          ttl=5*60)
-def load_yolov5s6_model(model_path: str,
-                        box_conf_th: float = 0.2,
-                        nms_th: float = 0.2,
-                        amp: bool = True,
-                        size: int = 1280,
-                        device=None):
-    model = YOLOv5(model_path,
-                   box_conf_th=box_conf_th,
-                   nms_th=nms_th,
-                   amp=amp,
-                   size=size,
-                   device=device)
-    return model
-
-
-def simulate_rtsp_from_video(video_path):
-    pass
 
 def streamlit_app():
     if "button_id" not in st.session_state:
@@ -76,7 +36,7 @@ def streamlit_app():
     if "color_to_label" not in st.session_state:
         st.session_state["color_to_label"] = {}
 
-    page_icon = Image.open(str(DATA_DIR / 'favicon-32x32.png'))#.resize((24, 24), Image.ANTIALIAS)
+    page_icon = Image.open(str(DATA_DIR / 'favicon-32x32.png'))
     page_icon = page_icon.convert("RGBA")
     st.set_page_config(
         page_title="EVRAZ coal fractions demo", page_icon=page_icon
@@ -126,7 +86,7 @@ def fractions_demo_app():
     st.markdown(
         """
     Страница с демонстрацией работы команды **ЕВРАЗа** по задаче определения фракционного состава угля на конвейере.
-    
+
     Более подробное описание - будет. А сейчас можете нажать на кнопку *Начать анализ* и посмотреть, что будет. 
     """
     )
@@ -135,31 +95,21 @@ def fractions_demo_app():
     if 'histogram_history' not in st.session_state:
         st.session_state['histogram_history'] = pd.DataFrame(columns=['Размер камней'])
     if 'pixels2centimeters' not in st.session_state:
-        st.session_state['pixels2centimeters'] = 30 / 250   # let's pretend 30cm coal ~= 250px on image
+        st.session_state['pixels2centimeters'] = 30 / 250  # let's pretend 30cm coal ~= 250px on image
     if 'Executed' not in st.session_state:
         st.session_state['Executed'] = 'initialized'
 
     videos_list = {'Видео 1': str(DATA_DIR / 'example_video_1.mkv'),
                    'Видео 2': str(DATA_DIR / 'example_video_2.mkv'),
                    }
-    models_list = {'Mask R-CNN': load_mask_rcnn_model(WEIGHTS_DIR / 'mask_rcnn.pth',
-                                                      box_conf_th=0.7,
-                                                      nms_th=0.2,
-                                                      segmentation_th=0.7),
 
-                   'Unet': load_unet_model(WEIGHTS_DIR / 'edge_segmentation.pth'),
-
-                   'Yolov5s6': load_yolov5s6_model(WEIGHTS_DIR / 'yolov5s6.pt',
-                                                   box_conf_th=0.2,
-                                                   nms_th=0.2,
-                                                   amp=True,
-                                                   size=1280,
-                                                   device=None),
-                   }
+    models_list = {'Mask R-CNN': 'mask_rcnn', 'Unet': 'semantic',
+                   'Yolov5s6': 'yolov5', 'Yoloact': 'yolact'}
 
     visualize_methods = {'Mask R-CNN': plot_coals_contours_on_img,
                          'Unet': plot_coals_contours_on_img,
                          'Yolov5s6': plot_coals_contours_on_img,
+                         'Yoloact': plot_coals_contours_on_img,
                          }
 
     with st.form('perform_analysis'):
@@ -184,7 +134,7 @@ def fractions_demo_app():
             perform_analysis_button = st.form_submit_button(label='Начать анализ:')
             st.write('')
 
-    model = models_list[selected_model_name]
+    model = cached_setup_model(models_list[selected_model_name])
     video_path = videos_list[selected_video]
     visualize_method = visualize_methods[selected_model_name]
 
@@ -199,7 +149,7 @@ def fractions_demo_app():
 
         frame_counter = 0
         success = True
-        x, y, h, w = 400, 568, 512, 1344    # cutting frame params
+        x, y, h, w = 400, 568, 512, 1344  # cutting frame params
 
         while success:
             success, frame = cap.read()
@@ -225,7 +175,7 @@ def fractions_demo_app():
                 _col_3, plot_column, _col_4 = placeholder_plot.columns([0.2, 5, 1])
 
                 with img_col:
-                    time.sleep(0.2)    # let streamlit process image drawing for several users
+                    time.sleep(0.2)  # let streamlit process image drawing for several users
                     crop_frame_with_contours = cv2.cvtColor(crop_frame_with_contours, cv2.COLOR_BGR2RGB)
                     img_col.image(crop_frame_with_contours, caption=f'Обработка моделю: {selected_model_name}')
 
