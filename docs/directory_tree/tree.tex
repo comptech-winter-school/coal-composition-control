@@ -1,0 +1,29 @@
+\documentclass[tikz,border=10pt,multi,dvipsnames,svgnames,x11names]{standalone}
+
+\usepackage[edges]{forest}
+
+\tikzset{
+    file/.style={fill=green!30},
+    dir/.style={thick},
+}
+
+\forestset{horizontal/.style={
+    grow'=east,
+    child anchor=west,
+    parent anchor=east,
+    minimum height=0.5cm,
+    draw,
+    anchor=west,
+    rounded corners=1pt,
+    outer xsep=3pt,
+    l sep=1cm,
+    edge path={
+        \noexpand\path[\forestoption{edge}, thick]
+            (.child anchor) -| +(-3pt,0) -- +(-3pt,0) |-
+            (!u.parent anchor)\forestoption{edge label};
+    }}
+}
+
+\begin{document}
+\input{dir.tex}
+\end{document}
