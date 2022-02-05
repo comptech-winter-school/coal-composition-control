@@ -44,12 +44,12 @@ The product is a system for the coal fraction analysis on the conveyor.
 
 The product is supposed to be a solution to the abovementioned problem:
 
-0. A fragment of the conveyor is recorded by a video-camera.
-1. The recorded data transfers over the network to the server.
-2. Transferred data is being processed by the AI-based algorithm (the main part of the product).
-3. The result of the previous step is being processed yet to produce important statistics (histograms, graphs, etc).
-4. The data obtained in the previous step is visualized in the Web interface.
-5. An operator decides if grinding is necessary.
+1. A fragment of the conveyor is recorded by a video-camera.
+2. The recorded data transfers over the network to the server.
+3. Transferred data is being processed by the AI-based algorithm (the main part of the product).
+4. The result of the previous step is being processed yet to produce important statistics (histograms, graphs, etc).
+5. The data obtained in the previous step is visualized in the Web interface.
+6. An operator decides if grinding is necessary.
 
 The following block diagram describes the process
 
