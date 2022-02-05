@@ -62,10 +62,14 @@ algorithm added:
 
 ### Histogram
 
-This window displays CDF (cumulative distribution function) of the size of the detected coal pieces:
+This window displays the CDF (cumulative distribution function) of the size of the detected coal pieces:
 
 ![Just histo](../diagrams/ug/evraz_demo_just_histo.png)
 
 Hover the mouse cursor over the histogram to display the details:
 
 ![Just histo](../diagrams/ug/evraz_demo_histo.png)
+
+# References
+
+1. [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
