@@ -14,7 +14,7 @@ The `EVRAZ fractions demo page` option in the `Page` combobox must be selected:
 
 ![page](../diagrams/ug/evraz_demo_page_selection.png)
 
-## 2.2 Processing
+## 2.2 Configuration
 
 ### 2.2.1 Video Selection
 
@@ -44,9 +44,9 @@ To select either mode use the `mode` checkbox:
 
 ### 2.2.4 Start Processing
 
-After you've done with the preparation stage you can start video processing by clicking the `start` button:
+After you've done with the configuration stage you can start video processing by clicking the `start` button:
 
-![page](../diagram/ug/evraz_demo_start.png)
+![Start processing](../diagram/ug/evraz_demo_start.png)
 
 
 ![page](../diagrams/ug/evraz_demo_histo.png)
