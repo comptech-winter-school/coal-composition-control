@@ -46,7 +46,8 @@ To select either mode use the `mode` checkbox:
 
 After you've done with the configuration stage you can start video processing by clicking the `start` button:
 
-![Start processing](../diagram/ug/evraz_demo_start.png)
+![Start processing](../diagrams/ug/evraz_demo_start.png)
 
+## Display
 
 ![page](../diagrams/ug/evraz_demo_histo.png)
