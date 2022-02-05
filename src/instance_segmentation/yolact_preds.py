@@ -1,18 +1,16 @@
-import sys
-# определить папку для yolact в структуре
-import eval
-import layers
-from data import COCODetection, get_label_map, MEANS, COLORS
-from yolact import Yolact
-from utils.augmentations import BaseTransform, FastBaseTransform, Resize
-from layers.output_utils import postprocess, undo_image_transformation
-
 import cv2
 import torch
 import numpy as np
 from PIL import Image
 from pathlib import Path
 from types import SimpleNamespace
+
+import eval
+import layers
+from data import COCODetection, get_label_map, MEANS, COLORS
+from yolact import Yolact
+from utils.augmentations import BaseTransform, FastBaseTransform, Resize
+from layers.output_utils import postprocess, undo_image_transformation
 
 from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
