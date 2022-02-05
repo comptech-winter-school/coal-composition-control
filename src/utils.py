@@ -5,7 +5,7 @@ import torch
 
 def get_device(device: str):
     if device is None:
-        return torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+        return torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
     return torch.device(device)
 
 
