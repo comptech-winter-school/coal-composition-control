@@ -7,7 +7,7 @@ from constants import EXAMPLE_IMG, WEIGHTS_DIR
 from src.base import BasePredictor, InstanceSegmentationCoal
 from src.instance_segmentation.yolact_utils import eval
 from src.instance_segmentation.yolact_utils.layers.output_utils import postprocess
-from src.instance_segmentation.yolact_utils.yolact import Yolact as Yolact
+from src.instance_segmentation.yolact_utils.yolact import Yolact
 from src.utils import get_contours, plot_coals_contours_on_img
 
 
