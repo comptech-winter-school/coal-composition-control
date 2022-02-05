@@ -32,3 +32,4 @@ docker system prune -a
 2. [Object detection](https://colab.research.google.com/drive/1V3NdYkR7gqTTmzoc7LXHQPv0L4twMpGm?usp=sharing)
 3. [Instance segmentation with Mask R-CNN](https://colab.research.google.com/drive/1-epExQsCQUvenJD_c4E4Ji-ZeDteg_z6?usp=sharing#scrollTo=T2ZmpAt29XzK)
 4. [Instance segmentation with Yolact](https://colab.research.google.com/drive/1UM3GE05vaBJJIx657Y9X2RDoQgLaAjv6?usp=sharing)
+5. [Classic edge detectors](https://colab.research.google.com/drive/1qqCTqAYwOOr5AGAJ8_fIrWTmNs8PkhTp?usp=sharing)

@@ -8,6 +8,9 @@ import numpy as np
 import pandas as pd
 from skimage.draw import polygon
 
+"""
+Convert from csv annotation to mask [H x W x N]
+"""
 
 def csv_to_df():
     all_df = []
