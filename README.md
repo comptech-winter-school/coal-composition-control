@@ -26,6 +26,10 @@ The AI-based system for the coal fraction analysis on the conveyor in real time.
 
 Clone the repo and change to the project root directory:
 
+## Installation
+
+### From source:
+
 ```
 git clone https://github.com/comptech-winter-school/coal-composition-control
 cd coal-composition-control
@@ -37,10 +41,31 @@ install necessary python libraries:
 pip install -r requirements.txt
 ```
 
-???
+download ???
+
 ```
-python scripts/get_data.py
-python scripts/get_weights.py
+python scripts/download.py
+```
+
+### Docker:
+
+```
+git clone https://github.com/comptech-winter-school/coal-composition-control
+cd coal-composition-control
+docker build . -t coal
+docker run --name coal-container -it coal
+```
+
+After you've done with the demo stop and remove all running containers:
+
+```
+docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)  
+```
+
+and delete images;
+
+```
+docker system prune -a 
 ```
 
 ## Research notebooks

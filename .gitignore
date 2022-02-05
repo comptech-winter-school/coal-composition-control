@@ -23,6 +23,7 @@ ENV*/
 *.pth
 *.pdf
 *.zip
+*.mkv
 
 !/src/semantic_segmentation/models.json
 

@@ -42,7 +42,7 @@ class YOLOv5(BasePredictor):
 
     @torch.no_grad()
     def predict(self, img: NDArray) -> List[DetectionCoal]:
-        img = img[..., ::-1].to(self.device)
+        img = img[..., ::-1]
         prediction = self.model(img, size=self.size)
         boxes = prediction.xyxy[0].detach().cpu().numpy()
         return [DetectionCoal(box[:4]) for box in boxes]
