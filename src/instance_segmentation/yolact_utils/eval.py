@@ -13,7 +13,7 @@ import cv2
 # import pdb
 import matplotlib.pyplot as plt
 import numpy as np
-import pycocotools
+# import pycocotools
 import torch
 from numpy.typing import NDArray
 from torch.autograd import Variable

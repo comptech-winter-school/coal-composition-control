@@ -1,16 +1,17 @@
 import time
-import pandas as pd
-import streamlit as st
-import cv2 as cv2
-import plotly.express as px
-import matplotlib.pyplot as plt
 
+import cv2 as cv2
+import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
+import streamlit as st
 from PIL import Image
-from src.instance_segmentation.mask_rcnn import MaskRCNN
+
+from constants import WEIGHTS_DIR, DATA_DIR, SRC_DIR
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
+from src.instance_segmentation.mask_rcnn import MaskRCNN
 from src.object_detection.yolov5 import YOLOv5
 from src.utils import plot_coals_contours_on_img
-from constants import WEIGHTS_DIR, DATA_DIR, SRC_DIR
 
 
 def create_histogram_plot(fractions):
@@ -42,12 +43,9 @@ def load_mask_rcnn_model(model_path: str,
 @st.cache(suppress_st_warning=True,
           allow_output_mutation=True,
           ttl=5*60)
-def load_unet_model(model_path: str,
-                    width: int = None,
-                    height: int = None):
+def load_unet_model(model_path: str,):
     model = EdgeSegmentation(model_path,
-                             width=width,
-                             height=height)
+                             cut_params=None)
     return model
 
 

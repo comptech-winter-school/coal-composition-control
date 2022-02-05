@@ -1,28 +1,25 @@
 # coal-composition-control
 
 ## Installation
-### From source:
-```
-git clone https://github.com/comptech-winter-school/coal-composition-control
-cd coal-composition-control
-pip install -r requirements.txt
-streamlit run startup.py
-```
 
-### Docker:
+### Docker (recommended):
 ```
 git clone https://github.com/comptech-winter-school/coal-composition-control
 cd coal-composition-control
 docker build . -t coal
 docker run --rm --name coal-container -it coal
 ```
-чтобы остановить удалить все контейнеры
-```
-docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)  
-```
 чтобы удалить все образы и контейнеры
 ```
 docker system prune -a 
+```
+
+### From source:
+```
+git clone https://github.com/comptech-winter-school/coal-composition-control
+cd coal-composition-control
+pip install -r requirements.txt
+streamlit run startup.py
 ```
 
 ## Research notebooks

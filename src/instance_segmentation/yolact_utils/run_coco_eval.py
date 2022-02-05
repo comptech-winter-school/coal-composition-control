@@ -6,8 +6,8 @@ outputted by using the output_coco_json flag in eval.py.
 
 import argparse
 
-from pycocotools.coco import COCO
-from pycocotools.cocoeval import COCOeval
+# from pycocotools.coco import COCO
+# from pycocotools.cocoeval import COCOeval
 
 parser = argparse.ArgumentParser(description='COCO Detections Evaluator')
 parser.add_argument('--bbox_det_file', default='results/bbox_detections.json', type=str)

@@ -1,4 +1,3 @@
-import numpy as np
 import torch
 
 from src.instance_segmentation.yolact_utils.data.config import cfg
@@ -178,10 +177,11 @@ class Detect(object):
         return boxes, masks, classes, scores
 
     def traditional_nms(self, boxes, masks, scores, iou_threshold=0.5, conf_thresh=0.05):
-        import pyximport
-        pyximport.install(setup_args={"include_dirs":np.get_include()}, reload_support=True)
-
-        from src.instance_segmentation.yolact_utils.utils.cython_nms import nms as cnms
+        # import pyximport
+        # pyximport.install(setup_args={"include_dirs":np.get_include()}, reload_support=True)
+        #
+        # from src.instance_segmentation.yolact_utils.utils.cython_nms import nms as cnms
+        from src.instance_segmentation.yolact_utils.utils.non_cython_nms import nms as cnms
 
         num_classes = scores.size(0)
 

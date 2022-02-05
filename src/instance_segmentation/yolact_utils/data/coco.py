@@ -65,7 +65,7 @@ class COCODetection(data.Dataset):
                  target_transform=None,
                  dataset_name='MS COCO', has_gt=True):
         # Do this here because we have too many things named COCO
-        from pycocotools.coco import COCO
+        # from pycocotools.coco import COCO
         
         if target_transform is None:
             target_transform = COCOAnnotationTransform()

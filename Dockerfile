@@ -11,13 +11,6 @@ RUN sudo apt-get update \
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip && pip install --no-cache -r requirements.txt
 
-# fix pycocotools installation bug
-RUN apt-get install -qqy x11-apps \
- && python -m pip uninstall -y pycocotools \
- && python -m pip install --upgrade cython \
- && python -m pip install --upgrade pycocotools==2.0.0 \
- && sed -i "s#debugName#uniqueName#g" /opt/conda/lib/python3.6/site-packages/tensorboardX/pytorch_graph.py \
- && DISPLAY :0
 # Copy contents
 COPY . /app
 
@@ -42,7 +35,5 @@ enableCORS = false\n\
 
 EXPOSE 8501
 
-#ENTRYPOINT ["streamlit"]
-#CMD ["run", "startup.py"]
-ENTRYPOINT ["python"]
-CMD ["example.py"]
+ENTRYPOINT ["streamlit"]
+CMD ["run", "startup.py"]

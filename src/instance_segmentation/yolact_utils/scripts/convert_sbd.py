@@ -2,7 +2,7 @@ import json
 import os.path
 
 import numpy as np
-import pycocotools.mask
+# import pycocotools.mask
 import scipy.io
 import scipy.ndimage
 
