@@ -41,4 +41,9 @@ def load_weights() -> None:
         path=str(WEIGHTS_DIR / 'edge_segmentation.pth'),
         md5='df1660a95e26a6c65337a58edb344bb4'
     )
+    gdown.cached_download(
+        id='1tVQ91P3RGo5dX7Pw5vl9kqiS-X6ZNEME',
+        path=str(WEIGHTS_DIR / 'yolov5s6.pt'),
+        md5='0232b6b3946dd5a4d547e95b09f2b76e'
+    )
     unzip(archives_dir=WEIGHTS_DIR)
