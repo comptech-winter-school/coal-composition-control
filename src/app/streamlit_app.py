@@ -1,14 +1,16 @@
+import time
 import pandas as pd
 import streamlit as st
 import cv2 as cv2
 import plotly.express as px
 import matplotlib.pyplot as plt
 
+from PIL import Image
 from src.instance_segmentation.mask_rcnn import MaskRCNN
 from src.instance_segmentation.edge_segmentation import EdgeSegmentation
 from src.object_detection.yolov5 import YOLOv5
 from src.utils import plot_coals_contours_on_img
-from constants import WEIGHTS_DIR, DATA_DIR
+from constants import WEIGHTS_DIR, DATA_DIR, SRC_DIR
 
 
 def create_histogram_plot(fractions):
@@ -23,7 +25,9 @@ def create_histogram_plot(fractions):
     return fig
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache(suppress_st_warning=True,
+          allow_output_mutation=True,
+          ttl=5*60)
 def load_mask_rcnn_model(model_path: str,
                          box_conf_th: float = 0.7,
                          nms_th: float = 0.2,
@@ -35,7 +39,9 @@ def load_mask_rcnn_model(model_path: str,
     return model
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache(suppress_st_warning=True,
+          allow_output_mutation=True,
+          ttl=5*60)
 def load_unet_model(model_path: str,
                     width: int = None,
                     height: int = None):
@@ -45,8 +51,10 @@ def load_unet_model(model_path: str,
     return model
 
 
-@st.cache(allow_output_mutation=True)
-def load_yolov5n6_model(model_path: str,
+@st.cache(suppress_st_warning=True,
+          allow_output_mutation=True,
+          ttl=5*60)
+def load_yolov5s6_model(model_path: str,
                         box_conf_th: float = 0.2,
                         nms_th: float = 0.2,
                         amp: bool = True,
@@ -64,16 +72,21 @@ def load_yolov5n6_model(model_path: str,
 def simulate_rtsp_from_video(video_path):
     pass
 
-
 def streamlit_app():
     if "button_id" not in st.session_state:
         st.session_state["button_id"] = ""
     if "color_to_label" not in st.session_state:
         st.session_state["color_to_label"] = {}
 
+    page_icon = Image.open(str(DATA_DIR / 'favicon-32x32.png'))#.resize((24, 24), Image.ANTIALIAS)
+    page_icon = page_icon.convert("RGBA")
     st.set_page_config(
-        page_title="EVRAZ demo app", page_icon=':pencil2:'
+        page_title="EVRAZ coal fractions demo", page_icon=page_icon
     )
+
+    with open(SRC_DIR / 'app/st_form_wo_border.css') as form_style_file:
+        st.markdown(f'<style>{form_style_file.read()}</style>', unsafe_allow_html=True)
+
     st.title("ЕВРАЗ - CompTech2022")
     st.sidebar.header("Configuration")
 
@@ -123,6 +136,8 @@ def fractions_demo_app():
 
     if 'histogram_history' not in st.session_state:
         st.session_state['histogram_history'] = pd.DataFrame(columns=['Размер камней'])
+    if 'pixels2centimeters' not in st.session_state:
+        st.session_state['pixels2centimeters'] = 30 / 250   # let's pretend 30cm coal ~= 250px on image
     if 'Executed' not in st.session_state:
         st.session_state['Executed'] = 'initialized'
 
@@ -134,11 +149,9 @@ def fractions_demo_app():
                                                       nms_th=0.2,
                                                       segmentation_th=0.7),
 
-                   'Unet': load_unet_model(WEIGHTS_DIR / 'edge_segmentation.pth',
-                                           width=1280,
-                                           height=640),
+                   'Unet': load_unet_model(WEIGHTS_DIR / 'edge_segmentation.pth'),
 
-                   'Yolov5n6': load_yolov5n6_model(WEIGHTS_DIR / 'yolov5n6.pt',
+                   'Yolov5s6': load_yolov5s6_model(WEIGHTS_DIR / 'yolov5s6.pt',
                                                    box_conf_th=0.2,
                                                    nms_th=0.2,
                                                    amp=True,
@@ -146,10 +159,9 @@ def fractions_demo_app():
                                                    device=None),
                    }
 
-
     visualize_methods = {'Mask R-CNN': plot_coals_contours_on_img,
                          'Unet': plot_coals_contours_on_img,
-                         'Yolov5n6': plot_coals_contours_on_img,
+                         'Yolov5s6': plot_coals_contours_on_img,
                          }
 
     with st.form('perform_analysis'):
@@ -166,12 +178,13 @@ def fractions_demo_app():
                 key='models_list')
 
             st.write('')
-            save_hist_history = st.checkbox(label='Копить историю фракций?', value=True)
+            save_hist_history = st.checkbox(label='Копить историю фракций по кадрам?', value=True)
             st.write('')
 
         _, center_col_submit_button, _ = st.columns([2, 2.25, 1])
         with center_col_submit_button:
             perform_analysis_button = st.form_submit_button(label='Начать анализ:')
+            st.write('')
 
     model = models_list[selected_model_name]
     video_path = videos_list[selected_video]
@@ -180,12 +193,12 @@ def fractions_demo_app():
     placeholder_img = st.empty()
     placeholder_plot = st.empty()
 
+    hist_col_name = 'Размер камней (см)'
     if not save_hist_history:
-        st.session_state['histogram_history'] = pd.DataFrame(columns=['Размер камней'])
+        st.session_state['histogram_history'] = pd.DataFrame(columns=[hist_col_name])
 
     if perform_analysis_button:
         cap = cv2.VideoCapture(str(video_path))
-        frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
 
         frame_counter = 0
         success = True
@@ -201,12 +214,13 @@ def fractions_demo_app():
                 test_fractions = [coal.get_fraction() for coal in coals]
                 crop_frame_with_contours = visualize_method(crop_frame, coals)
 
-                test_fractions = pd.DataFrame(test_fractions, columns=['Размер камней'])
+                test_fractions = pd.DataFrame(test_fractions, columns=[hist_col_name])
+                test_fractions = test_fractions * st.session_state['pixels2centimeters']
                 if save_hist_history:
                     st.session_state['histogram_history'] = pd.concat([st.session_state['histogram_history'],
                                                                        test_fractions],
                                                                       ignore_index=True)
-                    df2plot = st.session_state['histogram_history']['Размер камней']
+                    df2plot = st.session_state['histogram_history'][hist_col_name]
                 else:
                     df2plot = test_fractions
 
@@ -214,21 +228,20 @@ def fractions_demo_app():
                 _col_3, plot_column, _col_4 = placeholder_plot.columns([0.2, 5, 1])
 
                 with img_col:
-                    crop_frame = cv2.cvtColor(crop_frame, cv2.COLOR_BGR2RGB)
-                    img_col.image(crop_frame, caption='Кадры с конвейера')
+                    time.sleep(0.2)    # let streamlit process image drawing for several users
                     crop_frame_with_contours = cv2.cvtColor(crop_frame_with_contours, cv2.COLOR_BGR2RGB)
                     img_col.image(crop_frame_with_contours, caption=f'Обработка моделю: {selected_model_name}')
 
                 with plot_column:
                     # plot histogram of a fractions
-                    fig = px.histogram(df2plot, nbins=64, x='Размер камней')
+                    fig = px.ecdf(df2plot, x=hist_col_name, ecdfnorm='percent')
+                    fig.add_vline(x=3, annotation_text=" Граница решения", line_width=4,
+                                  line_dash="dash", line_color="green", opacity=1)
+                    fig.update_xaxes(showgrid=True, gridwidth=0.1, gridcolor='LightPink')
+                    fig.update_yaxes(showgrid=True, gridwidth=0.1, gridcolor='LightPink')
                     fig.update_layout(
-                        title_text='Распределение фракций:',
-                        # xaxis_title_text='Размер камней',
-                        yaxis_title_text='Количество',
-                        bargap=0.01,  # gap between bars of adjacent location coordinates
-                        bargroupgap=0.01  # gap between bars of the same location coordinates
+                        # title_text='Распределение фракций:',
+                        yaxis_title_text='Процент',
                     )
-                    # fig = create_histogram_plot(df2plot)
                     plot_column.plotly_chart(fig)
         st.success('Анализ закончен!')
