@@ -18,7 +18,7 @@ def get_unet(weights, device):
     CLASSES = ['coal', 'bound', 'background']
     model = smp.Unet(
         encoder_name='efficientnet-b0',
-        encoder_weights='imagenet',
+        encoder_weights=None,
         classes=len(CLASSES),
         activation='softmax',
     )
