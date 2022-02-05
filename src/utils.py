@@ -27,3 +27,15 @@ def plot_coals_contours_on_img(img, coals: list):
     for coal2plot in coals:
         coal2plot.plot_on(img_with_contours)
     return img_with_contours
+
+
+def get_perspective_transform(image,
+                              lhs_rectangle=np.float32([[690, 0], [1450, 0], [360, 1080], [940, 1020]]),
+                              rhs_rectangle=np.float32([[0, 0], [1920, 0], [0, 1080], [1920, 1080]]),
+                              final_size=(1920, 1080)):
+    # [1 2] -> [1 2]
+    # [3 4] -> [3 4]
+    M = cv2.getPerspectiveTransform(lhs_rectangle, rhs_rectangle)
+    dst = cv2.warpPerspective(image, M, final_size)
+    return dst
+
