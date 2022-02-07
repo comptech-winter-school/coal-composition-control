@@ -31,7 +31,7 @@ cd coal-composition-control
 
 ```
 docker build . -t coal
-docker run --name coal-container -it coal
+docker run --rm --name coal-container -it coal
 ```
 
 After you've done with the demo stop and remove all running containers and images:

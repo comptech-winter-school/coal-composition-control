@@ -86,18 +86,24 @@ def fractions_demo_app():
     if 'Executed' not in st.session_state:
         st.session_state['Executed'] = 'initialized'
 
-    videos_list = {'Видео 1': str(DATA_DIR / 'example_video_1.mkv'),
-                   'Видео 2': str(DATA_DIR / 'example_video_2.mkv'),
-                   }
+    videos_list = {
+        'Видео 1': str(DATA_DIR / 'example_video_1.mkv'),
+        'Видео 2': str(DATA_DIR / 'example_video_2.mkv'),
+    }
 
-    models_list = {'Mask R-CNN': 'mask_rcnn', 'Unet': 'semantic',
-                   'Yolov5s6': 'yolov5', 'Yoloact': 'yolact'}
+    models_list = {
+        'Mask R-CNN': 'mask_rcnn',
+        'Unet': 'semantic',
+        'Yolov5s6': 'yolov5',
+        'Yoloact': 'yolact'
+    }
 
-    visualize_methods = {'Mask R-CNN': plot_coals_contours_on_img,
-                         'Unet': plot_coals_contours_on_img,
-                         'Yolov5s6': plot_coals_contours_on_img,
-                         'Yoloact': plot_coals_contours_on_img,
-                         }
+    visualize_methods = {
+        'Mask R-CNN': plot_coals_contours_on_img,
+        'Unet': plot_coals_contours_on_img,
+        'Yolov5s6': plot_coals_contours_on_img,
+        'Yoloact': plot_coals_contours_on_img,
+    }
 
     with st.form('perform_analysis'):
         _, selection_center_col, _ = st.columns([0.1, 6, 0.1])
@@ -105,12 +111,14 @@ def fractions_demo_app():
             selected_video = st.selectbox(
                 'Выберите видео из списка:',
                 videos_list,
-                key='videos_list')
+                key='videos_list'
+            )
 
             selected_model_name = st.selectbox(
                 'Выберите модель:',
                 models_list,
-                key='models_list')
+                key='models_list'
+            )
 
             st.write('')
             save_hist_history = st.checkbox(label='Копить историю фракций по кадрам?', value=True)
@@ -128,9 +136,9 @@ def fractions_demo_app():
     placeholder_img = st.empty()
     placeholder_plot = st.empty()
 
-    hist_col_name = 'Размер камней (см)'
-
     if perform_analysis_button:
+        hist_col_name = 'Размер камней (см)'
+
         st.session_state['histogram_history'] = pd.DataFrame(columns=[hist_col_name])
         cap = cv2.VideoCapture(str(video_path))
 

@@ -23,23 +23,28 @@ def setup_model(model_type):
 
     if model_type == 'semantic':
         model = EdgeSegmentation(
-        weights=WEIGHTS_DIR / 'edge_segmentation.pth',
-        segm_th_mask=0.8)
+            weights=WEIGHTS_DIR / 'edge_segmentation.pth',
+            segm_th_mask=0.8
+        )
     elif model_type == 'mask_rcnn':
         model = MaskRCNN(
             weights=WEIGHTS_DIR / 'mask_rcnn.pth',
             box_conf_th=0.7,
             nms_th=0.2,
             segmentation_th=0.7,
-            device=None)
+            device=None
+        )
     elif model_type == 'yolov5':
         model = YOLOv5(
-            weights=WEIGHTS_DIR / 'yolov5s6.pt')
+            weights=WEIGHTS_DIR / 'yolov5s6.pt'
+        )
     elif model_type == 'yolact':
         model = YolactPredictor(
             WEIGHTS_DIR / 'yolact.pt',
-            width=1344)
+            width=1344
+        )
     return model
+
 
 class Video:
     def __init__(self, path=None, cam_num=0):
@@ -57,13 +62,15 @@ class Video:
 
 
 class VideoAnalyzer:
-    def __init__(self, video: Video,
-                 analyze_type="basic",
-                 model_type="semantic",
-                 took_frame=75,
-                 cut_params=(400, 568, 512, 1280),
-                 bins=64
-                 ):
+    def __init__(
+            self,
+            video: Video,
+            analyze_type="basic",
+            model_type="semantic",
+            took_frame=75,
+            cut_params=(400, 568, 512, 1280),
+            bins=64
+    ):
         """
         :param Video video: Object which will be analyzed.
         :param str analyze_type: Analyze type of the input source, has 1 mode:

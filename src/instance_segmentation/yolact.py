@@ -14,6 +14,7 @@ def get_yolact(weights):
     map_location = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
     model.load_weights(weights, map_location=map_location)
     model = model.to(map_location)
+    model.eval()
     return model
 
 def get_args(score_threshold, top_k):
@@ -28,6 +29,7 @@ def get_args(score_threshold, top_k):
 
 
 class YolactPredictor(BasePredictor):
+
     def __init__(self, weights, score_threshold=0.1, top_k=15, width=None, height=None):
         self.model = get_yolact(weights)
         self.args = get_args(score_threshold, top_k)
@@ -36,7 +38,6 @@ class YolactPredictor(BasePredictor):
 
     @torch.no_grad()
     def predict(self, img):
-        self.model.eval()
         preds = eval.evalimage(self.model, img)
         height, width = img.shape[:2]
         height = self.height if self.height is not None else height

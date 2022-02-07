@@ -200,7 +200,7 @@ def eval_all(
     mask_rcnn = MaskRCNN(WEIGHTS_DIR / 'mask_rcnn.pth')
     edge_segmentation = EdgeSegmentation(WEIGHTS_DIR / 'edge_segmentation.pth')
     yolo = YOLOv5(weights=WEIGHTS_DIR / 'yolov5s6.pt')
-    yolact = YolactPredictor(weights=WEIGHTS_DIR / 'yolact.pth')
+    yolact = YolactPredictor(weights=WEIGHTS_DIR / 'yolact.pt')
 
     dummy = DummyPredictor(
         vgg_json=vgg_json,
