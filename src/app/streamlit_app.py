@@ -1,13 +1,14 @@
 import time
-import pandas as pd
-import streamlit as st
-import cv2 as cv2
-import plotly.express as px
-import matplotlib.pyplot as plt
 
+import cv2 as cv2
+import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
+import streamlit as st
 from PIL import Image
-from src.utils import plot_coals_contours_on_img
+
 from constants import DATA_DIR, SRC_DIR
+from src.utils import plot_coals_contours_on_img
 from src.video_analyzer import setup_model
 
 
@@ -163,7 +164,7 @@ def fractions_demo_app():
                 with img_col:
                     time.sleep(0.2)  # let streamlit process image drawing for several users
                     crop_frame_with_contours = cv2.cvtColor(crop_frame_with_contours, cv2.COLOR_BGR2RGB)
-                    img_col.image(crop_frame_with_contours, caption=f'Обработка моделю: {selected_model_name}')
+                    img_col.image(crop_frame_with_contours, caption=f'Обработка моделью: {selected_model_name}')
 
                 with plot_column:
                     # plot histogram of a fractions
