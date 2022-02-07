@@ -28,7 +28,7 @@ def get_args(score_threshold, top_k):
 
 
 class YolactPredictor(BasePredictor):
-    def __init__(self, weights, score_threshold=0.1, top_k=15, width=1280, height=512):
+    def __init__(self, weights, score_threshold=0.1, top_k=15, width=None, height=None):
         self.model = get_yolact(weights)
         self.args = get_args(score_threshold, top_k)
         self.width = width
@@ -38,8 +38,11 @@ class YolactPredictor(BasePredictor):
     def predict(self, img):
         self.model.eval()
         preds = eval.evalimage(self.model, img)
+        height, width = img.shape[:2]
+        height = self.height if self.height is not None else height
+        width = self.width if self.width is not None else width
         preds = postprocess(
-            preds, self.width, self.height,
+            preds, width, height,
             visualize_lincomb=self.args.display_lincomb,
             crop_masks=self.args.crop,
             score_threshold=self.args.score_threshold
