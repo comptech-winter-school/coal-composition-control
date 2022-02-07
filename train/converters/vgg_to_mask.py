@@ -16,21 +16,28 @@ from constants import DATA_DIR
 
 Polygon = Tuple[Tuple[int, int], ...]
 
-def parse_points(region) -> Polygon:
+def parse_points(region, cut_params=None) -> Polygon:
     """
     Extract X and Y coordinates
     :param region: region from VGG json
+    :param cut_params: cut_params = x, y, w, h; crop image to image[y:y + h, x:x + w]
     :return: list of points x, y coordinates
     """
     x_points = region["shape_attributes"]["all_points_x"]
     y_points = region["shape_attributes"]["all_points_y"]
-    return tuple(zip(x_points, y_points))
+    if cut_params is not None:
+        x, y, w, h = cut_params
+        x_points = [max(0, point - x) for point in x_points if x < point < x + w]
+        y_points = [max(0, point - y) for point in y_points if y < point < y + h]
+    if x_points and y_points:
+        return tuple(zip(x_points, y_points))
 
-def vgg2dict(vgg_json: Path) -> Dict[str, List[Polygon]]:
+def vgg2dict(vgg_json: Path, cut_params: Tuple[int, int, int, int] = None) -> Dict[str, List[Polygon]]:
     """
     VGG json -> vgg2dict (you are here) -> dict2mask -> mask
 
     :param vgg_json: path to VGG json annotation file
+    :param cut_params: cut_params = x, y, w, h; crop image to image[y:y + h, x:x + w]
     :return: keys are filenames, values are list of polygons
     """
 
@@ -44,7 +51,9 @@ def vgg2dict(vgg_json: Path) -> Dict[str, List[Polygon]]:
             print(f'No masks: {file_name}')
         mask_dict[file_name] = []
         for region in image_annotation["regions"]:
-            polygon = parse_points(region)
+            polygon = parse_points(region, cut_params=cut_params)
+            if polygon is None:
+                continue
             mask_dict[file_name].append(polygon)
     return mask_dict
 
