@@ -24,7 +24,7 @@ class Detect(object):
         self.conf_thresh = conf_thresh
         
         self.use_cross_class_nms = False
-        self.use_fast_nms = False
+        self.use_fast_nms = True
 
     def __call__(self, predictions, net):
         """

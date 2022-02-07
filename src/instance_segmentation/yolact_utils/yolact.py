@@ -146,7 +146,7 @@ class PredictionModule(nn.Module):
         """
         # In case we want to use another module's layers
         src = self if self.parent[0] is None else self.parent[0]
-        
+
         conv_h = x.size(2)
         conv_w = x.size(3)
         
@@ -247,7 +247,7 @@ class PredictionModule(nn.Module):
 
                                 prior_data += [x, y, w, h]
 
-                self.priors = torch.Tensor(prior_data, device=device).view(-1, 4).detach()
+                self.priors = torch.Tensor(prior_data).to(device).view(-1, 4).detach()
                 self.priors.requires_grad = False
                 self.last_img_size = (cfg._tmp_img_w, cfg._tmp_img_h)
                 self.last_conv_size = (conv_w, conv_h)
